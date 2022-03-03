@@ -1,0 +1,8 @@
+.trangChuCarousel{
+    background-image: url("../../../../public/img/Wallpaper.jpg");
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+}
