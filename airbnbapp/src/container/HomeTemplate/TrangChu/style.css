@@ -6,3 +6,17 @@
     background-position: center;
     background-size: cover;
 }
+.MuiFormControl-root .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+    color: black;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.css-ittuaa-MuiInputAdornment-root{
+    color: black !important
+}
+.css-1480iag-MuiInputBase-root-MuiInput-root{
+    margin-top: 20px !important
+}
+.formTimKiem{
+    border: 1px solid red;
+}
