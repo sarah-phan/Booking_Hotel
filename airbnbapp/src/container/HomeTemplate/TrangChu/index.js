@@ -1,11 +1,35 @@
 import React from 'react'
 import "./style.css"
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { actFetchViTri } from './module/action'
 import { Row, Col } from "antd"
 import { Form, InputNumber, Select, DatePicker } from "antd"
 import { Avatar, Space, Dropdown, Button, Menu } from 'antd'
 import { EnvironmentOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons"
 
 export default function TrangChu() {
+  const dataViTri = useSelector(state => state.getViTriReducer.data)
+  const loading = useSelector(state => state.getViTriReducer.loading)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(actFetchViTri())
+  }, [])
+
+  // console.log(dataViTri)
+
+  const renderViTri = () => {
+    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
+    return arr?.map((viTri) => {
+      return (
+        <>
+          <Select.Option key={viTri.id} value={viTri.province}>{viTri.province}</Select.Option>
+        </>
+      )
+    })
+  }
+
   const TimeRelatedForm = () => {
     const onFinished = (fieldsValue) => {
       const values = {
@@ -23,30 +47,54 @@ export default function TrangChu() {
         layout='vertical'
         onFinish={onFinished}
       >
-        <Form.Item 
-        label="Địa điểm" 
+        <Form.Item
+          label="Địa điểm"
+          rules={[
+            {
+              type: 'array',
+              required: true,
+              message: 'Please select your habitual residence!',
+            },
+          ]}
         >
           <Select name="select-location" suffixIcon={<EnvironmentOutlined />} style={{ width: "90%" }}>
-            <Select.Option value="HoChiMinh">Ho Chi Minh</Select.Option>
+            {renderViTri()}
           </Select>
         </Form.Item>
-        <Form.Item label="Ngày nhận phòng" name="check-in-date" rules={
-          [
+        <Form.Item
+          label="Ngày nhận phòng"
+          name="check-in-date"
+          rules={
+            [
+              {
+                required: true,
+                message: "Hãy chọn ngày nhận phòng"
+              }
+            ]
+          }>
+          <DatePicker style={{ width: "90%" }} />
+        </Form.Item>
+        <Form.Item
+          label="Ngày trả phòng"
+          name="check-out-date"
+          rules={
+            [
+              {
+                required: true,
+                message: "Hãy chọn ngày nhận phòng"
+              }
+            ]
+          }>
+          <DatePicker style={{ width: "90%" }} />
+        </Form.Item>
+        <Form.Item label="Số lượng khách" name="number-customer"
+          rules={[
             {
               required: true,
-              message: "Hãy chọn ngày nhận phòng"
+              message: "Hãy nhập số lượng khách"
             }
-          ]
-        }>
-          <DatePicker style={{ width: "90%" }} />
-        </Form.Item>
-        <Form.Item label="Ngày trả phòng" name="check-out-date">
-          <DatePicker style={{ width: "90%" }} />
-        </Form.Item>
-        <Form.Item label="Số lượng khách">
-          <Form.Item name="number-customer" noStyle>
-            <InputNumber min={1} max={20} style={{ width: "90%" }} />
-          </Form.Item>
+          ]}>
+          <InputNumber min={1} max={20} style={{ width: "90%" }} />
         </Form.Item>
         <Button htmlType="submit" className='buttonSubmit'>
           Submit
