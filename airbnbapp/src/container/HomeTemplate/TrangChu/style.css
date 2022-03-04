@@ -3,7 +3,7 @@
 
 .trangChuCarousel{
     background-image: url("../../../../public/img/Wallpaper.jpg");
-    height: 430px;
+    height: 580px;
     object-fit: cover;
     background-position: center;
     background-size: cover;
@@ -20,7 +20,9 @@
     margin-left: 200px;
 }
 .formTimKiemNoiDung{
-    margin-left: 10px;
+    margin-left: 34px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 .userNav{
     background-color: white;
@@ -51,4 +53,25 @@ label{
 .ant-btn:hover, .ant-btn:focus{
     border-color: #FB9EAA;
     color: #FB9EAA;
+}
+.iconUser{
+    font-size: 20px;
+    margin-right: 8px;
+}
+.traiNghiemTitle{
+    text-align: center;
+    margin: 40px 0;
+}
+.renderCard{
+    margin: auto;
+    width: 80%;
+}
+.ant-card{
+    margin: 10px 0;
+}
+.ant-card-body{
+    background-color: red;
+}
+.ant-card-meta-title, .ant-card-meta-description{
+    color: white
 }

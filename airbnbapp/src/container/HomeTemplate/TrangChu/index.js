@@ -6,7 +6,14 @@ import { actFetchViTri } from './module/action'
 import { Row, Col } from "antd"
 import { Form, InputNumber, Select, DatePicker } from "antd"
 import { Avatar, Space, Dropdown, Button, Menu } from 'antd'
-import { EnvironmentOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons"
+import {
+  EnvironmentOutlined,
+  UnorderedListOutlined,
+  UserOutlined,
+  LoginOutlined,
+  UserAddOutlined
+} from "@ant-design/icons"
+import DanhSachTraiNghiem from './DanhSachTraiNghiem'
 
 export default function TrangChu() {
   const dataViTri = useSelector(state => state.getViTriReducer.data)
@@ -24,10 +31,17 @@ export default function TrangChu() {
     return arr?.map((viTri) => {
       return (
         <>
-          <Select.Option key={viTri.id} value={viTri.province}>{viTri.province}</Select.Option>
+          <Select.Option key={viTri.id} value={viTri.province}>{viTri.province}, {viTri.country}</Select.Option>
         </>
       )
     })
+  }
+
+  const danhSachTraiNghiem = () => {
+    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
+    return (
+      <DanhSachTraiNghiem viTri={arr} />
+    )
   }
 
   const TimeRelatedForm = () => {
@@ -49,15 +63,17 @@ export default function TrangChu() {
       >
         <Form.Item
           label="Địa điểm"
-          rules={[
-            {
-              type: 'array',
-              required: true,
-              message: 'Please select your habitual residence!',
-            },
-          ]}
+          name="select-location"
+          rules={
+            [
+              {
+                required: true,
+                message: "Hãy chọn địa điểm"
+              }
+            ]
+          }
         >
-          <Select name="select-location" suffixIcon={<EnvironmentOutlined />} style={{ width: "90%" }}>
+          <Select suffixIcon={<EnvironmentOutlined />} style={{ width: "90%" }}>
             {renderViTri()}
           </Select>
         </Form.Item>
@@ -71,7 +87,8 @@ export default function TrangChu() {
                 message: "Hãy chọn ngày nhận phòng"
               }
             ]
-          }>
+          }
+        >
           <DatePicker style={{ width: "90%" }} />
         </Form.Item>
         <Form.Item
@@ -84,7 +101,8 @@ export default function TrangChu() {
                 message: "Hãy chọn ngày nhận phòng"
               }
             ]
-          }>
+          }
+        >
           <DatePicker style={{ width: "90%" }} />
         </Form.Item>
         <Form.Item label="Số lượng khách" name="number-customer"
@@ -97,7 +115,7 @@ export default function TrangChu() {
           <InputNumber min={1} max={20} style={{ width: "90%" }} />
         </Form.Item>
         <Button htmlType="submit" className='buttonSubmit'>
-          Submit
+          Tìm kiếm
         </Button>
       </Form>
     )
@@ -107,47 +125,44 @@ export default function TrangChu() {
     <Menu>
       <Menu.Item>
         <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          1st menu item
+          <LoginOutlined className='iconUser' />
+          Đăng nhập
         </a>
       </Menu.Item>
       <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-          3rd menu item
-        </a>
+        <UserAddOutlined className='iconUser' />
+        Đăng ký
       </Menu.Item>
     </Menu>
   );
 
   return (
-    <div className='trangChuCarousel'>
-      <div className='header'>
-        <Space wrap>
-          <Dropdown overlay={menu}>
-            <div className='userNav'>
-              <UnorderedListOutlined style={{ fontSize: 30, paddingRight: 4 }} />
-              <Avatar size="large" icon={<UserOutlined />} />
-            </div>
-          </Dropdown>
-        </Space>
+    <>
+      <div className='trangChuCarousel'>
+        <div className='header'>
+          <Space wrap>
+            <Dropdown overlay={menu}>
+              <div className='userNav'>
+                <UnorderedListOutlined style={{ fontSize: 25, paddingRight: 6 }} />
+                <Avatar size="large" icon={<UserOutlined style={{ fontSize: 28 }} />} />
+              </div>
+            </Dropdown>
+          </Space>
+        </div>
+        <div className='carouselContent'>
+          <Row>
+            <Col span={12}>
+              <h1>Airbnb</h1>
+            </Col>
+            <Col span={12}>
+              <div className='formTimKiem'>
+                {TimeRelatedForm()}
+              </div>
+            </Col>
+          </Row>
+        </div>
       </div>
-      <div className='carouselContent'>
-        <Row>
-          <Col span={12}>
-            <h1>Airbnb</h1>
-          </Col>
-          <Col span={12}>
-            <div className='formTimKiem'>
-              {TimeRelatedForm()}
-            </div>
-          </Col>
-        </Row>
-      </div>
-
-    </div>
+      {danhSachTraiNghiem()}
+    </>
   )
 }
