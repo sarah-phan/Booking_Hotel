@@ -1,19 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./style.css"
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { actFetchViTri } from './module/action'
 import { Row, Col } from "antd"
-import { Form, InputNumber, Select, DatePicker } from "antd"
-import { Avatar, Space, Dropdown, Button, Menu } from 'antd'
+import { Avatar, Space, Dropdown, Modal, Menu } from 'antd'
 import {
-  EnvironmentOutlined,
   UnorderedListOutlined,
   UserOutlined,
-  LoginOutlined,
   UserAddOutlined
 } from "@ant-design/icons"
 import DanhSachTraiNghiem from './DanhSachTraiNghiem'
+import FormTimKiem from './FormTimKiem'
+import DangNhap from './DangNhap'
 
 export default function TrangChu() {
   const dataViTri = useSelector(state => state.getViTriReducer.data)
@@ -26,108 +25,25 @@ export default function TrangChu() {
 
   // console.log(dataViTri)
 
-  const renderViTri = () => {
-    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
-    return arr?.map((viTri) => {
-      return (
-        <>
-          <Select.Option key={viTri.id} value={viTri.province}>{viTri.province}, {viTri.country}</Select.Option>
-        </>
-      )
-    })
-  }
-
   const danhSachTraiNghiem = () => {
-    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
     return (
-      <DanhSachTraiNghiem viTri={arr} />
+      <DanhSachTraiNghiem viTri={dataViTri} />
     )
   }
 
   const TimeRelatedForm = () => {
-    const onFinished = (fieldsValue) => {
-      const values = {
-        ...fieldsValue,
-        'check-in-date': fieldsValue['check-in-date'].format('DD-MM-YYYY'),
-        'check-out-date': fieldsValue['check-out-date'].format('DD-MM-YYYY'),
-        'number-customer': fieldsValue['number-customer'],
-        'select-location': fieldsValue['select-location']
-      }
-      console.log("values: ", values)
-    }
+    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
     return (
-      <Form
-        className='formTimKiemNoiDung'
-        layout='vertical'
-        onFinish={onFinished}
-      >
-        <Form.Item
-          label="Địa điểm"
-          name="select-location"
-          rules={
-            [
-              {
-                required: true,
-                message: "Hãy chọn địa điểm"
-              }
-            ]
-          }
-        >
-          <Select suffixIcon={<EnvironmentOutlined />} style={{ width: "90%" }}>
-            {renderViTri()}
-          </Select>
-        </Form.Item>
-        <Form.Item
-          label="Ngày nhận phòng"
-          name="check-in-date"
-          rules={
-            [
-              {
-                required: true,
-                message: "Hãy chọn ngày nhận phòng"
-              }
-            ]
-          }
-        >
-          <DatePicker style={{ width: "90%" }} />
-        </Form.Item>
-        <Form.Item
-          label="Ngày trả phòng"
-          name="check-out-date"
-          rules={
-            [
-              {
-                required: true,
-                message: "Hãy chọn ngày nhận phòng"
-              }
-            ]
-          }
-        >
-          <DatePicker style={{ width: "90%" }} />
-        </Form.Item>
-        <Form.Item label="Số lượng khách" name="number-customer"
-          rules={[
-            {
-              required: true,
-              message: "Hãy nhập số lượng khách"
-            }
-          ]}>
-          <InputNumber min={1} max={20} style={{ width: "90%" }} />
-        </Form.Item>
-        <Button htmlType="submit" className='buttonSubmit'>
-          Tìm kiếm
-        </Button>
-      </Form>
+      <FormTimKiem
+        arr={arr}
+      />
     )
   }
 
   const menu = (
     <Menu>
       <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          <LoginOutlined className='iconUser' />
-          Đăng nhập
-        </a>
+        <DangNhap/>
       </Menu.Item>
       <Menu.Item>
         <UserAddOutlined className='iconUser' />

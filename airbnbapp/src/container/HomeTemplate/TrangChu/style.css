@@ -7,6 +7,7 @@
     object-fit: cover;
     background-position: center;
     background-size: cover;
+    position: relative;
 }
 .ant-form-item{
     margin-bottom: 10px;
@@ -17,7 +18,7 @@
     width: 65%;
     padding: 10px 0;
     border-radius: 10px;
-    margin-left: 200px;
+    margin-left: 140px;
 }
 .formTimKiemNoiDung{
     margin-left: 34px;
@@ -30,10 +31,12 @@
     padding: 5px;
     border-radius: 10px;
     margin-top: 10px;
-    margin-left: 1152px;
+    position: absolute;
+    right: 82px;
+    top: 10px
 }
 .carouselContent{
-    margin-top: 10px;
+    margin-top: 60px;
 }
 h1{
     margin-left: 65px;
@@ -45,7 +48,7 @@ h1{
 .buttonSubmit{
     background-color: #FB9EAA;
     border-radius: 15px;
-    margin-left: 40%;
+    margin-left: 35%;
 }
 label{
     font-weight: 700;
@@ -74,4 +77,8 @@ label{
 }
 .ant-card-meta-title, .ant-card-meta-description{
     color: white
+}
+.ant-pagination{
+    margin-top: 10px;
+    text-align: right;
 }
