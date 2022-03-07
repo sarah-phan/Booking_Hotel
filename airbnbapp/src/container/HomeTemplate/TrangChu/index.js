@@ -13,6 +13,7 @@ import {
 import DanhSachTraiNghiem from './DanhSachTraiNghiem'
 import FormTimKiem from './FormTimKiem'
 import DangNhap from './DangNhap'
+import { NavLink } from 'react-router-dom'
 
 export default function TrangChu() {
   const dataViTri = useSelector(state => state.getViTriReducer.data)
@@ -46,8 +47,10 @@ export default function TrangChu() {
         <DangNhap/>
       </Menu.Item>
       <Menu.Item>
+        <NavLink to={"/dang-ky"}>
         <UserAddOutlined className='iconUser' />
         Đăng ký
+        </NavLink>
       </Menu.Item>
     </Menu>
   );

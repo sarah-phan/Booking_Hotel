@@ -53,11 +53,11 @@ export default function DangNhap() {
                         <Input.Password />
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 11 }}>
+                    {/* <Form.Item wrapperCol={{ offset: 11 }}>
                         <Button type="primary" htmlType="submit">
                             Submit
                         </Button>
-                    </Form.Item>
+                    </Form.Item> */}
                 </Form>
             </Modal>
         </>

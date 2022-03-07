@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import { renderRouteHome } from './routes';
 import Loading from './components/loading';
 import PageNotFound from './container/PageNotFound';
+import DangKy from './container/HomeTemplate/TrangChu/DangKy';
 
 export const history = createBrowserHistory()
 
@@ -13,6 +14,7 @@ function App() {
     <Suspense history={history} fallback={<Loading/>}>
       <BrowserRouter>
         <Switch>
+          <Route path='/dang-ky' component={DangKy}/>
           {renderRouteHome()}
           <Route path='' component={PageNotFound}/>
         </Switch>
