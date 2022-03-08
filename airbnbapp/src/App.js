@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 import { renderRouteHome } from './routes';
 import Loading from './components/loading';
 import PageNotFound from './container/PageNotFound';
-import DangKy from './container/HomeTemplate/TrangChu/DangKy';
+import DangKy from './container/HomeTemplate/DangKy';
 
 export const history = createBrowserHistory()
 

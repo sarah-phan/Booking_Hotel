@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { actFetchViTri } from './module/action'
 import { Row, Col } from "antd"
-import { Avatar, Space, Dropdown, Modal, Menu } from 'antd'
+import { Avatar, Space, Dropdown, Menu } from 'antd'
 import {
-  UnorderedListOutlined,
+  MenuOutlined,
   UserOutlined,
   UserAddOutlined
 } from "@ant-design/icons"
@@ -44,12 +44,12 @@ export default function TrangChu() {
   const menu = (
     <Menu>
       <Menu.Item>
-        <DangNhap/>
+        <DangNhap />
       </Menu.Item>
       <Menu.Item>
         <NavLink to={"/dang-ky"}>
-        <UserAddOutlined className='iconUser' />
-        Đăng ký
+          <UserAddOutlined className='iconUser' />
+          Đăng ký
         </NavLink>
       </Menu.Item>
     </Menu>
@@ -62,8 +62,8 @@ export default function TrangChu() {
           <Space wrap>
             <Dropdown overlay={menu}>
               <div className='userNav'>
-                <UnorderedListOutlined style={{ fontSize: 25, paddingRight: 6 }} />
-                <Avatar size="large" icon={<UserOutlined style={{ fontSize: 28 }} />} />
+                <MenuOutlined className='iconThree' />
+                <UserOutlined className='iconPerson' />
               </div>
             </Dropdown>
           </Space>

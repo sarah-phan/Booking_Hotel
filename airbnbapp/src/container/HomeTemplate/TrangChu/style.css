@@ -18,7 +18,7 @@
     width: 65%;
     padding: 10px 0;
     border-radius: 10px;
-    margin-left: 140px;
+    margin-left: 180px;
 }
 .formTimKiemNoiDung{
     margin-left: 34px;
@@ -32,8 +32,8 @@
     border-radius: 10px;
     margin-top: 10px;
     position: absolute;
-    right: 82px;
-    top: 10px
+    right: 43px;
+    top: 10px;
 }
 .carouselContent{
     margin-top: 60px;
@@ -58,8 +58,8 @@ label{
     color: #FB9EAA;
 }
 .iconUser{
-    font-size: 20px;
-    margin-right: 8px;
+    font-size: 15px;
+    margin-right: 6px;
 }
 .traiNghiemTitle{
     text-align: center;
@@ -81,4 +81,27 @@ label{
 .ant-pagination{
     margin-top: 10px;
     text-align: right;
+}
+.iconThree{
+    margin-right: 6px;
+    font-size: 23px;
+    margin-top: 6px;
+}
+.iconPerson{
+    font-size: 28px;
+}
+.ant-btn-primary{
+    background-color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    border-radius: 5px;
+}
+.ant-btn-primary:hover{
+    border: 1px solid #FB9EAA;
+    background-color: white;
+    color: #FB9EAA;
+}
+.ant-btn-default{
+    border: 1px solid #FB9EAA;
+    color: black;
+    border-radius: 5px;
 }
