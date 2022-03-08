@@ -1,42 +1,79 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import "./style.css"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as yup from "yup"
 import { UserAddOutlined } from "@ant-design/icons"
+import { actDangKy } from './module/action'
+import { NavLink } from 'react-router-dom'
+import { Modal } from 'antd'
 
-const signupUserSchema = yup.object().shape({
-  name: yup
-    .string()
-    .required('Nhập họ và tên'),
-  email: yup
-    .string()
-    .required('Nhập email')
-    .email('Email không đúng định dạng'),
-  password: yup
-    .string()
-    .required('Nhập mật khẩu'),
-  phone: yup
-    .string()
-    .required('Nhập số điện thoại')
-    .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g),
-  birthday: yup
-    .string()
-    .required('Nhập ngày tháng năm sinh'),
-  address: yup
-    .string()
-    .required('Nhập địa chỉ')
+export default function DangKy(props) {
+  const {history} = props
 
-})
+  const errorThongBao = useSelector(state => state.dangKyReducer.error)
+  const dispatch = useDispatch()
 
-export default function DangKy() {
   const handleSubmit = (values) => {
-    console.log(values)
+    dispatch(actDangKy(values))
   }
+
+  const signupUserSchema = yup.object().shape({
+    name: yup
+      .string()
+      .required('Nhập họ và tên'),
+    email: yup
+      .string()
+      .required('Nhập email')
+      .email('Email không đúng định dạng'),
+    password: yup
+      .string()
+      .required('Nhập mật khẩu'),
+    phone: yup
+      .string()
+      .required('Nhập số điện thoại')
+      .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g),
+    birthday: yup
+      .string()
+      .required('Nhập ngày tháng năm sinh'),
+    address: yup
+      .string()
+      .required('Nhập địa chỉ')
+  })
+
+  const [isShowModal, setIsShowModal] = useState(false)
+  const showModal = () => {
+    setIsShowModal(true)
+  }
+  const handleOk = () => {
+    setIsShowModal(false);
+    history.push("/")
+  }
+  const handleCancle = () => {
+    setIsShowModal(false)
+  }
+
+  
+  const showMessage = () => {
+    if (errorThongBao === null) {
+      return (
+        <p>Đăng ký tài khoản thành công</p>
+      )
+    }
+    else {
+      return (
+        <p>{errorThongBao}</p>
+      )
+    }
+  }
+
   return (
     <>
       <div className='dangKyBackground'></div>
       <div className='dangKyForm'>
-        <h1>Airbnb</h1>
+        <NavLink to={"/"}>
+          <h1>Airbnb</h1>
+        </NavLink>
         <div className='dangKyContent'>
           <h2>Đăng ký</h2>
           <Formik
@@ -115,7 +152,7 @@ export default function DangKy() {
                   </ErrorMessage>
                 </div>
                 <div>
-                  <button type='submit' className='buttonDangKy'>
+                  <button type='submit' className='buttonDangKy' onClick={showModal}>
                     <UserAddOutlined />
                     <span style={{ marginLeft: 4 }}>Đăng ký</span>
                   </button>
@@ -125,8 +162,9 @@ export default function DangKy() {
           />
         </div>
       </div>
+      <Modal visible={isShowModal} onOk={handleOk} onCancel={handleCancle}>
+        {showMessage()}
+      </Modal>
     </>
-
-
   )
 }
