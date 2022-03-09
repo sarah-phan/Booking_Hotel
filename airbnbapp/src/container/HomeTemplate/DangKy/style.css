@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,500&display=swap');
+
+.dangKyBackground{
+    background-image: url("../../../../public/img/DangKyWallpaper.jpg");
+    object-fit: cover;
+    position: relative;
+    display: block;
+    height: 930px;
+    width: 100%;
+}
+.dangKyBackground::before{
+    content: "";
+    color: grey;
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: blur(1px) brightness(0.4);
+    position: absolute;
+    left: -1px;
+    top: 0px;
+    background: inherit;
+    z-index: 0;
+}
+.dangKyForm{
+    position: absolute;
+    top: 10px;
+    width: 100%;
+}
+.dangKyContent{
+    background-color: white;
+    border: 2px solid white;
+    margin: auto;
+    width: 40%;
+    border-radius: 45px;
+}
+.dangKyForm h1{
+    font-family: 'EB Garamond', serif;
+    font-size: 70px;
+    margin-bottom: 0 !important;
+    margin-left: 90px;
+    color: #FB9EAA !important; 
+}
+.dangKyContent h2{
+    text-align: center;
+    font-size: 30px;
+    color: #FB9EAA !important;
+}
+.dangKyContent form{
+    padding-left: 60px;
+    border-radius: 20px
+}
+.dangKyContent label{
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 18px;
+    font-size: 15px;
+}
+.dangKyContent input{
+    width: 380px;
+    border: 1px inset black;
+}
+.buttonDangKy{
+    border: 1px solid #FB9EAA;
+    background-color: #FB9EAA;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 30px 130px;
+    padding: 10px 12px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+.buttonDangKy .anticon-user-add{
+    font-size: 22px;
+    margin-right: 5px;
+}
+.dangKyContent button:hover{
+    background-color: white;
+    color: #FB9EAA
+}
+.dangKyContent .error{
+    color: red
+}

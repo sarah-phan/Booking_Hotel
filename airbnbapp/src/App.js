@@ -4,8 +4,10 @@ import { createBrowserHistory } from "history";
 import { Suspense } from "react";
 import { renderRouteHome } from "./routes";
 import { renderRoutesAdmin } from "./routes";
+
 import Loading from "./components/loading";
 import PageNotFound from "./container/PageNotFound";
+import DangKy from "./container/HomeTemplate/DangKy";
 
 export const history = createBrowserHistory();
 
@@ -14,6 +16,7 @@ function App() {
     <Suspense history={history} fallback={<Loading />}>
       <BrowserRouter>
         <Switch>
+          <Route path="/dang-ky" component={DangKy} />
           {renderRouteHome()}
           {renderRoutesAdmin()}
           <Route path="" component={PageNotFound} />

@@ -4,150 +4,120 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { actFetchViTri } from './module/action'
 import { Row, Col } from "antd"
-import { Form, InputNumber, Select, DatePicker } from "antd"
-import { Avatar, Space, Dropdown, Button, Menu } from 'antd'
+import { Avatar, Space, Dropdown, Menu, Image } from 'antd'
 import {
-  EnvironmentOutlined,
-  UnorderedListOutlined,
+  MenuOutlined,
   UserOutlined,
-  LoginOutlined,
   UserAddOutlined
 } from "@ant-design/icons"
 import DanhSachTraiNghiem from './DanhSachTraiNghiem'
+import FormTimKiem from './FormTimKiem'
+import DangNhap from './DangNhap'
+import { NavLink } from 'react-router-dom'
+import { actGetChiTiet } from '../../../reducer/moduleChiTietUser/action'
 
 export default function TrangChu() {
   const dataViTri = useSelector(state => state.getViTriReducer.data)
-  const loading = useSelector(state => state.getViTriReducer.loading)
+  const dataChiTietUser = useSelector(state => state.getChiTietUserReducer.data)
+  if(JSON.parse(localStorage.getItem("UserAccount")) !== null){
+    var idUser = JSON.parse(localStorage.getItem("UserAccount")).user._id
+  }
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(actFetchViTri())
+    dispatch(actFetchViTri());
+    if (idUser !== undefined){
+      dispatch(actGetChiTiet(idUser))
+    }
   }, [])
 
-  // console.log(dataViTri)
-
-  const renderViTri = () => {
-    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
-    return arr?.map((viTri) => {
-      return (
-        <>
-          <Select.Option key={viTri.id} value={viTri.province}>{viTri.province}, {viTri.country}</Select.Option>
-        </>
-      )
-    })
-  }
-
   const danhSachTraiNghiem = () => {
-    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
     return (
-      <DanhSachTraiNghiem viTri={arr} />
+      <DanhSachTraiNghiem viTri={dataViTri} />
     )
   }
 
   const TimeRelatedForm = () => {
-    const onFinished = (fieldsValue) => {
-      const values = {
-        ...fieldsValue,
-        'check-in-date': fieldsValue['check-in-date'].format('DD-MM-YYYY'),
-        'check-out-date': fieldsValue['check-out-date'].format('DD-MM-YYYY'),
-        'number-customer': fieldsValue['number-customer'],
-        'select-location': fieldsValue['select-location']
-      }
-      console.log("values: ", values)
-    }
+    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
     return (
-      <Form
-        className='formTimKiemNoiDung'
-        layout='vertical'
-        onFinish={onFinished}
-      >
-        <Form.Item
-          label="Địa điểm"
-          name="select-location"
-          rules={
-            [
-              {
-                required: true,
-                message: "Hãy chọn địa điểm"
-              }
-            ]
-          }
-        >
-          <Select suffixIcon={<EnvironmentOutlined />} style={{ width: "90%" }}>
-            {renderViTri()}
-          </Select>
-        </Form.Item>
-        <Form.Item
-          label="Ngày nhận phòng"
-          name="check-in-date"
-          rules={
-            [
-              {
-                required: true,
-                message: "Hãy chọn ngày nhận phòng"
-              }
-            ]
-          }
-        >
-          <DatePicker style={{ width: "90%" }} />
-        </Form.Item>
-        <Form.Item
-          label="Ngày trả phòng"
-          name="check-out-date"
-          rules={
-            [
-              {
-                required: true,
-                message: "Hãy chọn ngày nhận phòng"
-              }
-            ]
-          }
-        >
-          <DatePicker style={{ width: "90%" }} />
-        </Form.Item>
-        <Form.Item label="Số lượng khách" name="number-customer"
-          rules={[
-            {
-              required: true,
-              message: "Hãy nhập số lượng khách"
-            }
-          ]}>
-          <InputNumber min={1} max={20} style={{ width: "90%" }} />
-        </Form.Item>
-        <Button htmlType="submit" className='buttonSubmit'>
-          Tìm kiếm
-        </Button>
-      </Form>
+      <FormTimKiem
+        arr={arr}
+      />
     )
   }
 
   const menu = (
     <Menu>
       <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          <LoginOutlined className='iconUser' />
-          Đăng nhập
-        </a>
+        <DangNhap />
       </Menu.Item>
       <Menu.Item>
-        <UserAddOutlined className='iconUser' />
-        Đăng ký
+        <NavLink to={"/dang-ky"}>
+          <UserAddOutlined className='iconUser' />
+          Đăng ký
+        </NavLink>
       </Menu.Item>
     </Menu>
   );
+
+  const menuAlreadyLogin = (
+    <Menu>
+      <Menu.Item>
+        <a href='#'>Tài khoản cá nhân</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a href='#'>Thay đổi ảnh đại diện</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a href='#'>Lịch sử đặt vé</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a href='#'>Đăng xuất</a>
+      </Menu.Item>
+    </Menu>
+  )
+
+  const isLogin = () => {
+    let iconUser = null;
+    let srcAvatar = null;
+
+    if (JSON.parse(localStorage.getItem("UserAccount")) === null) {
+      return (
+        <Space wrap>
+          <Dropdown overlay={menu}>
+            <div className='userNav'>
+              <MenuOutlined className='iconThree' />
+              <UserOutlined className='iconPerson' />
+            </div>
+          </Dropdown>
+        </Space>
+      )
+    }
+    else {
+      if (dataChiTietUser?.avatar === undefined) {
+        iconUser = <UserOutlined />
+      }
+      else {
+        srcAvatar = <Image src={dataChiTietUser?.avatar} width="100%" height="100%" style={{objectFit:'cover'}}/>
+      }
+      return (
+        <Space wrap>
+          <Dropdown overlay={menuAlreadyLogin}>
+            <div className='userNavAlreadyLogin'>
+              <h3>{dataChiTietUser?.name}</h3>
+              <Avatar size={50} icon={iconUser} src={srcAvatar} />
+            </div>
+          </Dropdown>
+        </Space>
+      )
+    }
+  }
 
   return (
     <>
       <div className='trangChuCarousel'>
         <div className='header'>
-          <Space wrap>
-            <Dropdown overlay={menu}>
-              <div className='userNav'>
-                <UnorderedListOutlined style={{ fontSize: 25, paddingRight: 6 }} />
-                <Avatar size="large" icon={<UserOutlined style={{ fontSize: 28 }} />} />
-              </div>
-            </Dropdown>
-          </Space>
+          {isLogin()}
         </div>
         <div className='carouselContent'>
           <Row>

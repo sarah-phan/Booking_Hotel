@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
+import { Route } from "react-router-dom";
 
-export default function AdminTemplate() {
+export default function AdminTemplate({ exact, path, component }) {
   return (
-    <div>index</div>
-  )
+    <>
+      {/* <NavbarAdmin /> */}
+      <Route exact={exact} path={path} component={component} />
+    </>
+  );
 }
