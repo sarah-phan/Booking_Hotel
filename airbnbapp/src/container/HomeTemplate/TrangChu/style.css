@@ -100,8 +100,23 @@ label{
     background-color: white;
     color: #FB9EAA;
 }
+.ant-btn-primary:focus{
+    background-color: #FB9EAA;
+    color: white;
+}
 .ant-btn-default{
     border: 1px solid #FB9EAA;
     color: black;
     border-radius: 5px;
+}
+.userNavAlreadyLogin h3{
+    display: inline;
+    margin-right: 10px;
+}
+.userNavAlreadyLogin{
+    position: absolute;
+    right: 40px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
 }
