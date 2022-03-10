@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "antd/dist/antd.js"
+import 'antd/dist/antd.css';
+
+import "jquery/dist/jquery.min.js";
+import "popper.js/dist/umd/popper.min.js";
 
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
