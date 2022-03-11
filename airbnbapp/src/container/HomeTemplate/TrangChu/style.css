@@ -113,10 +113,19 @@ label{
     display: inline;
     margin-right: 10px;
 }
+header{
+    position: relative;
+}
 .userNavAlreadyLogin{
     position: absolute;
-    right: 40px;
+    right: 90px;
+    top: 21px;
     padding-bottom: 10px;
     padding-left: 10px;
     border-radius: 10px;
+}
+.userAvatar{
+    position: absolute;
+    right: 40px;
+    top: 10px
 }

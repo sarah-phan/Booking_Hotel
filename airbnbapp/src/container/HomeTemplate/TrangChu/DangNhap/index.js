@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { LoginOutlined } from '@ant-design/icons'
-import { Modal } from 'antd'
+import { LoginOutlined, WindowsFilled } from '@ant-design/icons'
+import { Alert, Modal } from 'antd'
 import { Form, Input, Button } from 'antd'
 import { actDangNhap } from './module/action'
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,8 +9,11 @@ export default function DangNhap() {
     const data = useSelector(state => state.dangNhapReducer.data)
     const error = useSelector(state => state.dangNhapReducer.error)
     const dispatch = useDispatch()
-
+    
+    let message = ""
     const [isModalVisible, setIsModalVisible] = useState(false)
+    const [isAlertVisible, setIsAlertVisible] = useState(false)
+
     const showModal = () => {
         setIsModalVisible(true)
     }
@@ -19,15 +22,27 @@ export default function DangNhap() {
     }
     const onFinish = (values) => {
         dispatch(actDangNhap(values))
-        setIsModalVisible(false)
+        setIsAlertVisible(true)
     };
+
     const showMessage = () => {
-        if(data !== null){
-            alert(data)
+        if (data !== null){
+            return data
         }
-        if(error !== null){
-            alert(error)
+        if (error !== null){
+            return error
         }
+    }
+    const showType = () => {
+        if (data !== null){
+            return "success"
+        }
+        if (error !== null){
+            return "error"
+        }
+    }
+    const reloadPage = () => {
+        window.location.reload()
     }
     return (
         <>
@@ -35,7 +50,9 @@ export default function DangNhap() {
                 <LoginOutlined className='iconUser' />
                 Đăng nhập
             </div>
-            <Modal title="Đăng nhập" visible={isModalVisible} onCancel={onCancel} footer={null} afterClose={showMessage}>
+            <Modal title="Đăng nhập" visible={isModalVisible} onCancel={onCancel} footer={null} afterClose={reloadPage}>
+                {isAlertVisible ? (<Alert message={showMessage()} type={showType()} showIcon/>) : null}
+                <br/>
                 <Form
                     name="basic"
                     labelCol={{ span: 6 }}

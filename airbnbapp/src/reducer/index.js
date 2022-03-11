@@ -3,7 +3,7 @@ import { getViTriReducer } from "../container/HomeTemplate/TrangChu/module/reduc
 import { getViTriPhanTrangReducer } from "../container/HomeTemplate/TrangChu/DanhSachTraiNghiem/module/reducer";
 import { dangKyReducer } from "../container/HomeTemplate/DangKy/module/reducer";
 import { dangNhapReducer } from "../container/HomeTemplate/TrangChu/DangNhap/module/reducer";
-import { getChiTietUserReducer } from "./moduleChiTietUser/reducer";
+import { getChiTietUserReducer } from "./moduleUserDetail/reducer";
 export const rootReducer = combineReducers({
     getViTriReducer,
     getViTriPhanTrangReducer,

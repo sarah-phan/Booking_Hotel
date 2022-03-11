@@ -3,7 +3,7 @@ import "./style.css"
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { actFetchViTri } from './module/action'
-import { Row, Col } from "antd"
+import { Row, Col, Alert } from "antd"
 import { Avatar, Space, Dropdown, Menu, Image } from 'antd'
 import {
   MenuOutlined,
@@ -14,7 +14,7 @@ import DanhSachTraiNghiem from './DanhSachTraiNghiem'
 import FormTimKiem from './FormTimKiem'
 import DangNhap from './DangNhap'
 import { NavLink } from 'react-router-dom'
-import { actGetChiTiet } from '../../../reducer/moduleChiTietUser/action'
+import { actGetChiTiet } from '../../../reducer/moduleUserDetail/action'
 
 export default function TrangChu() {
   const dataViTri = useSelector(state => state.getViTriReducer.data)
@@ -59,6 +59,11 @@ export default function TrangChu() {
       </Menu.Item>
     </Menu>
   );
+  
+  const logout = () => {
+    localStorage.clear()
+    window.location.href = "/"
+  }
 
   const menuAlreadyLogin = (
     <Menu>
@@ -72,7 +77,7 @@ export default function TrangChu() {
         <a href='#'>Lịch sử đặt vé</a>
       </Menu.Item>
       <Menu.Item>
-        <a href='#'>Đăng xuất</a>
+        <a onClick={logout}>Đăng xuất</a>
       </Menu.Item>
     </Menu>
   )
@@ -101,14 +106,17 @@ export default function TrangChu() {
         srcAvatar = <Image src={dataChiTietUser?.avatar} width="100%" height="100%" style={{objectFit:'cover'}}/>
       }
       return (
+        <>
         <Space wrap>
           <Dropdown overlay={menuAlreadyLogin}>
             <div className='userNavAlreadyLogin'>
               <h3>{dataChiTietUser?.name}</h3>
-              <Avatar size={50} icon={iconUser} src={srcAvatar} />
             </div>
           </Dropdown>
         </Space>
+        <Avatar className='userAvatar' size={50} icon={iconUser} src={srcAvatar} />
+        </>
+
       )
     }
   }
