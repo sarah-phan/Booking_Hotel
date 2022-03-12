@@ -9,9 +9,6 @@
     background-size: cover;
     position: relative;
 }
-.ant-form-item{
-    margin-bottom: 10px;
-}
 .formTimKiem{
     background-color: white;
     border: 2px solid #FB9EAA;
@@ -20,7 +17,7 @@
     border-radius: 10px;
     margin-left: 180px;
 }
-.formTimKiemNoiDung{
+.ant-row .formTimKiemNoiDung{
     margin-left: 34px;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -45,15 +42,15 @@ h1{
     font-size: 80px;
     font-family: 'EB Garamond', serif;
 }
-.buttonSubmit{
+.formTimKiemNoiDung .buttonSubmit{
     background-color: #FB9EAA;
-    border-radius: 15px;
+    border-radius: 5px;
     margin-left: 35%;
 }
 label{
     font-weight: 700;
 }
-.ant-btn:hover, .ant-btn:focus{
+.trangChuCarousel .ant-btn:hover, .trangChuCarousel .ant-btn:focus{
     border-color: #FB9EAA;
     color: #FB9EAA;
 }
@@ -69,16 +66,16 @@ label{
     margin: auto;
     width: 80%;
 }
-.ant-card{
+.ant-row .ant-card{
     margin: 10px 0;
 }
 .ant-card-body{
     background-color: red;
 }
 .ant-card-meta-title, .ant-card-meta-description{
-    color: white
+    color: white !important;
 }
-.ant-pagination{
+.renderCard .ant-pagination{
     margin-top: 10px;
     text-align: right;
 }
@@ -90,24 +87,19 @@ label{
 .iconPerson{
     font-size: 28px;
 }
-.ant-btn-primary{
+.ant-modal-body .ant-btn-primary{
     background-color: #FB9EAA;
     border: 1px solid #FB9EAA;
     border-radius: 5px;
 }
-.ant-btn-primary:hover{
+.ant-modal-body .ant-btn-primary:hover{
     border: 1px solid #FB9EAA;
     background-color: white;
     color: #FB9EAA;
 }
-.ant-btn-primary:focus{
+.ant-modal-body .ant-btn-primary:focus{
     background-color: #FB9EAA;
     color: white;
-}
-.ant-btn-default{
-    border: 1px solid #FB9EAA;
-    color: black;
-    border-radius: 5px;
 }
 .userNavAlreadyLogin h3{
     display: inline;
@@ -124,8 +116,22 @@ header{
     padding-left: 10px;
     border-radius: 10px;
 }
-.userAvatar{
+.header .userAvatar{
     position: absolute;
     right: 40px;
     top: 10px
+}
+.ant-col .ant-card-bordered .ant-card-cover{
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+}
+.ant-modal-content .ant-modal-body{
+    padding: 0;
+    padding-right: 40px;
+}
+.ant-modal-header .ant-modal-title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
 }

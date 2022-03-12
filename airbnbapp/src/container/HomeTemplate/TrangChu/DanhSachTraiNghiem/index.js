@@ -32,7 +32,7 @@ export default function DanhSachTraiNghiem() {
                     <Card
                         hoverable
                         style={{ width: 290 }}
-                        cover={<img alt={traiNghiem.image} src={traiNghiem.image} style={{ objectFit: 'cover', height: 300. }} />}
+                        cover={<img alt={traiNghiem.image} src={traiNghiem.image} style={{ objectFit: 'cover', height: 300, width: "100%" }} />}
                     >
                         <Meta title={traiNghiem.name} description={`${traiNghiem.province}, ${traiNghiem.country}`} />
                     </Card>

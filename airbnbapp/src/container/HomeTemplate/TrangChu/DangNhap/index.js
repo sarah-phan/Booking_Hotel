@@ -73,11 +73,12 @@ export default function DangNhap() {
                         label="Mật khẩu"
                         name="password"
                         rules={[{ required: true, message: 'Hãy nhập mật khẩu' }]}
+                        style={{marginBottom: 0}}
                     >
                         <Input.Password />
                     </Form.Item>
                     <Form.Item wrapperCol={{ offset: 10 }}>
-                        <Button style={{ marginTop: 15 }} type="primary" htmlType="submit" >
+                        <Button style={{ margin: "20px 0px"}} type="primary" htmlType="submit" >
                             Đăng nhập
                         </Button>
                     </Form.Item>

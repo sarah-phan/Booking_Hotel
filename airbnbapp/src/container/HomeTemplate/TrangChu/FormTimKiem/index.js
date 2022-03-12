@@ -1,8 +1,12 @@
 import React from 'react'
 import { Form, DatePicker, InputNumber, Button, Select } from 'antd'
 import { EnvironmentOutlined } from '@ant-design/icons'
+import { actGetValueSearch } from '../../../../reducer/moduleValueSearch/action'
+import { useDispatch } from 'react-redux'
 
 export default function FormTimKiem(props) {
+    const dispatch = useDispatch()
+
     const { arr } = props
     const renderViTri = () => {
         return arr?.map((viTri) => {
@@ -22,7 +26,7 @@ export default function FormTimKiem(props) {
             'number-customer': fieldsValue['number-customer'],
             'select-location': fieldsValue['select-location']
         }
-        console.log("values: ", values)
+        dispatch(actGetValueSearch(values))
     }
     return (
         <Form
@@ -83,7 +87,9 @@ export default function FormTimKiem(props) {
                 ]}>
                 <InputNumber min={1} max={20} style={{ width: "90%" }} />
             </Form.Item>
-            <Button htmlType="submit" className='buttonSubmit'>
+            <Button htmlType="submit" className='buttonSubmit' onClick={() => {
+                window.location.href = "/danh-sach-phong-o"
+            }}>
                 Tìm kiếm
             </Button>
         </Form>

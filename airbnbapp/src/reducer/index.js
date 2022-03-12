@@ -4,10 +4,13 @@ import { getViTriPhanTrangReducer } from "../container/HomeTemplate/TrangChu/Dan
 import { dangKyReducer } from "../container/HomeTemplate/DangKy/module/reducer";
 import { dangNhapReducer } from "../container/HomeTemplate/TrangChu/DangNhap/module/reducer";
 import { getChiTietUserReducer } from "./moduleUserDetail/reducer";
+import { getValueSearchReducer } from "./moduleValueSearch/reducer";
+
 export const rootReducer = combineReducers({
     getViTriReducer,
     getViTriPhanTrangReducer,
     dangKyReducer,
     dangNhapReducer,
-    getChiTietUserReducer
+    getChiTietUserReducer,
+    getValueSearchReducer
 })

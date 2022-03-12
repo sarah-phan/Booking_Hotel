@@ -3,7 +3,7 @@ import "./style.css"
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { actFetchViTri } from './module/action'
-import { Row, Col, Alert } from "antd"
+import { Row, Col } from "antd"
 import { Avatar, Space, Dropdown, Menu, Image } from 'antd'
 import {
   MenuOutlined,
@@ -15,6 +15,7 @@ import FormTimKiem from './FormTimKiem'
 import DangNhap from './DangNhap'
 import { NavLink } from 'react-router-dom'
 import { actGetChiTiet } from '../../../reducer/moduleUserDetail/action'
+import Footer from '../_components/Footer'
 
 export default function TrangChu() {
   const dataViTri = useSelector(state => state.getViTriReducer.data)
@@ -141,6 +142,7 @@ export default function TrangChu() {
         </div>
       </div>
       {danhSachTraiNghiem()}
+      <Footer/>
     </>
   )
 }

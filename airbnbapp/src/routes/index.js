@@ -4,9 +4,9 @@ import AdminTemplate from "../container/AdminTemplate";
 
 const routeHome = [
   {
-    exact: true,
-    path: "/",
-    component: lazy(() => import("../container/HomeTemplate/TrangChu")),
+    exact: false,
+    path: "/danh-sach-phong-o",
+    component: lazy(() => import("../container/HomeTemplate/DanhSachPhongO")),
   },
 ];
 
