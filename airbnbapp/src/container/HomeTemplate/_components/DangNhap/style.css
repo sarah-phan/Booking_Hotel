@@ -1,0 +1,23 @@
+.modalLogin .ant-modal-body{
+    padding: 0;
+    padding-right: 40px;
+}
+.modalLogin .ant-modal-title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+}
+.modalLogin .ant-btn-primary{
+    background-color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    border-radius: 5px;
+}
+.modalLogin .ant-btn-primary:hover{
+    border: 1px solid #FB9EAA;
+    background-color: white;
+    color: #FB9EAA;
+}
+.modalLogin .ant-btn-primary:focus{
+    background-color: #FB9EAA;
+    color: white;
+}
