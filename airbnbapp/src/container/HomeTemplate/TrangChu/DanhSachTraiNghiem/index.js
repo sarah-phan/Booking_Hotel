@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Row, Col, Pagination } from 'antd';
 import { actViTriPhanTrang } from './module/action';
 
 export default function DanhSachTraiNghiem() {
     const dispatch = useDispatch()
-    const data = useSelector(state => state.getViTriPhanTrangReducer.data) 
+    const data = useSelector(state => state.getViTriPhanTrangReducer.data)
     const { Meta } = Card;
 
-    const [params, setParams]= useState({
+    const [params, setParams] = useState({
         limit: 6,
-        skip:0,
+        skip: 0,
     })
 
     useEffect(() => {
@@ -26,9 +26,9 @@ export default function DanhSachTraiNghiem() {
     }
 
     const renderCardTraiNghiem = () => {
-        return data?.map((traiNghiem) => {
+        return data?.map((traiNghiem, index) => {
             return (
-                <Col span={8}>
+                <Col key={index} span={8}>
                     <Card
                         hoverable
                         style={{ width: 290 }}

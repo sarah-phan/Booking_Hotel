@@ -30,8 +30,6 @@ export default function UserNavbar() {
         }
     }, [])
 
-    
-    
     const menu = (
         <Menu>
             <Menu.Item>

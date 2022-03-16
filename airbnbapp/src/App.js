@@ -13,7 +13,7 @@ export const history = createBrowserHistory();
 
 function App() {
   return (
-    <Suspense history={history} fallback={<Loading />}>
+    <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <Switch>
           <Route exact={true} path="/" component={TrangChu}/>

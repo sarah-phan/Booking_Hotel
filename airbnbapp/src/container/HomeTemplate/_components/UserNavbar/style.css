@@ -32,8 +32,8 @@
     padding-left: 10px;
     border-radius: 10px;
 }
-.header .userAvatar{
-    position: absolute;
+.userAvatar{
+    position: absolute !important;
     right: 40px;
     top: 10px
 }

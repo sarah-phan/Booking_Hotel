@@ -1,8 +1,18 @@
 .navbarHomepage{
     background-color: #FB9EAA;   
+    position: relative;
 }
 .logoHomepage h1{
     font-size: 35px;
     margin-bottom: 0;
     margin-left: 40px;
+}
+.navbarHomepage .userNav{
+    top: -5px;
+}
+.navbarHomepage .userAvatar{
+    top: 2px;
+}
+.navbarHomepage .userNavAlreadyLogin{
+    top: 15px
 }
