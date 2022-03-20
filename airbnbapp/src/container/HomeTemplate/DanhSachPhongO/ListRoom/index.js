@@ -14,7 +14,7 @@ export default function ListRoom(props) {
     const prevValues = useSelector(state => state.getValueSearchReducer.value)
     const dispatch = useDispatch()
 
-    let conditionObjUpdated = []
+    const arr = []
 
     const [params, setParams] = useState({
         limit: 4,
@@ -34,25 +34,10 @@ export default function ListRoom(props) {
         dispatch(actGetListRoom(idViTri))
     }, [params.skip, params.limit, idViTri])
 
-    // const checkCondition = () => {
-    //     let conditionObj = {
-    //         checkedList: "",
-    //         priceMin: "",
-    //         priceMax: ""
-    //     }
-    //     if (dataAdvancedSearch !== null) {
-    //         conditionObj.checkedList = dataAdvancedSearch.checkedList
-    //         conditionObj.priceMin = dataAdvancedSearch.priceMin
-    //         conditionObj.priceMax = dataAdvancedSearch.priceMax
-    //     }
-    //     return conditionObj
-    // }
-    // console.log(checkCondition())
     console.log(dataAdvancedSearch)
     console.log(dataListRoomPaginate)
     console.log(dataListRoom)
 
-    const arr = []
     const abc = () => {
         if (dataAdvancedSearch === null) {
             return arr
