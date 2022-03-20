@@ -5,6 +5,10 @@ import { dangKyReducer } from "../container/HomeTemplate/_components/DangKy/modu
 import { dangNhapReducer } from "../container/HomeTemplate/_components/DangNhap/module/reducer";
 import { getChiTietUserReducer } from "./moduleUserDetail/reducer";
 import { getValueSearchReducer } from "./moduleValueSearch/reducer";
+import { getDetailViTriReducer } from "../container/HomeTemplate/DanhSachPhongO/module/reducer";
+import { getListRoomPaginateReducer } from "../container/HomeTemplate/DanhSachPhongO/ListRoom/module/reducer";
+import { getListRoomReducer } from "../container/HomeTemplate/DanhSachPhongO/ListRoom/module/reducer";
+import { getAdvancedSearchValueReducer } from "../container/HomeTemplate/DanhSachPhongO/AdvancedSearch/module/reducer";
 
 export const rootReducer = combineReducers({
     getViTriReducer,
@@ -12,5 +16,9 @@ export const rootReducer = combineReducers({
     dangKyReducer,
     dangNhapReducer,
     getChiTietUserReducer,
-    getValueSearchReducer
+    getValueSearchReducer,
+    getDetailViTriReducer,
+    getListRoomPaginateReducer,
+    getListRoomReducer,
+    getAdvancedSearchValueReducer,
 })

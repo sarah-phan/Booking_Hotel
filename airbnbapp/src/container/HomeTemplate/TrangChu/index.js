@@ -24,10 +24,9 @@ export default function TrangChu() {
   }
 
   const TimeRelatedForm = () => {
-    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
     return (
       <FormTimKiem
-        arr={arr}
+        arr={dataViTri}
       />
     )
   }

@@ -1,30 +1,33 @@
 import React from 'react'
 import { Form, Select, DatePicker, Row, Col, InputNumber, Button } from "antd"
 import { EnvironmentOutlined } from "@ant-design/icons"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
+import {actGetValueSearch} from "../../../../reducer/moduleValueSearch/action"
+import { useHistory } from 'react-router-dom'
 
 export default function FormDanhSachPhongO(props) {
     const prevValues = useSelector(state => state.getValueSearchReducer.value)
+    const history = useHistory()
+    const dispatch = useDispatch()
     const { arr } = props
 
-    const numberCustomerPrev = prevValues?.numberCustomer
-    const checkInDatePrev = moment(prevValues?.checkInDate._d === undefined ? new Date() : prevValues?.checkInDate._d, "DD-MM-YYYY")
-    const checkOutDatePrev = moment(prevValues?.checkOutDate._d === undefined ? new Date() : prevValues?.checkOutDate._d, "DD-MM-YYYY")
-    const selectLocationPrev = prevValues?.selectLocation
-   
-    const getID = () => {
-        let _idFind
+    let _idFind
+    const getID = (values)=>{
         return arr?.map((viTri) => {
-            if (`${viTri.province}, ${viTri.country}` === selectLocationPrev) {
+            if (`${viTri.province}, ${viTri.country}` === values.selectLocation) {
                 _idFind = viTri._id
             }
-            else{
+            else {
                 return
             }
-            console.log(_idFind)
         })
     }
+
+    const numberCustomerPrev = prevValues?.numberCustomer
+    const checkInDatePrev = prevValues?.checkInDate._d === undefined ? null : moment(prevValues?.checkInDate._d, "DD-MM-YYYY") 
+    const checkOutDatePrev = prevValues?.checkOutDate._d === undefined ? null : moment(prevValues?.checkOutDate._d, "DD-MM-YYYY") 
+    const selectLocationPrev = prevValues?.selectLocation
 
     const renderViTri = () => {
         return arr?.map((viTri, index) => {
@@ -49,8 +52,11 @@ export default function FormDanhSachPhongO(props) {
             'checkOutDate': fieldsValue['checkOutDate'],
             'numberCustomer': fieldsValue['numberCustomer'],
         }
-        console.log(values)
+        dispatch(actGetValueSearch(values));
+        getID(values)
+        history.push(`/danh-sach-phong-o/${_idFind}`)
     }
+    
     return (
         <div>
             <Form onFinish={onFinish}>
@@ -71,7 +77,6 @@ export default function FormDanhSachPhongO(props) {
                         <Form.Item
                             label="Ngày nhận phòng"
                             name="checkInDate"
-
                         >
                             <DatePicker
                                 style={{ width: "72%" }}
@@ -94,7 +99,7 @@ export default function FormDanhSachPhongO(props) {
                 <Form.Item label="Số lượng khách" name="numberCustomer">
                     <InputNumber min={1} max={20} style={{ width: "87%", marginLeft: 12 }} defaultValue={numberCustomerPrev} />
                 </Form.Item>
-                <Button htmlType='submit' className='buttonSubmit'>Tìm kiếm</Button>
+                <Button htmlType='submit' className='buttonSubmitPhongO'>Tìm kiếm</Button>
             </Form>
         </div>
     )

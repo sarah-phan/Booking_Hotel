@@ -1,42 +1,58 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import FormDanhSachPhongO from './FormDanhSachPhongO'
 import { useSelector, useDispatch } from 'react-redux'
 import { actFetchViTri } from '../TrangChu/module/action'
-import { Row, Col, Slider } from 'antd'
 import "./style.css"
+import AdvancedSearch from './AdvancedSearch'
+import { Row, Col } from 'antd'
+import ListRoom from './ListRoom'
 
-export default function DanhSachPhongO() {
+export default function DanhSachPhongO(props) {
   const dataViTri = useSelector(state => state.getViTriReducer.data)
   const dispatch = useDispatch()
+  const idViTri = props.match.params.id
+
   useEffect(() => {
     dispatch(actFetchViTri());
   }, [])
 
   const renderFormDanhSachPhongO = () => {
-    let arr = dataViTri?.filter((ele, idx) => idx === dataViTri?.findIndex(elem => elem.province === ele.province))
     return (
       <FormDanhSachPhongO
-        arr={arr}
+        arr={dataViTri}
       />
     )
   }
 
+  const advancedSearch = () => {
+    return (
+      <AdvancedSearch />
+    )
+  }
+
+  const renderListRoom = () => {
+    return(
+      <ListRoom
+      idViTri={idViTri}
+      />
+    )
+  }
   return (
     <div>
       <div className='formDanhSachPhongO'>
         {renderFormDanhSachPhongO()}
       </div>
-      <div className='advancedSearch'>
+      <div className='content'>
         <Row>
-          <Col span={12}>
-            <h3>Lọc kết quả</h3>
-            <div className='khoangGia'>
-              <h4>Khoảng giá/đêm</h4>
-              <Slider range min={10} max={24000000} marks></Slider>
-            </div>
+          <Col span={7} className="advancedSearch">
+            {advancedSearch()}
+          </Col>
+          <Col span={15} className="listRoom">
+            {renderListRoom()}
           </Col>
         </Row>
       </div>
+
     </div>
   )
 }

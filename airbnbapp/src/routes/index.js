@@ -5,7 +5,7 @@ import AdminTemplate from "../container/AdminTemplate";
 const routeHome = [
   {
     exact: false,
-    path: "/danh-sach-phong-o",
+    path: "/danh-sach-phong-o/:id",
     component: lazy(() => import("../container/HomeTemplate/DanhSachPhongO")),
   },
 ];
