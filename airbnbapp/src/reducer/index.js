@@ -8,6 +8,7 @@ import { getValueSearchReducer } from "./moduleValueSearch/reducer";
 import { getDetailViTriReducer } from "../container/HomeTemplate/DanhSachPhongO/module/reducer";
 import { getListRoomPaginateReducer } from "../container/HomeTemplate/DanhSachPhongO/ListRoom/module/reducer";
 import { getAdvancedSearchValueReducer } from "../container/HomeTemplate/DanhSachPhongO/AdvancedSearch/module/reducer";
+import { getDetailRoomReducer } from "../container/HomeTemplate/ChiTietPhongO/module/reducer";
 
 export const rootReducer = combineReducers({
     getViTriReducer,
@@ -19,4 +20,5 @@ export const rootReducer = combineReducers({
     getDetailViTriReducer,
     getListRoomPaginateReducer,
     getAdvancedSearchValueReducer,
+    getDetailRoomReducer
 })

@@ -1,0 +1,63 @@
+.roomName h2{
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 12px;
+}
+.detailRoom{
+    margin: auto;
+    width: 95%;
+}
+.roomQuantity, .roomDescription{
+    border-bottom: 1px solid #BDB9B9;
+}
+.roomQuantity{
+    font-size: 17px;
+    margin-top: 12px;
+    padding-bottom: 10px;
+}
+
+.roomDescription h3, .roomUtitlities h3{
+    font-size: 25px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+.roomDescription p{
+    font-size: 17px;
+}
+.utilitiesName{
+    margin-left: 10px;
+    font-size: 17px;
+}
+.roomUtitlities .ant-btn-primary{
+    background-color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    color: white;
+    border-radius: 15px;
+    padding-top: 7px;
+    padding-bottom: 30px;
+    font-size: 18px;
+    margin-top: 20px;
+}
+.roomUtitlities .ant-btn-primary:hover{
+    background-color: white;
+    color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+}
+.utilitiesModal .ant-modal-title{
+    font-size: 25px;
+    font-weight: 700;
+    color: #FB9EAA;
+}
+.utilitiesModal h3{
+    font-size: 20px;
+    font-weight: 700;
+    color: #FB9EAA;
+}
+.unavailableUtilities{
+    margin-top: 10px;
+}
+.utilitiesModal .ant-modal-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
