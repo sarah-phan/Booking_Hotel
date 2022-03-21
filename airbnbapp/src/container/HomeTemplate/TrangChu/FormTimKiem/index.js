@@ -1,15 +1,39 @@
 import React from 'react'
 import { Form, DatePicker, InputNumber, Button, Select } from 'antd'
 import { EnvironmentOutlined } from '@ant-design/icons'
+import { actGetValueSearch } from '../../../../reducer/moduleValueSearch/action'
+import { useDispatch} from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 export default function FormTimKiem(props) {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const { arr } = props
-    const renderViTri = () => {
+    let _idFind
+
+    const getID = (values)=>{
         return arr?.map((viTri) => {
+            if (`${viTri.province}, ${viTri.country}` === values.selectLocation) {
+                _idFind = viTri._id
+            }
+            else {
+                return
+            }
+        })
+    }
+    
+
+    const renderViTri = () => {
+        return arr?.map((viTri, index) => {
             return (
-                <>
-                    <Select.Option key={viTri.id} value={viTri.province}>{viTri.province}, {viTri.country}</Select.Option>
-                </>
+                <React.Fragment key={index}>
+                    <Select.Option
+                        key={viTri.id}
+                        value={`${viTri.province}, ${viTri.country}`}
+                    >
+                        {viTri.province}, {viTri.country}
+                    </Select.Option>
+                </React.Fragment>
             )
         })
     }
@@ -17,13 +41,17 @@ export default function FormTimKiem(props) {
     const onFinished = (fieldsValue) => {
         const values = {
             ...fieldsValue,
-            'check-in-date': fieldsValue['check-in-date'].format('DD-MM-YYYY'),
-            'check-out-date': fieldsValue['check-out-date'].format('DD-MM-YYYY'),
-            'number-customer': fieldsValue['number-customer'],
-            'select-location': fieldsValue['select-location']
+            'checkInDate': fieldsValue['checkInDate'],
+            'checkOutDate': fieldsValue['checkOutDate'],
+            'numberCustomer': fieldsValue['numberCustomer'],
+            'selectLocation': fieldsValue['selectLocation']
         }
-        console.log("values: ", values)
+        dispatch(actGetValueSearch(values));
+        getID(values)
+        history.push(`/danh-sach-phong-o/${_idFind}`)
+       
     }
+
     return (
         <Form
             className='formTimKiemNoiDung'
@@ -32,7 +60,7 @@ export default function FormTimKiem(props) {
         >
             <Form.Item
                 label="Địa điểm"
-                name="select-location"
+                name="selectLocation"
                 rules={
                     [
                         {
@@ -48,7 +76,7 @@ export default function FormTimKiem(props) {
             </Form.Item>
             <Form.Item
                 label="Ngày nhận phòng"
-                name="check-in-date"
+                name="checkInDate"
                 rules={
                     [
                         {
@@ -58,23 +86,23 @@ export default function FormTimKiem(props) {
                     ]
                 }
             >
-                <DatePicker style={{ width: "90%" }} />
+                <DatePicker format="DD-MM-YYYY" style={{ width: "90%" }} />
             </Form.Item>
             <Form.Item
                 label="Ngày trả phòng"
-                name="check-out-date"
+                name="checkOutDate"
                 rules={
                     [
                         {
                             required: true,
-                            message: "Hãy chọn ngày nhận phòng"
+                            message: "Hãy chọn ngày trả phòng"
                         }
                     ]
                 }
             >
-                <DatePicker style={{ width: "90%" }} />
+                <DatePicker format="DD-MM-YYYY" style={{ width: "90%" }} />
             </Form.Item>
-            <Form.Item label="Số lượng khách" name="number-customer"
+            <Form.Item label="Số lượng khách" name="numberCustomer"
                 rules={[
                     {
                         required: true,
