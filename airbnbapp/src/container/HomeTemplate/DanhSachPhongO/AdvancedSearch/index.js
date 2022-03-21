@@ -24,7 +24,18 @@ export default function AdvancedSearch() {
         }
     }
 
-    const options = ["Wifi", "Thang máy", "Bồn tắm nước nóng", "Hồ bơi", "Lò sưởi trong nhà", "Máy sấy tóc", "Phòng tập gym", "Nhà bếp", "Hệ thống sưởi", "Truyền hình cáp"]
+    const options = [
+        {label: "Wifi", value: "wifi"}, 
+        {label: "Thang máy", value: "elevator"}, 
+        {label: "Bồn tắm nước nóng", value: "hotTub"},
+        {label: "Hồ bơi", value: "pool"}, 
+        {label: "Lò sưởi trong nhà", value: "indoorFireplace"},
+        {label: "Máy sấy tóc", value: "dryer"},
+        {label: "Phòng tập gym", value: "gym"}, 
+        {label: "Nhà bếp", value: "kitchen"}, 
+        {label: "Hệ thống sưởi", value: "heating"}, 
+        {label: "Truyền hình cáp", value: "cableTV"}, 
+    ]
 
     const [checkedList, setCheckedList] = useState("")
     const onChangeCheckedList = (values) => {

@@ -63,6 +63,14 @@ export default function FormDanhSachPhongO(props) {
                 <Form.Item
                     label="Địa điểm"
                     name="selectLocation"
+                    rules={
+                        [
+                            {
+                                required: true,
+                                message: "Hãy chọn địa điểm"
+                            }
+                        ]
+                    }
                 >
                     <Select
                         suffixIcon={<EnvironmentOutlined />}
@@ -77,6 +85,14 @@ export default function FormDanhSachPhongO(props) {
                         <Form.Item
                             label="Ngày nhận phòng"
                             name="checkInDate"
+                            rules={
+                                [
+                                    {
+                                        required: true,
+                                        message: "Hãy chọn ngày nhận phòng"
+                                    }
+                                ]
+                            }
                         >
                             <DatePicker
                                 style={{ width: "72%" }}
@@ -89,6 +105,14 @@ export default function FormDanhSachPhongO(props) {
                         <Form.Item
                             label="Ngày trả phòng"
                             name="checkOutDate"
+                            rules={
+                                [
+                                    {
+                                        required: true,
+                                        message: "Hãy chọn ngày trả phòng"
+                                    }
+                                ]
+                            }
                         >
                             <DatePicker style={{ width: "72%" }} format="DD-MM-YYYY"
                                 defaultValue={checkOutDatePrev}
@@ -96,7 +120,16 @@ export default function FormDanhSachPhongO(props) {
                         </Form.Item>
                     </Col>
                 </Row>
-                <Form.Item label="Số lượng khách" name="numberCustomer">
+                <Form.Item 
+                label="Số lượng khách" 
+                name="numberCustomer"
+                rules={[
+                    {
+                        required: true,
+                        message: "Hãy nhập số lượng khách"
+                    }
+                ]}
+                >
                     <InputNumber min={1} max={20} style={{ width: "87%", marginLeft: 12 }} defaultValue={numberCustomerPrev} />
                 </Form.Item>
                 <Button htmlType='submit' className='buttonSubmitPhongO'>Tìm kiếm</Button>

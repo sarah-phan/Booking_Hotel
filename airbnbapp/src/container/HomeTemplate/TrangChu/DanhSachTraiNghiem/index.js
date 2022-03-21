@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Row, Col, Pagination } from 'antd';
 import { actViTriPhanTrang } from './module/action';
+import { NavLink } from 'react-router-dom';
 
 export default function DanhSachTraiNghiem() {
     const dispatch = useDispatch()
@@ -17,18 +18,19 @@ export default function DanhSachTraiNghiem() {
         dispatch(actViTriPhanTrang(params.limit, params.skip))
     }, [params.limit, params.skip])
 
-    const changeValue = () => {
-        let skipNext = params.skip + 6
+    const changeValue = (page) => {
         setParams({
             limit: 6,
-            skip: skipNext
+            skip: (page - 1) * 6
         })
     }
 
     const renderCardTraiNghiem = () => {
         return data?.map((traiNghiem, index) => {
+            console.log(traiNghiem)
             return (
                 <Col key={index} span={8}>
+                    <NavLink to={`/danh-sach-phong-o/${traiNghiem._id}`}>
                     <Card
                         hoverable
                         style={{ width: 290 }}
@@ -36,19 +38,23 @@ export default function DanhSachTraiNghiem() {
                     >
                         <Meta title={traiNghiem.name} description={`${traiNghiem.province}, ${traiNghiem.country}`} />
                     </Card>
+                </NavLink >
+                    
                 </Col>
+                
+                
             )
-        })
+})
     }
-    return (
-        <>
-            <h1 className='traiNghiemTitle'>Trải nghiệm</h1>
-            <div className='renderCard'>
-                <Row>
-                    {renderCardTraiNghiem()}
-                </Row>
-                <Pagination defaultCurrent={1} total={131} onChange={changeValue}></Pagination>
-            </div>
-        </>
-    )
+return (
+    <>
+        <h1 className='traiNghiemTitle'>Trải nghiệm</h1>
+        <div className='renderCard'>
+            <Row>
+                {renderCardTraiNghiem()}
+            </Row>
+            <Pagination defaultCurrent={1} total={131} onChange={changeValue}></Pagination>
+        </div>
+    </>
+)
 }

@@ -32,34 +32,3 @@ const actGetListRoomPaginateFailed = (error) => {
         payload: error
     }
 }
-
-export const actGetListRoom = (id) => {
-    return (dispatch) => {
-        dispatch(actGetListRoomRequest)
-        api
-        .get(`rooms?locationId=${id}`)
-        .then((result) => {
-            dispatch(actGetListRoomSuccess(result.data))
-        })
-        .catch((error) => {
-            dispatch(actGetListRoomFailed(error))
-        })
-    }
-}
-const actGetListRoomRequest = () => {
-    return{
-        type: ActionType.GET_LIST_ROOM_REQUEST
-    }
-}
-const actGetListRoomSuccess = (data) => {
-    return{
-        type: ActionType.GET_LIST_ROOM_SUCCESS,
-        payload: data
-    }
-}
-const actGetListRoomFailed = (error) => {
-    return{
-        type: ActionType.GET_LIST_ROOM_FAILED,
-        payload: error
-    }
-}
