@@ -80,16 +80,15 @@
 }
 .wrapper{
     position: relative;
-    display: inline-block;
 }
 .boxDatPhong{
     border: 1px solid black;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-left: 30px;
     padding-left: 30px;
-    padding-bottom: 15px;
+    padding-bottom: 28px;
     position: sticky;
-    top: 100px;
+    top: 45px;
     border-radius: 10px;
     box-shadow: 0px 1px 20px 6px #a3a1a1;
 }
@@ -111,7 +110,7 @@
     margin-bottom: 10px;
 }
 .formDatPhong .ant-picker {
-    width: 150%;
+    width: 140%;
     margin-left: 10px;
 }
 .formDatPhong .ant-form-item-label{
@@ -129,7 +128,7 @@
     background-color: #FB9EAA;
     border: 1px solid #FB9EAA;
     color: white;
-    border-radius: 4px;
+    border-radius: 5px;
     margin-left: 40%;
     padding-top: 10px;
     padding-bottom: 35px;
@@ -141,4 +140,28 @@
     background-color: white;
     border: 1px solid #FB9EAA;
     color: #FB9EAA;
+}
+.buttonSubmitPhongO{
+    background-color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    color: white !important;
+    border-radius: 5px;
+    margin-left: 37%;
+    padding: 12px 20px;
+    font-size: 18px;
+}
+.buttonSubmitPhongO:hover{
+    color: #FB9EAA !important;
+    background-color: white;
+    border: 1px solid #FB9EAA;
+}
+.footerBox p{
+    margin: 28px 0;
+    font-size: 17px;
+}
+.footerBox .priceSpan{
+    margin-left: 42%;
+    font-size: 25px;
+    font-weight: 700;
+    color:#f1576b
 }

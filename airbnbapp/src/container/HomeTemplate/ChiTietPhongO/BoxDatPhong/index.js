@@ -1,34 +1,28 @@
 import { Button, Col, DatePicker, Form, InputNumber, Row } from 'antd'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
+import { actGetValueSearch } from '../../../../reducer/moduleValueSearch/action'
+import { useHistory } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function BoxDatPhong(props) {
-  const { price, location } = props
   const prevValues = useSelector(state => state.getValueSearchReducer.value)
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const { price, location, id } = props
   var formatter = new Intl.NumberFormat('VND', {
     style: 'currency',
     currency: 'VND',
   })
 
+  console.log(prevValues)
+
   const numberCustomerPrev = prevValues?.numberCustomer
   const checkInDatePrev = prevValues?.checkInDate._d === undefined ? null : moment(prevValues?.checkInDate._d, "DD-MM-YYYY")
   const checkOutDatePrev = prevValues?.checkOutDate._d === undefined ? null : moment(prevValues?.checkOutDate._d, "DD-MM-YYYY")
 
-  const footerBox = () => {
-    if (prevValues === null) {
-      return (
-        <Button htmlType='submit' className='buttonSubmitPhongO'>Kiểm tra</Button>
-      )
-    }
-    if (prevValues !== null) {
-      return (
-        <Button htmlType='submit' className='buttonSubmitPhongO'>Đặt phòng</Button>
-      )
-    }
-  }
-
-  const onFinish = (fieldsValue) => {
+  const onFinishWithoutValue = (fieldsValue) => {
     const values = {
       ...fieldsValue,
       'checkInDate': fieldsValue['checkInDate'],
@@ -36,50 +30,129 @@ export default function BoxDatPhong(props) {
       'numberCustomer': fieldsValue['numberCustomer'],
       'selectLocation': location,
     }
-    console.log(values)
+    dispatch(actGetValueSearch(values))
+    history.push(`/chi-tiet-phong-o/${id}`)
   }
+  const onFinishWithValue = (fieldsValue) => {
+    const values = {
+      ...fieldsValue,
+      'checkInDate': fieldsValue['checkInDate'],
+      'checkOutDate': fieldsValue['checkOutDate'],
+      'numberCustomer': fieldsValue['numberCustomer'],
+      'selectLocation': location,
+    }
+    dispatch(actGetValueSearch(values))
+    history.push(`/chi-tiet-phong-o/${id}/xac-nhan`)
+  }
+  const formLayout = () => {
+    return (
+      <div className='formDatPhong'>
+        <Row>
+          <Col span={12}>
+            <Form.Item
+              label="Ngày nhận phòng"
+              name="checkInDate"
+              className='checkInItem'
+              rules={
+                [
+                  {
+                    required: true,
+                    message: "Hãy chọn ngày nhận phòng"
+                  }
+                ]
+              }
+            >
+              <DatePicker
+                format="DD-MM-YYYY"
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label="Ngày trả phòng"
+              name="checkOutDate"
+              className='checkOutItem'
+              rules={
+                [
+                  {
+                    required: true,
+                    message: "Hãy chọn ngày trả phòng"
+                  }
+                ]
+              }
+            >
+              <DatePicker
+                format="DD-MM-YYYY"
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Form.Item
+          label="Số lượng khách"
+          name="numberCustomer"
+          style={{ marginLeft: 10 }}
+          rules={
+            [
+              {
+                required: true,
+                message: "Hãy nhập số lượng khách"
+              }
+            ]
+          }
+        >
+          <InputNumber min={1} max={20} style={{ width: "95%" }} />
+        </Form.Item>
+      </div>
+    )
+
+  }
+  const formBoxDatPhong = () => {
+    if (prevValues === null) {
+      return (
+        <Form
+          onFinish={onFinishWithoutValue}
+          initialValues={{
+            ['checkInDate']: checkInDatePrev,
+            ['checkOutDate']: checkOutDatePrev,
+            ['numberCustomer']: numberCustomerPrev
+          }}
+        >
+          {formLayout()}
+          <div className='footerBox'>
+            <Button htmlType='submit' className='buttonSubmitPhongO'>Kiểm tra</Button>
+          </div>
+        </Form>
+      )
+    }
+    if (prevValues !== null) {
+      const diferrenceInDay1 = Math.abs((new Date(checkOutDatePrev).getTime() - new Date(checkInDatePrev).getTime()) / (1000 * 3600 * 24))
+      const diferrenceInDay2 = Math.round(diferrenceInDay1)
+      const totalPrice = price * diferrenceInDay2
+      return (
+        <Form
+          onFinish={onFinishWithValue}
+          initialValues={{
+            ['checkInDate']: checkInDatePrev,
+            ['checkOutDate']: checkOutDatePrev,
+            ['numberCustomer']: numberCustomerPrev
+          }}
+        >
+          {formLayout()}
+          <div className='footerBox'>
+            <p>{formatter.format(price)} x {diferrenceInDay2} đêm <span className='priceSpan'>{formatter.format(totalPrice)}</span></p>
+            <Button htmlType='submit' className='buttonSubmitPhongO'>
+              Đặt phòng
+            </Button>
+          </div>
+        </Form>
+      )
+    }
+  }
+
   return (
     <div className='boxDatPhong'>
-      <h3>{formatter.format(price)}<span style={{fontSize: 18}}>/đêm</span></h3>
-      <Form onFinish={onFinish}>
-        <div className='formDatPhong'>
-          <Row>
-            <Col span={12}>
-              <Form.Item
-                label="Ngày nhận phòng"
-                name="checkInDate"
-                className='checkInItem'
-              >
-                <DatePicker
-                  format="DD-MM-YYYY"
-                  defaultValue={checkInDatePrev}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Ngày trả phòng"
-                name="checkOutDate"
-                className='checkOutItem'
-              >
-                <DatePicker
-                  format="DD-MM-YYYY"
-                  defaultValue={checkOutDatePrev}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Form.Item
-            label="Số lượng khách"
-            name="numberCustomer"
-            style={{marginLeft: 10}}
-          >
-            <InputNumber min={1} max={20} style={{ width: "95%" }} defaultValue={numberCustomerPrev} />
-          </Form.Item>
-        </div>
-        {footerBox()}
-      </Form>
-
+      <h3 style={{ color: "black" }}>{formatter.format(price)}<span style={{ fontSize: 18 }}>/đêm</span></h3>
+      {formBoxDatPhong()}
     </div>
   )
 }

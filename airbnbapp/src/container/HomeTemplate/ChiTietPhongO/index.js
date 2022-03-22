@@ -20,6 +20,12 @@ export default function ChiTietPhongO(props) {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  if (loadingDetailPage) {
+    return (
+      <Loading />
+    )
+  }
+
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -31,12 +37,6 @@ export default function ChiTietPhongO(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
-  if (loadingDetailPage) {
-    return (
-      <Loading />
-    )
-  }
 
   const translateName = (arr) => {
     const arrTranslateName = []
@@ -186,6 +186,7 @@ export default function ChiTietPhongO(props) {
       <BoxDatPhong 
       price = {dataDetailRoom?.price}
       location = {`${dataDetailRoom?.locationId.province}, ${dataDetailRoom?.locationId.country}`}
+      id = {id}
       />
     )
   }

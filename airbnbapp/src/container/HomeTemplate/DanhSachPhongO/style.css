@@ -7,14 +7,14 @@
     margin: 40px 20px;
     border-radius: 5px;
 }
-.buttonSubmitPhongO{
+.buttonSubmitListPhong{
     background-color: #FB9EAA;
     border: 1px solid #FB9EAA;
     color: white;
     margin-left: 40%;
     border-radius: 4px;
 }
-.buttonSubmitPhongO:hover, .buttonSubmitPhongO:focus{
+.buttonSubmitListPhong:hover, .buttonSubmitListPhong:focus{
     background-color: white;
     border: 1px solid #FB9EAA;
     color: #FB9EAA;

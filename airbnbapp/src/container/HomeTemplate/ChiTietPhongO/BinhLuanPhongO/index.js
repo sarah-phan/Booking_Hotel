@@ -10,8 +10,13 @@ export default function BinhLuanPhongO(props) {
     useEffect(() => {
         dispatch(actGetListRoomComment(id))
     }, [id])
-    
+
     const renderListRoomComment = () => {
+        if(!(dataListComment === [])){
+            return(
+                <p style={{fontSize: 18, color: "#a3a1a1"}}>Chưa có bình luận</p>
+            )
+        }
         return dataListComment?.map((comment, index) => {
             return(
                 <Col span={12} key={index}>

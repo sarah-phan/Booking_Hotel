@@ -3,7 +3,7 @@ import { Form, Select, DatePicker, Row, Col, InputNumber, Button } from "antd"
 import { EnvironmentOutlined } from "@ant-design/icons"
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
-import {actGetValueSearch} from "../../../../reducer/moduleValueSearch/action"
+import { actGetValueSearch } from "../../../../reducer/moduleValueSearch/action"
 import { useHistory } from 'react-router-dom'
 
 export default function FormDanhSachPhongO(props) {
@@ -13,7 +13,7 @@ export default function FormDanhSachPhongO(props) {
     const { arr } = props
 
     let _idFind
-    const getID = (values)=>{
+    const getID = (values) => {
         return arr?.map((viTri) => {
             if (`${viTri.province}, ${viTri.country}` === values.selectLocation) {
                 _idFind = viTri._id
@@ -25,8 +25,8 @@ export default function FormDanhSachPhongO(props) {
     }
 
     const numberCustomerPrev = prevValues?.numberCustomer
-    const checkInDatePrev = prevValues?.checkInDate._d === undefined ? null : moment(prevValues?.checkInDate._d, "DD-MM-YYYY") 
-    const checkOutDatePrev = prevValues?.checkOutDate._d === undefined ? null : moment(prevValues?.checkOutDate._d, "DD-MM-YYYY") 
+    const checkInDatePrev = prevValues?.checkInDate._d === undefined ? null : moment(prevValues?.checkInDate._d, "DD-MM-YYYY")
+    const checkOutDatePrev = prevValues?.checkOutDate._d === undefined ? null : moment(prevValues?.checkOutDate._d, "DD-MM-YYYY")
     const selectLocationPrev = prevValues?.selectLocation
 
     const renderViTri = () => {
@@ -56,10 +56,18 @@ export default function FormDanhSachPhongO(props) {
         getID(values)
         history.push(`/danh-sach-phong-o/${_idFind}`)
     }
-    
+
     return (
         <div>
-            <Form onFinish={onFinish}>
+            <Form
+                onFinish={onFinish}
+                initialValues={{
+                    ['selectLocation']: selectLocationPrev,
+                    ['checkInDate']: checkInDatePrev,
+                    ['checkOutDate']: checkOutDatePrev,
+                    ['numberCustomer']: numberCustomerPrev
+                }}
+            >
                 <Form.Item
                     label="Địa điểm"
                     name="selectLocation"
@@ -75,7 +83,6 @@ export default function FormDanhSachPhongO(props) {
                     <Select
                         suffixIcon={<EnvironmentOutlined />}
                         style={{ width: "83%", marginLeft: 50 }}
-                        defaultValue={selectLocationPrev}
                     >
                         {renderViTri()}
                     </Select>
@@ -97,7 +104,6 @@ export default function FormDanhSachPhongO(props) {
                             <DatePicker
                                 style={{ width: "72%" }}
                                 format="DD-MM-YYYY"
-                                defaultValue={checkInDatePrev}
                             />
                         </Form.Item>
                     </Col>
@@ -115,24 +121,24 @@ export default function FormDanhSachPhongO(props) {
                             }
                         >
                             <DatePicker style={{ width: "72%" }} format="DD-MM-YYYY"
-                                defaultValue={checkOutDatePrev}
                             />
                         </Form.Item>
                     </Col>
                 </Row>
-                <Form.Item 
-                label="Số lượng khách" 
-                name="numberCustomer"
-                rules={[
-                    {
-                        required: true,
-                        message: "Hãy nhập số lượng khách"
-                    }
-                ]}
+                <Form.Item
+                    label="Số lượng khách"
+                    name="numberCustomer"
+                    defaultValue={numberCustomerPrev}
+                    rules={[
+                        {
+                            required: true,
+                            message: "Hãy nhập số lượng khách"
+                        }
+                    ]}
                 >
-                    <InputNumber min={1} max={20} style={{ width: "87%", marginLeft: 12 }} defaultValue={numberCustomerPrev} />
+                    <InputNumber min={1} max={20} style={{ width: "87%", marginLeft: 12 }} />
                 </Form.Item>
-                <Button htmlType='submit' className='buttonSubmitPhongO'>Tìm kiếm</Button>
+                <Button htmlType='submit' className='buttonSubmitListPhong'>Tìm kiếm</Button>
             </Form>
         </div>
     )
