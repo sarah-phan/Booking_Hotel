@@ -72,7 +72,6 @@ export default function ListRoom(props) {
                 style: 'currency',
                 currency: 'VND',
             })
-            console.log(room)
             return (
                 <NavLink to={`/chi-tiet-phong-o/${room._id}`}>
                     <Row className='listRoomComponent' key={index}>

@@ -3,6 +3,8 @@ import { Button, Col, Modal, Row } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../../../components/loading'
+import BinhLuanPhongO from './BinhLuanPhongO'
+import BoxDatPhong from './BoxDatPhong'
 import { actGetDetailRoom } from './module/action'
 import "./style.css"
 
@@ -137,7 +139,6 @@ export default function ChiTietPhongO(props) {
       }
     }
     arrUtilitiesAvailable = translateName(arrUtilitiesAvailable)
-    console.log(arrUtilitiesAvailable)
     return arrUtilitiesAvailable.map((a) => {
       return (
         <Col span={12}>
@@ -160,7 +161,6 @@ export default function ChiTietPhongO(props) {
       }
     }
     arrUtilitiesUnavailable = translateName(arrUtilitiesUnavailable)
-    console.log(arrUtilitiesUnavailable)
     return arrUtilitiesUnavailable.map((a) => {
       return (
         <Col span={12}>
@@ -175,23 +175,38 @@ export default function ChiTietPhongO(props) {
     })
   }
 
+  const renderRoomComment = () => {
+    return(
+      <BinhLuanPhongO id = {id}/>
+    )
+  }
+  
+  const renderFormDatPhong = () => {
+    return(
+      <BoxDatPhong 
+      price = {dataDetailRoom?.price}
+      location = {`${dataDetailRoom?.locationId.province}, ${dataDetailRoom?.locationId.country}`}
+      />
+    )
+  }
   return (
     <div className='detailRoom'>
       <div className='roomName'>
         <h2>{dataDetailRoom?.name}</h2>
       </div>
-      <div className='roomImage'>
-        <img src={dataDetailRoom?.image} alt={dataDetailRoom?.image} style={{ width: "100%", height: "400px", objectFit: 'cover' }} />
-      </div>
-      <Row>
-        <Col span={14}>
-          <div className='roomQuantity'>
+      <div className='roomQuantity'>
             <span>{dataDetailRoom?.guests} khách</span>
             <span className='dotted'>&#183;</span>
             <span>{dataDetailRoom?.bedRoom} phòng ngủ</span>
             <span className='dotted'>&#183;</span>
             <span>{dataDetailRoom?.bath} phòng tắm</span>
           </div>
+      <div className='roomImage'>
+        <img src={dataDetailRoom?.image} alt={dataDetailRoom?.image} style={{ width: "100%", height: "400px", objectFit: 'contain' }} />
+      </div>
+      <div className='wrapper'>
+      <Row>
+        <Col span={14}>  
           <div className='roomDescription'>
             <h3>Mô tả</h3>
             <p>{dataDetailRoom?.description}</p>
@@ -209,7 +224,7 @@ export default function ChiTietPhongO(props) {
               onCancel={handleCancel}
               className="utilitiesModal"
               bodyStyle={{ overflowY: 'scroll' }}
-              style={{ height: 'calc(120vh - 120px)' }}
+              style={{ height: 'calc(130vh - 206px)' }}
             >
               <div className='availableUtilities'>
                 <h3>Bao gồm</h3>
@@ -225,9 +240,17 @@ export default function ChiTietPhongO(props) {
               </div>
             </Modal>
           </div>
+          <div className='roomComment'>
+            <h3>Những người khác nghĩ gì?</h3>
+            {renderRoomComment()}
+          </div>
+        </Col>
+        <Col span={10}>
+          {renderFormDatPhong()}
         </Col>
       </Row>
-
+      </div>
+      
     </div>
   )
 }
