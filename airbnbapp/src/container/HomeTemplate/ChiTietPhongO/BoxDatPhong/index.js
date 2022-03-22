@@ -4,19 +4,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { actGetValueSearch } from '../../../../reducer/moduleValueSearch/action'
 import { useHistory } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
 
 export default function BoxDatPhong(props) {
   const prevValues = useSelector(state => state.getValueSearchReducer.value)
   const dispatch = useDispatch()
   const history = useHistory()
-  const { price, location, id } = props
+  const { price, location, id, guests } = props
   var formatter = new Intl.NumberFormat('VND', {
     style: 'currency',
     currency: 'VND',
   })
-
-  console.log(prevValues)
 
   const numberCustomerPrev = prevValues?.numberCustomer
   const checkInDatePrev = prevValues?.checkInDate._d === undefined ? null : moment(prevValues?.checkInDate._d, "DD-MM-YYYY")
@@ -44,6 +41,9 @@ export default function BoxDatPhong(props) {
     dispatch(actGetValueSearch(values))
     history.push(`/chi-tiet-phong-o/${id}/xac-nhan`)
   }
+  const disabledDate = (current) => {
+    return current && current < moment().endOf('day');
+  }
   const formLayout = () => {
     return (
       <div className='formDatPhong'>
@@ -64,6 +64,7 @@ export default function BoxDatPhong(props) {
             >
               <DatePicker
                 format="DD-MM-YYYY"
+                disabledDate={disabledDate}
               />
             </Form.Item>
           </Col>
@@ -83,6 +84,7 @@ export default function BoxDatPhong(props) {
             >
               <DatePicker
                 format="DD-MM-YYYY"
+                disabledDate={disabledDate}
               />
             </Form.Item>
           </Col>
@@ -96,11 +98,16 @@ export default function BoxDatPhong(props) {
               {
                 required: true,
                 message: "Hãy nhập số lượng khách"
+              },
+              {
+                min: 1,
+                max: guests,
+                message: `Số lượng khách từ 1 đến ${guests}`
               }
             ]
           }
         >
-          <InputNumber min={1} max={20} style={{ width: "95%" }} />
+          <InputNumber min={1} max={50} style={{ width: "95%" }} />
         </Form.Item>
       </div>
     )

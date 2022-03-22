@@ -57,6 +57,9 @@ export default function FormDanhSachPhongO(props) {
         history.push(`/danh-sach-phong-o/${_idFind}`)
     }
 
+    const disabledDate = (current) => {
+        return current && current < moment().endOf('day');
+    }
     return (
         <div>
             <Form
@@ -104,6 +107,7 @@ export default function FormDanhSachPhongO(props) {
                             <DatePicker
                                 style={{ width: "72%" }}
                                 format="DD-MM-YYYY"
+                                disabledDate={disabledDate}
                             />
                         </Form.Item>
                     </Col>
@@ -120,7 +124,10 @@ export default function FormDanhSachPhongO(props) {
                                 ]
                             }
                         >
-                            <DatePicker style={{ width: "72%" }} format="DD-MM-YYYY"
+                            <DatePicker 
+                            style={{ width: "72%" }} 
+                            format="DD-MM-YYYY" 
+                            disabledDate={disabledDate}
                             />
                         </Form.Item>
                     </Col>

@@ -187,6 +187,7 @@ export default function ChiTietPhongO(props) {
       price = {dataDetailRoom?.price}
       location = {`${dataDetailRoom?.locationId.province}, ${dataDetailRoom?.locationId.country}`}
       id = {id}
+      guests = {dataDetailRoom?.guests}
       />
     )
   }

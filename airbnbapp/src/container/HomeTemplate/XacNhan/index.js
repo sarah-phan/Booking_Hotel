@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { actGetDetailRoom } from '../ChiTietPhongO/module/action'
 import { useHistory } from 'react-router-dom'
-import { Button } from 'antd'
+import { Alert, Button, Modal } from 'antd'
+import Loading from '../../../components/loading'
+import "./style.css"
+import emailjs from "@emailjs/browser"
 
 export default function XacNhan(props) {
     const { id } = props.match.params
@@ -11,44 +14,110 @@ export default function XacNhan(props) {
     const prevValues = useSelector(state => state.getValueSearchReducer.value)
     const dispatch = useDispatch()
     const history = useHistory()
+    var formatter = new Intl.NumberFormat('VND', {
+        style: 'currency',
+        currency: 'VND',
+    })
 
     useEffect(() => {
         dispatch(actGetDetailRoom(id))
     }, [id])
-    console.log(prevValues)
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     if (prevValues === null) {
         history.goBack(`/chi-tiet-phong-o/${id}`)
     }
 
+    if (loadingDetailRoom) {
+        return (
+            <Loading />
+        )
+    }
+
     const numberCustomerPrev = prevValues?.numberCustomer
-    const checkInDatePrev = new Date(prevValues?.checkInDate._d).toLocaleDateString('en-GB')
-    const checkOutDatePrev = new Date(prevValues?.checkInDate._d).toLocaleDateString('en-GB')
+    const checkInDatePrev = new Date(prevValues?.checkInDate._d).toLocaleDateString()
+    const checkInDatePrevFormat = new Date(prevValues?.checkInDate._d).toLocaleDateString('en-GB')
+    const checkOutDatePrev = new Date(prevValues?.checkOutDate._d).toLocaleDateString()
+    const checkOutDatePrevFormat = new Date(prevValues?.checkOutDate._d).toLocaleDateString('en-GB')
+    const price = dataDetailRoom?.price
+    const diferrenceInDay1 = Math.abs((new Date(checkOutDatePrev).getTime() - new Date(checkInDatePrev).getTime()) / (1000 * 3600 * 24))
+    const diferrenceInDay2 = Math.round(diferrenceInDay1)
+    const totalPrice = price * diferrenceInDay2
+    let arr = {
+        name: JSON.parse(localStorage.getItem("UserAccount")).user.name,
+        message1: `Khách sạn: ${dataDetailRoom?.name}`,
+        message2: `Ngày đặt phòng: ${checkInDatePrevFormat}`,
+        message3: `Ngày trả phòng: ${checkOutDatePrevFormat}`,
+        message4: `Giá 1 đêm: ${dataDetailRoom?.price}`,
+        message5: `Số ngày: ${diferrenceInDay2}`,
+        message6: `Tổng tiền: ${totalPrice}`,
+        email: JSON.parse(localStorage.getItem("UserAccount")).user.email,
+    }
+    const bookingValues = (arr) => {
+        emailjs.send('service_7am7aw8', 'template_foo9xe6', arr, 'RCegoAy_Vx7KbwWzY')
+            .then((result) => {
+                console.log(result.text);
+                showModal()
+            }, (error) => {
+                console.log(error.text);
+            });
+    }
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+        history.push('/')
+    };
 
     return (
         <div className='claimPage'>
             <h2>Xác nhận và đặt chỗ</h2>
             <h3>1. Chuyến đi của bạn</h3>
             <div className='bookingInformation'>
-                <span>Khách sạn</span>
-                <span>{dataDetailRoom?.name}</span>
-                <br />
-                <span>Ngày nhận phòng</span>
-                <span>{checkInDatePrev}</span>
-                <br />
-                <span>Ngày trả phòng phòng</span>
-                <span>{checkOutDatePrev}</span>
-                <br />
-                <span>Số lượng khách</span>
-                <span>{numberCustomerPrev}</span>
-
+                <div className='bookingContent'>
+                    <span className='bookingTitle'>Khách sạn</span>
+                    <span>{dataDetailRoom?.name}</span>
+                </div>
+                <div className='bookingContent'>
+                    <span className='bookingTitle'>Ngày nhận phòng</span>
+                    <span>{checkInDatePrevFormat}</span>
+                </div>
+                <div className='bookingContent'>
+                    <span className='bookingTitle'>Ngày trả phòng phòng</span>
+                    <span>{checkOutDatePrevFormat}</span>
+                </div>
+                <div className='bookingContent'>
+                    <span className='bookingTitle'>Số lượng khách</span>
+                    <span>{numberCustomerPrev}</span>
+                </div>
             </div>
             <h3>2. Chi tiết giá tiền</h3>
             <div className='detailPrice'>
-
+                <div className='bookingContent'>
+                    <span className='bookingTitle'>Giá tiền 1 đêm</span>
+                    <span>{formatter.format(dataDetailRoom?.price)}</span>
+                </div>
+                <div className='bookingContent'>
+                    <span className='bookingTitle'>Tổng số đêm</span>
+                    <span>{diferrenceInDay2}</span>
+                </div>
+                <div className='bookingContent'>
+                    <span className='bookingTitle'>Thành tiền</span>
+                    <span>{formatter.format(totalPrice)}</span>
+                </div>
             </div>
             <div className='buttonXacNhan'>
-                <Button onClick={() => history.goBack(`/chi-tiet-phong-o/${id}`)}>Chỉnh sửa</Button>
+                <Button onClick={() => history.goBack(`/chi-tiet-phong-o/${id}`)} className="buttonChinhSua">Chỉnh sửa</Button>
+                <Button onClick={() => { bookingValues(arr) }} className="buttonModal">
+                    Xác nhận và đặt chỗ
+                </Button>
+                <Modal visible={isModalVisible} footer = {null} showIcon onCancel={handleOk}>
+                    <Alert message="Thông tin xác nhận đã được gửi qua email của bạn!" type="success" showIcon style={{marginTop: 20}}/>
+                </Modal>
             </div>
         </div>
     )

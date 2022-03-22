@@ -1,0 +1,55 @@
+.claimPage{
+    margin: auto;
+    width: 95%;
+}
+.claimPage h2{
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 15px;
+    color: #f1576b;
+    text-decoration: underline;
+}
+.claimPage h3{
+    font-size: 25px;
+    font-weight: 700;
+}
+.bookingInformation, .detailPrice{
+    margin-left: 30%;
+    margin-right: 30%;
+    border: 1px solid black;
+    padding: 20px;
+    padding-bottom: 8px;
+}
+.bookingContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.bookingContent span{
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+.bookingTitle{
+    font-weight: 700;
+}
+.buttonXacNhan .ant-btn{
+    border: 1px solid #FB9EAA;
+    background-color: #FB9EAA;
+    border-radius: 5px;
+    margin-top: 30px;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 35px;
+    font-size: 18px;
+}
+.buttonXacNhan .ant-btn:hover{
+    background-color: white;
+    border-color: #FB9EAA;
+    color: #FB9EAA;
+}
+.buttonXacNhan .buttonChinhSua{
+    margin-left: 38%;
+}
+.buttonXacNhan .buttonModal{
+    margin-left: 40px;
+}

@@ -96,8 +96,9 @@
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid black;
-    padding-bottom: 20px;
     align-items: flex-start;
+    height: 90px;
+    padding-bottom: 10px
 }
 .checkInItem{
     border-right: 1px solid black;
@@ -110,7 +111,7 @@
     margin-bottom: 10px;
 }
 .formDatPhong .ant-picker {
-    width: 140%;
+    width: 150%;
     margin-left: 10px;
 }
 .formDatPhong .ant-form-item-label{
