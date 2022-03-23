@@ -13,6 +13,8 @@
     color: white;
     margin-left: 40%;
     border-radius: 4px;
+    font-size: 18px;
+    padding-bottom: 30px;
 }
 .buttonSubmitListPhong:hover, .buttonSubmitListPhong:focus{
     background-color: white;
@@ -95,4 +97,7 @@
 .listRoomContent .ant-pagination{
     margin-top: 30px;
     margin-left: 50%;
+}
+.formDanhSachPhongO label{
+    font-size: 17px;
 }

@@ -85,7 +85,7 @@ export default function FormDanhSachPhongO(props) {
                 >
                     <Select
                         suffixIcon={<EnvironmentOutlined />}
-                        style={{ width: "83%", marginLeft: 50 }}
+                        style={{ width: "83%", marginLeft: 63 }}
                     >
                         {renderViTri()}
                     </Select>

@@ -1,5 +1,5 @@
-import { Button, Col, DatePicker, Form, InputNumber, Row } from 'antd'
-import React from 'react'
+import { Alert, Button, Col, DatePicker, Form, InputNumber, Modal, Row } from 'antd'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { actGetValueSearch } from '../../../../reducer/moduleValueSearch/action'
@@ -14,11 +14,18 @@ export default function BoxDatPhong(props) {
     style: 'currency',
     currency: 'VND',
   })
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const numberCustomerPrev = prevValues?.numberCustomer
   const checkInDatePrev = prevValues?.checkInDate._d === undefined ? null : moment(prevValues?.checkInDate._d, "DD-MM-YYYY")
   const checkOutDatePrev = prevValues?.checkOutDate._d === undefined ? null : moment(prevValues?.checkOutDate._d, "DD-MM-YYYY")
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
   const onFinishWithoutValue = (fieldsValue) => {
     const values = {
       ...fieldsValue,
@@ -39,7 +46,12 @@ export default function BoxDatPhong(props) {
       'selectLocation': location,
     }
     dispatch(actGetValueSearch(values))
-    history.push(`/chi-tiet-phong-o/${id}/xac-nhan`)
+    if (JSON.parse(localStorage.getItem("UserAccount")) === null) {
+      showModal()
+    }
+    else{
+      history.push(`/chi-tiet-phong-o/${id}/xac-nhan`)
+    }
   }
   const disabledDate = (current) => {
     return current && current < moment().endOf('day');
@@ -100,7 +112,7 @@ export default function BoxDatPhong(props) {
                 message: "Hãy nhập số lượng khách"
               },
               {
-                min: 1,
+                type: 'number',
                 max: guests,
                 message: `Số lượng khách từ 1 đến ${guests}`
               }
@@ -160,6 +172,9 @@ export default function BoxDatPhong(props) {
     <div className='boxDatPhong'>
       <h3 style={{ color: "black" }}>{formatter.format(price)}<span style={{ fontSize: 18 }}>/đêm</span></h3>
       {formBoxDatPhong()}
+      <Modal visible={isModalVisible} footer={null} showIcon onCancel={handleOk}>
+        <Alert message="Đăng nhập trước khi xác nhận" type='error' showIcon style={{ marginTop: 20 }} />
+      </Modal>
     </div>
   )
 }

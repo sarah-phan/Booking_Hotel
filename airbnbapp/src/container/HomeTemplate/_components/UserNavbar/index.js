@@ -52,13 +52,28 @@ export default function UserNavbar() {
     const menuAlreadyLogin = (
         <Menu>
             <Menu.Item>
-                <a href='#'>Tài khoản cá nhân</a>
+                <NavLink 
+                to={`/tai-khoan/${idUser}/thong-tin-ca-nhan`}
+                activeStyle={{fontWeight: 'bold'}} 
+                >
+                    Tài khoản cá nhân
+                </NavLink>
             </Menu.Item>
             <Menu.Item>
-                <a href='#'>Thay đổi ảnh đại diện</a>
+                <NavLink 
+                to={`/tai-khoan/${idUser}/upload-avatar`}
+                activeStyle={{fontWeight: 'bold'}} 
+                >
+                    Cập nhật ảnh đại diện
+                </NavLink>
             </Menu.Item>
             <Menu.Item>
-                <a href='#'>Lịch sử đặt vé</a>
+                <NavLink 
+                to={`/tai-khoan/${idUser}/lich-su`}
+                activeStyle={{fontWeight: 'bold'}} 
+                >
+                    Lịch sử
+                </NavLink>
             </Menu.Item>
             <Menu.Item>
                 <a onClick={logout}>Đăng xuất</a>

@@ -18,6 +18,11 @@ const routeHome = [
     path: "/chi-tiet-phong-o/:id/xac-nhan",
     component: lazy(() => import("../container/HomeTemplate/XacNhan")),
   },
+  {
+    exact: false,
+    path: "/tai-khoan/:id",
+    component: lazy(() => import("../container/HomeTemplate/_components/UserDashboard")),
+  },
 ];
 
 const routesAdmin = [
