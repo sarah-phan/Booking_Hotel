@@ -1,0 +1,31 @@
+.uploadAvatar{
+    border: 1px solid black;
+    padding: 10px;
+    margin-right: 120px;
+    margin-left: 120px;
+}
+.uploadAvatar p{
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+}
+.uploadAvatar .ant-upload-list{
+    margin: auto;
+    width: 10%;
+}
+.uploadAvatar .uploadButton{
+    background-color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    color: white;
+    border-radius: 4px;
+    font-size: 18px;
+    padding-bottom: 30px;
+    margin-left: 45.5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.uploadAvatar .uploadButton:hover, .uploadAvatar .uploadButton:focus{
+    color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    background-color: white;
+}

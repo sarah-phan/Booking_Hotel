@@ -10,6 +10,8 @@ import { getListRoomPaginateReducer } from "../container/HomeTemplate/DanhSachPh
 import { getAdvancedSearchValueReducer } from "../container/HomeTemplate/DanhSachPhongO/AdvancedSearch/module/reducer";
 import { getDetailRoomReducer } from "../container/HomeTemplate/ChiTietPhongO/module/reducer";
 import { getListCommentReducer } from "../container/HomeTemplate/ChiTietPhongO/BinhLuanPhongO/module/reducer";
+import { putUserDetailReducer } from "../container/HomeTemplate/ThongTinChiTiet/module/reducer";
+import { uploadAvatarReducer } from "../container/HomeTemplate/UploadAvatar/module/reducer";
 
 export const rootReducer = combineReducers({
     getViTriReducer,
@@ -22,5 +24,7 @@ export const rootReducer = combineReducers({
     getListRoomPaginateReducer,
     getAdvancedSearchValueReducer,
     getDetailRoomReducer,
-    getListCommentReducer
+    getListCommentReducer,
+    putUserDetailReducer,
+    uploadAvatarReducer
 })

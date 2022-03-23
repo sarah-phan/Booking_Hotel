@@ -1,3 +1,36 @@
 .accountHeader{
     display: flex;
 }
+.accountContent{
+    margin-top: 45px;
+}
+.accountAvatar{
+    margin-top: 10px;
+}
+.accountName{
+    margin-left: 15px;
+}
+.accountName p{
+    height: 10px;
+    font-size: 16px;
+}
+.accountName h2{
+    font-size: 20px;
+    font-weight: 700;
+}
+.accountContent .ant-layout{
+    background: white;
+}
+.ant-menu-title-content a{
+    font-size: 16px;
+}
+.accountContent .ant-menu-title-content a:hover{
+    color: #f1576b;
+    text-decoration: none;
+}
+.accountContent .ant-menu-inline, .ant-menu-vertical{
+    border-right: none;
+}
+.accountContent .ant-layout-sider{
+    background: white;
+}
