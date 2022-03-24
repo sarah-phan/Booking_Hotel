@@ -29,7 +29,7 @@
 }
 .userNavAlreadyLogin{
     position: absolute;
-    right: 90px;
+    right: 134px;
     top: 21px;
     padding-bottom: 10px;
     padding-left: 10px;
@@ -37,6 +37,6 @@
 }
 .userAvatar{
     position: absolute !important;
-    right: 40px;
+    right: 83px;
     top: 10px
 }

@@ -1,19 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { actGetDetailRoom } from '../ChiTietPhongO/module/action'
 import { useHistory } from 'react-router-dom'
-import { Alert, Button, Modal } from 'antd'
+import { Alert, Button } from 'antd'
 import Loading from '../../../components/loading'
 import "./style.css"
 import emailjs from "@emailjs/browser"
+import { actCreateBooking } from './module/action'
 
 export default function XacNhan(props) {
     const { id } = props.match.params
     const dataDetailRoom = useSelector(state => state.getDetailRoomReducer.data)
     const loadingDetailRoom = useSelector(state => state.getDetailRoomReducer.loading)
     const prevValues = useSelector(state => state.getValueSearchReducer.value)
+    const dataCreateBooking = useSelector(state => state.createBookingReducer.data)
+    const errorCreateBooking = useSelector(state => state.createBookingReducer.error)
     const dispatch = useDispatch()
     const history = useHistory()
+
+    console.log(dataCreateBooking)
+    console.log(errorCreateBooking)
+
     var formatter = new Intl.NumberFormat('VND', {
         style: 'currency',
         currency: 'VND',
@@ -22,8 +29,6 @@ export default function XacNhan(props) {
     useEffect(() => {
         dispatch(actGetDetailRoom(id))
     }, [id])
-
-    const [isModalVisible, setIsModalVisible] = useState(false);
 
     if (prevValues === null) {
         history.goBack(`/chi-tiet-phong-o/${id}`)
@@ -54,24 +59,47 @@ export default function XacNhan(props) {
         message6: `Tổng tiền: ${totalPrice}`,
         email: JSON.parse(localStorage.getItem("UserAccount")).user.email,
     }
-    const bookingValues = (arr) => {
+    let apiArr = {
+        checkIn: checkInDatePrev,
+        checkOut: checkOutDatePrev,
+        userId: JSON.parse(localStorage.getItem("UserAccount")).user._id,
+        roomId: id
+    }
+    const bookingValues = (arr, apiArr) => {
         emailjs.send('service_7am7aw8', 'template_foo9xe6', arr, 'RCegoAy_Vx7KbwWzY')
             .then((result) => {
                 console.log(result.text);
-                showModal()
             }, (error) => {
                 console.log(error.text);
             });
+        dispatch(actCreateBooking(apiArr))
     }
 
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-
-    const handleOk = () => {
-        setIsModalVisible(false);
-        history.push('/')
-    };
+    if (dataCreateBooking !== null) {
+        return (
+          <Alert 
+            message="Xác nhận thành công. Thông tin đã được gửi qua email của bạn!" 
+            type="success" 
+            showIcon 
+            style={{ marginTop: 20 }}
+            closable
+            afterClose={() => window.location.href = ("/")}
+          />
+    
+        )
+      }
+      if (errorCreateBooking !== null) {
+        return (
+          <Alert 
+            message={errorCreateBooking} 
+            type="error" 
+            showIcon 
+            style={{ marginTop: 20 }}
+            closable
+            afterClose={() => history.goBack(`/chi-tiet-phong-o/${id}`)}
+          />
+        )
+      }
 
     return (
         <div className='claimPage'>
@@ -111,13 +139,10 @@ export default function XacNhan(props) {
                 </div>
             </div>
             <div className='buttonXacNhan'>
-                <Button onClick={() => history.goBack(`/chi-tiet-phong-o/${id}`)} className="buttonChinhSua">Chỉnh sửa</Button>
-                <Button onClick={() => { bookingValues(arr) }} className="buttonModal">
+                <Button onClick={() => window.location.href = (`/chi-tiet-phong-o/${id}`)} className="buttonChinhSua">Chỉnh sửa</Button>
+                <Button onClick={() => { bookingValues(arr, apiArr) }} className="buttonModal">
                     Xác nhận và đặt chỗ
                 </Button>
-                <Modal visible={isModalVisible} footer = {null} showIcon onCancel={handleOk}>
-                    <Alert message="Thông tin xác nhận đã được gửi qua email của bạn!" type="success" showIcon style={{marginTop: 20}}/>
-                </Modal>
             </div>
         </div>
     )

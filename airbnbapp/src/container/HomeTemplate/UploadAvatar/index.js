@@ -1,5 +1,5 @@
-import { InboxOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { Alert, Button, message, Modal, Upload } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Alert, Button, Modal, Upload } from 'antd';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { actUploadAvatar } from './module/action';

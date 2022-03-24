@@ -12,6 +12,7 @@ import { getDetailRoomReducer } from "../container/HomeTemplate/ChiTietPhongO/mo
 import { getListCommentReducer } from "../container/HomeTemplate/ChiTietPhongO/BinhLuanPhongO/module/reducer";
 import { putUserDetailReducer } from "../container/HomeTemplate/ThongTinChiTiet/module/reducer";
 import { uploadAvatarReducer } from "../container/HomeTemplate/UploadAvatar/module/reducer";
+import { createBookingReducer } from "../container/HomeTemplate/XacNhan/module/reducer";
 
 export const rootReducer = combineReducers({
     getViTriReducer,
@@ -26,5 +27,6 @@ export const rootReducer = combineReducers({
     getDetailRoomReducer,
     getListCommentReducer,
     putUserDetailReducer,
-    uploadAvatarReducer
+    uploadAvatarReducer,
+    createBookingReducer
 })
