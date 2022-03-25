@@ -1,0 +1,3 @@
+export const PUT_DETAIL_USER_REQUEST = "@tai-khoan/PUT_DETAIL_USER_REQUEST";
+export const PUT_DETAIL_USER_SUCCESS = "@tai-khoan/PUT_DETAIL_USER_SUCCESS";
+export const PUT_DETAIL_USER_FAIL = "@tai-khoan/PUT_DETAIL_USER_FAIL";

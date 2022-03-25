@@ -1,0 +1,25 @@
+.lichSu{
+    border: 1px solid black;
+    padding: 35px;
+    padding-top: 0;
+    margin-right: 120px;
+    margin-left: 120px;
+}
+.lichSuElement{
+    margin-top: 32px;
+    border: 1px solid #BDB9B9;
+}
+.lichSuElement h2{
+    margin-left: 28px;
+    margin-top: 32px;
+    font-weight: 700;
+    font-size: 25px;
+}
+.lichSuElement p{
+    margin-left: 30px;
+    margin-right: 40px;
+    font-weight: 700;
+    color: #f1576b;
+    font-size: 27px;
+    margin-bottom: 0;
+}

@@ -1,0 +1,4 @@
+export const UPLOAD_AVATAR_REQUEST = "@tai-khoan/UPLOAD_AVATAR_REQUEST";
+export const UPLOAD_AVATAR_SUCCESS = "@tai-khoan/UPLOAD_AVATAR_SUCCESS";
+export const UPLOAD_AVATAR_FAILED = "@tai-khoan/UPLOAD_AVATAR_FAILED";
+

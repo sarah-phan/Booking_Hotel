@@ -9,9 +9,19 @@ const routeHome = [
     component: lazy(() => import("../container/HomeTemplate/DanhSachPhongO")),
   },
   {
-    exact: false,
+    exact: true,
     path: "/chi-tiet-phong-o/:id",
     component: lazy(() => import("../container/HomeTemplate/ChiTietPhongO")),
+  },
+  {
+    exact: false,
+    path: "/chi-tiet-phong-o/:id/xac-nhan",
+    component: lazy(() => import("../container/HomeTemplate/XacNhan")),
+  },
+  {
+    exact: false,
+    path: "/tai-khoan/:id",
+    component: lazy(() => import("../container/HomeTemplate/_components/UserDashboard")),
   },
 ];
 

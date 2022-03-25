@@ -8,6 +8,13 @@ import { getValueSearchReducer } from "./moduleValueSearch/reducer";
 import { getDetailViTriReducer } from "../container/HomeTemplate/DanhSachPhongO/module/reducer";
 import { getListRoomPaginateReducer } from "../container/HomeTemplate/DanhSachPhongO/ListRoom/module/reducer";
 import { getAdvancedSearchValueReducer } from "../container/HomeTemplate/DanhSachPhongO/AdvancedSearch/module/reducer";
+import { getDetailRoomReducer } from "../container/HomeTemplate/ChiTietPhongO/module/reducer";
+import { getListCommentReducer } from "../container/HomeTemplate/ChiTietPhongO/BinhLuanPhongO/module/reducer";
+import { putUserDetailReducer } from "../container/HomeTemplate/ThongTinChiTiet/module/reducer";
+import { uploadAvatarReducer } from "../container/HomeTemplate/UploadAvatar/module/reducer";
+import { createBookingReducer } from "../container/HomeTemplate/XacNhan/module/reducer";
+import { getListBookingHistoryReducer } from "../container/HomeTemplate/LichSu/module/reducer";
+import { getDetailHistoryReducer } from "../container/HomeTemplate/ChiTietLichSu/module/reducer";
 
 export const rootReducer = combineReducers({
     getViTriReducer,
@@ -19,4 +26,11 @@ export const rootReducer = combineReducers({
     getDetailViTriReducer,
     getListRoomPaginateReducer,
     getAdvancedSearchValueReducer,
+    getDetailRoomReducer,
+    getListCommentReducer,
+    putUserDetailReducer,
+    uploadAvatarReducer,
+    createBookingReducer,
+    getListBookingHistoryReducer,
+    getDetailHistoryReducer  
 })

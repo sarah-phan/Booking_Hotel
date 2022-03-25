@@ -27,7 +27,6 @@ export default function DanhSachTraiNghiem() {
 
     const renderCardTraiNghiem = () => {
         return data?.map((traiNghiem, index) => {
-            console.log(traiNghiem)
             return (
                 <Col key={index} span={8}>
                     <NavLink to={`/danh-sach-phong-o/${traiNghiem._id}`}>

@@ -1,0 +1,168 @@
+.roomName h2{
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 0;
+    color: #f1576b
+}
+.detailRoom{
+    margin: auto;
+    width: 95%;
+}
+.roomDescription, .roomUtitlities{
+    border-bottom: 1px solid #BDB9B9;
+}
+.roomQuantity{
+    font-size: 17px;
+    padding-bottom: 10px;
+}
+.detailRoom h3{
+    font-size: 25px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #f1576b
+}
+.roomDescription p{
+    font-size: 17px;
+}
+.utilitiesName{
+    margin-left: 10px;
+    font-size: 17px;
+}
+.roomUtitlities .ant-btn-primary{
+    background-color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    color: white;
+    border-radius: 15px;
+    padding-top: 7px;
+    padding-bottom: 30px;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 38px;
+}
+.roomUtitlities .ant-btn-primary:hover{
+    background-color: white;
+    color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+}
+.utilitiesModal .ant-modal-title{
+    font-size: 25px;
+    font-weight: 700;
+    color: #f1576b;
+}
+.utilitiesModal h3{
+    font-size: 20px;
+    font-weight: 700;
+    color: #f1576b;
+}
+.unavailableUtilities{
+    margin-top: 10px;
+}
+.utilitiesModal .ant-modal-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.roomCommentContent{
+    margin-top: 28px;
+}
+.roomCommentContent h4{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.roomCommentContent .timeComment{
+    color: #a3a1a1
+}
+.roomCommentContent .commentContent{
+    font-size: 16px;
+    padding-right:60px;
+}
+.wrapper{
+    position: relative;
+}
+.boxDatPhong{
+    border: 1px solid black;
+    margin-top: 40px;
+    margin-left: 30px;
+    padding-left: 30px;
+    padding-bottom: 28px;
+    position: sticky;
+    top: 45px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 20px 6px #a3a1a1;
+}
+.checkInItem, .checkOutItem{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+    align-items: flex-start;
+    height: 90px;
+    padding-bottom: 10px
+}
+.checkInItem{
+    border-right: 1px solid black;
+}
+.formDatPhong{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 95%;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+.formDatPhong .ant-picker {
+    width: 150%;
+    margin-left: 10px;
+}
+.formDatPhong .ant-form-item-label{
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.formDatPhong .ant-form-item{
+    margin-bottom: 20px;
+}
+.formDatPhong .ant-form-item-control{
+    justify-content: space-evenly;
+}
+.boxDatPhong .ant-btn{
+    background-color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    color: white;
+    border-radius: 5px;
+    margin-left: 40%;
+    padding-top: 10px;
+    padding-bottom: 35px;
+    padding-right: 30px;
+    padding-left: 25px;
+    font-size: 18px;
+}
+.boxDatPhong .ant-btn:hover{
+    background-color: white;
+    border: 1px solid #FB9EAA;
+    color: #FB9EAA;
+}
+.buttonSubmitPhongO{
+    background-color: #FB9EAA;
+    border: 1px solid #FB9EAA;
+    color: white !important;
+    border-radius: 5px;
+    margin-left: 37%;
+    padding: 12px 20px;
+    font-size: 18px;
+}
+.buttonSubmitPhongO:hover{
+    color: #FB9EAA !important;
+    background-color: white;
+    border: 1px solid #FB9EAA;
+}
+.footerBox p{
+    margin: 28px 0;
+    font-size: 17px;
+}
+.footerBox .priceSpan{
+    margin-left: 42%;
+    font-size: 25px;
+    font-weight: 700;
+    color:#f1576b
+}
