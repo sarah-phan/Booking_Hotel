@@ -46,16 +46,16 @@ export default function XacNhan(props) {
     const checkOutDatePrev = new Date(prevValues?.checkOutDate._d).toLocaleDateString()
     const checkOutDatePrevFormat = new Date(prevValues?.checkOutDate._d).toLocaleDateString('en-GB')
     const price = dataDetailRoom?.price
-    const diferrenceInDay1 = Math.abs((new Date(checkOutDatePrev).getTime() - new Date(checkInDatePrev).getTime()) / (1000 * 3600 * 24))
-    const diferrenceInDay2 = Math.round(diferrenceInDay1)
-    const totalPrice = price * diferrenceInDay2
+    const differenceInDay1 = Math.abs((new Date(checkOutDatePrev).getTime() - new Date(checkInDatePrev).getTime()) / (1000 * 3600 * 24))
+    const differenceInDay2 = Math.round(differenceInDay1)
+    const totalPrice = price * differenceInDay2
     let arr = {
         name: JSON.parse(localStorage.getItem("UserAccount")).user.name,
         message1: `Khách sạn: ${dataDetailRoom?.name}`,
         message2: `Ngày đặt phòng: ${checkInDatePrevFormat}`,
         message3: `Ngày trả phòng: ${checkOutDatePrevFormat}`,
         message4: `Giá 1 đêm: ${dataDetailRoom?.price}`,
-        message5: `Số ngày: ${diferrenceInDay2}`,
+        message5: `Số ngày: ${differenceInDay2}`,
         message6: `Tổng tiền: ${totalPrice}`,
         email: JSON.parse(localStorage.getItem("UserAccount")).user.email,
     }
@@ -131,7 +131,7 @@ export default function XacNhan(props) {
                 </div>
                 <div className='bookingContent'>
                     <span className='bookingTitle'>Tổng số đêm</span>
-                    <span>{diferrenceInDay2}</span>
+                    <span>{differenceInDay2}</span>
                 </div>
                 <div className='bookingContent'>
                     <span className='bookingTitle'>Thành tiền</span>

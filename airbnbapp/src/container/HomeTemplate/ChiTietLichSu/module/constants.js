@@ -1,0 +1,3 @@
+export const GET_DETAIL_HISTORY_REQUEST = "@chi-tiet-lich-su/GET_DETAIL_HISTORY_REQUEST";
+export const GET_DETAIL_HISTORY_SUCCESS = "@chi-tiet-lich-su/GET_DETAIL_HISTORY_SUCCESS";
+export const GET_DETAIL_HISTORY_FAILED = "@chi-tiet-lich-su/GET_DETAIL_HISTORY_FAILED";

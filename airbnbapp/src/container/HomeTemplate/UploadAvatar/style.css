@@ -1,8 +1,9 @@
 .uploadAvatar{
     border: 1px solid black;
     padding: 10px;
-    margin-right: 120px;
-    margin-left: 120px;
+    margin: auto;
+    width: 90%;
+    border-radius: 10px;
 }
 .uploadAvatar p{
     font-size: 28px;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Alert, Button, Col, DatePicker, Form, Input, message, Modal, Row, Select, Space } from "antd";
 import { actGetChiTiet } from '../../../reducer/moduleUserDetail/action';
 import { actPutDetailUser } from './module/action';
@@ -6,8 +6,9 @@ import "./style.css"
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-export default function ThongTinChiTiet() {
-  const _id = JSON.parse(localStorage.getItem("UserAccount")).user._id
+export default function ThongTinChiTiet(props) {
+  const {id} = props.match.params
+  const _id = id
   const dataUserDetail = useSelector(state => state.getChiTietUserReducer.data)
   const dataPutUserDetail = useSelector(state => state.putUserDetailReducer.data)
   const errorPutUserDetail = useSelector(state => state.putUserDetailReducer.error)
@@ -16,7 +17,7 @@ export default function ThongTinChiTiet() {
 
   useEffect(() => {
     dispatch(actGetChiTiet(_id))
-  }, [])
+  }, [_id])
 
   let defaultValues = {
     ['name']: dataUserDetail?.name,

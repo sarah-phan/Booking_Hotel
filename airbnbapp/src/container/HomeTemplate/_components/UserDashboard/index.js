@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { actGetChiTiet } from '../../../../reducer/moduleUserDetail/action'
+import ChiTietLichSu from '../../ChiTietLichSu'
 import LichSu from '../../LichSu'
 import ThongTinChiTiet from '../../ThongTinChiTiet'
 import UploadAvatar from '../../UploadAvatar'
@@ -71,19 +72,23 @@ export default function UserDashboard(props) {
               <div>
                 <Route
                   exact={false}
-                  path={`/tai-khoan/${id}/thong-tin-ca-nhan`}
+                  path="/tai-khoan/:id/thong-tin-ca-nhan"
                   component={ThongTinChiTiet}
                 />
                 <Route
                   exact={false}
-                  path={`/tai-khoan/${id}/upload-avatar`}
+                  path="/tai-khoan/:id/upload-avatar"
                   component={UploadAvatar}
                 />
                 <Route
-                  exact={false}
-                  activeStyle={{ color: 'red' }}
-                  path={`/tai-khoan/${id}/lich-su`}
+                  exact={true}
+                  path="/tai-khoan/:id/lich-su"
                   component={LichSu}
+                />
+                <Route
+                  exact={false}
+                  path="/tai-khoan/:id/lich-su/chi-tiet-lich-su/:idList"
+                  component={ChiTietLichSu}
                 />
               </div>
             </Layout.Content>

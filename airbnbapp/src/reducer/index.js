@@ -13,6 +13,8 @@ import { getListCommentReducer } from "../container/HomeTemplate/ChiTietPhongO/B
 import { putUserDetailReducer } from "../container/HomeTemplate/ThongTinChiTiet/module/reducer";
 import { uploadAvatarReducer } from "../container/HomeTemplate/UploadAvatar/module/reducer";
 import { createBookingReducer } from "../container/HomeTemplate/XacNhan/module/reducer";
+import { getListBookingHistoryReducer } from "../container/HomeTemplate/LichSu/module/reducer";
+import { getDetailHistoryReducer } from "../container/HomeTemplate/ChiTietLichSu/module/reducer";
 
 export const rootReducer = combineReducers({
     getViTriReducer,
@@ -28,5 +30,7 @@ export const rootReducer = combineReducers({
     getListCommentReducer,
     putUserDetailReducer,
     uploadAvatarReducer,
-    createBookingReducer
+    createBookingReducer,
+    getListBookingHistoryReducer,
+    getDetailHistoryReducer  
 })
