@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { UserAddOutlined } from "@ant-design/icons";
-import { actDangKy } from "../../HomeTemplate/DangKy/module/action";
+import { actDangKy } from "../../HomeTemplate/_components/DangKy/module/action";
 import { NavLink } from "react-router-dom";
 import { Modal } from "antd";
 

@@ -1,5 +1,5 @@
 import * as ActionType from "./constants"
-import { api } from "../../../../utils/apiUtils"
+import { api } from "../../../../../utils/apiUtils"
 
 export const actDangKy = (user) => {
     return (dispatch) => {

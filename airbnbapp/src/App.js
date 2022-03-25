@@ -7,15 +7,16 @@ import { renderRoutesAdmin } from "./routes";
 
 import Loading from "./components/loading";
 import PageNotFound from "./container/PageNotFound";
-import DangKy from "./container/HomeTemplate/DangKy";
-
+import TrangChu from "./container/HomeTemplate/TrangChu";
+import DangKy from "./container/HomeTemplate/_components/DangKy";
 export const history = createBrowserHistory();
 
 function App() {
   return (
-    <Suspense history={history} fallback={<Loading />}>
+    <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <Switch>
+          <Route exact={true} path="/" component={TrangChu}/>
           <Route path="/dang-ky" component={DangKy} />
           {renderRouteHome()}
           {renderRoutesAdmin()}
