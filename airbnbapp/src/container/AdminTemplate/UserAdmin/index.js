@@ -18,7 +18,6 @@ import { actFetchListUser } from "./module/action";
 export default function UserAdmin() {
   const dataUser = useSelector((state) => state.getUserReducer.data);
   const dispatch = useDispatch();
-  console.log(dataUser);
 
   useEffect(() => {
     dispatch(actFetchListUser());
@@ -51,7 +50,6 @@ export default function UserAdmin() {
       dataIndex: "birthday",
       key: "birthday",
       render: (user, index) => {
-        // console.log(user);
         return (
           <Fragment key={index}>
             {user

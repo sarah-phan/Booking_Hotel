@@ -8,7 +8,6 @@ export const actFetchListUser = () => {
       .get("users/pagination")
       .then((result) => {
         dispatch(actFetchListUserSuccess(result.data));
-        // console.log(result.data);
       })
       .catch((error) => {
         dispatch(actFetchListUserFailed(error));

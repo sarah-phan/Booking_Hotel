@@ -14,6 +14,9 @@ import { NavLink, Route } from "react-router-dom";
 import UserAdmin from "../UserAdmin";
 import DangKyAdmin from "../DangKyAdmin";
 
+import AdminLocation from "../Location";
+import AdminDetailLocation from "../Location/Detail";
+
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -59,7 +62,7 @@ export default function AdminPage() {
                   title="Quản Lý Vị Trí"
                 >
                   <Menu.Item key="5">
-                    <NavLink to="/admin">Xem Danh Sách Vị Trí</NavLink>
+                    <NavLink to="/admin/location">Xem Danh Sách Vị Trí</NavLink>
                   </Menu.Item>
                   <Menu.Item key="6">
                     <NavLink to="/admin">
@@ -133,6 +136,20 @@ export default function AdminPage() {
                   // render={() => <div>Mlem admin users</div>}
                   // component={AdminUserComponent}
                   component={DangKyAdmin}
+                />
+                <Route
+                  exact={true}
+                  path="/admin/location"
+                  // render={() => <div>Mlem admin users</div>}
+                  // component={AdminUserComponent}
+                  component={AdminLocation}
+                />
+                <Route
+                  exact={true}
+                  path="/admin/location/:id"
+                  // render={() => <div>Mlem admin users</div>}
+                  // component={AdminUserComponent}
+                  component={AdminDetailLocation}
                 />
               </div>
             </Content>

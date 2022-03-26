@@ -18,6 +18,8 @@ import { getDetailHistoryReducer } from "../container/HomeTemplate/ChiTietLichSu
 
 // ADMIN PAGE
 import { getUserReducer } from "../container/AdminTemplate/UserAdmin/module/reducer";
+import { getListLocationReducer } from "../container/AdminTemplate/Location/module/reducer";
+import { getDetailLocationReducer } from "../container/AdminTemplate/Location/Detail/module/reducer";
 
 export const rootReducer = combineReducers({
   getViTriReducer,
@@ -40,4 +42,6 @@ export const rootReducer = combineReducers({
   //admin page
 
   getUserReducer,
+  getListLocationReducer,
+  getDetailLocationReducer,
 });
