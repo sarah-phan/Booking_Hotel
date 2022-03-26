@@ -4,6 +4,7 @@ import { EnvironmentOutlined } from '@ant-design/icons'
 import { actGetValueSearch } from '../../../../reducer/moduleValueSearch/action'
 import { useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import moment from 'moment'
 
 export default function FormTimKiem(props) {
     const dispatch = useDispatch()
@@ -52,6 +53,10 @@ export default function FormTimKiem(props) {
        
     }
 
+    const disabledDate = (current) => {
+        return current && current < moment().endOf('day');
+    }
+
     return (
         <Form
             className='formTimKiemNoiDung'
@@ -86,7 +91,11 @@ export default function FormTimKiem(props) {
                     ]
                 }
             >
-                <DatePicker format="DD-MM-YYYY" style={{ width: "90%" }} />
+                <DatePicker 
+                format="DD-MM-YYYY" 
+                style={{ width: "90%" }} 
+                disabledDate={disabledDate}
+                />
             </Form.Item>
             <Form.Item
                 label="Ngày trả phòng"
@@ -100,7 +109,11 @@ export default function FormTimKiem(props) {
                     ]
                 }
             >
-                <DatePicker format="DD-MM-YYYY" style={{ width: "90%" }} />
+                <DatePicker 
+                format="DD-MM-YYYY" 
+                style={{ width: "90%" }} 
+                disabledDate={disabledDate}
+                />
             </Form.Item>
             <Form.Item label="Số lượng khách" name="numberCustomer"
                 rules={[

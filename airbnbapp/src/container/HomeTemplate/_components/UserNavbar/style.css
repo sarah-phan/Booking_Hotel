@@ -5,7 +5,7 @@
     border-radius: 10px;
     margin-top: 10px;
     position: absolute;
-    right: 43px;
+    right: 86px;
     top: 10px;
 }
 .iconThree{
@@ -23,10 +23,13 @@
 .userNavAlreadyLogin h3{
     display: inline;
     margin-right: 10px;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
 }
 .userNavAlreadyLogin{
     position: absolute;
-    right: 90px;
+    right: 134px;
     top: 21px;
     padding-bottom: 10px;
     padding-left: 10px;
@@ -34,6 +37,6 @@
 }
 .userAvatar{
     position: absolute !important;
-    right: 40px;
+    right: 83px;
     top: 10px
 }

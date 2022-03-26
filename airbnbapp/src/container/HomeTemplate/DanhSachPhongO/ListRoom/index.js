@@ -4,11 +4,14 @@ import { actGetDetailViTri } from '../module/action'
 import { actGetListRoomPaginate } from './module/action'
 import { Row, Col, Pagination } from 'antd'
 import { NavLink } from 'react-router-dom'
+import Loading from '../../../../components/loading'
 
 export default function ListRoom(props) {
     const { idViTri } = props
     const dataDetailViTri = useSelector(state => state.getDetailViTriReducer.data)
+    const loadingDetailViTri = useSelector(state => state.getDetailViTriReducer.loading)
     const dataListRoomPaginate = useSelector(state => state.getListRoomPaginateReducer.dataPaginate)
+    const loadingListRoomPaginate = useSelector(state => state.getListRoomPaginateReducer. loading)
     const dataAdvancedSearch = useSelector(state => state.getAdvancedSearchValueReducer.value)
     const prevValues = useSelector(state => state.getValueSearchReducer.value)
     const dispatch = useDispatch()
@@ -29,6 +32,12 @@ export default function ListRoom(props) {
         dispatch(actGetDetailViTri(idViTri))
         dispatch(actGetListRoomPaginate(params.skip, params.limit, idViTri))
     }, [params.skip, params.limit, idViTri])
+
+    if(loadingListRoomPaginate || loadingDetailViTri){
+        return(
+            <Loading/>
+        )
+    }
 
     const applyFilter = (dataListRoomPaginate) => {
         if (dataAdvancedSearch === null) {
@@ -72,7 +81,6 @@ export default function ListRoom(props) {
                 style: 'currency',
                 currency: 'VND',
             })
-            console.log(room)
             return (
                 <NavLink to={`/chi-tiet-phong-o/${room._id}`}>
                     <Row className='listRoomComponent' key={index}>

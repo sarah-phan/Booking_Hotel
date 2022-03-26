@@ -17,8 +17,12 @@ ul{
     padding-right: 42px;
     padding-left: 0;
 }
-a{
-    color: rgba(0, 0, 0, 0.74) !important;
+.footerContent a{
+    color: rgba(0, 0, 0, 0.74);
+}
+.footerContent a:hover{
+    color: #f1576b;
+    text-decoration: none;
 }
 li:hover{
     text-decoration: underline;

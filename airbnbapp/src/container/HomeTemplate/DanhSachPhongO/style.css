@@ -7,14 +7,17 @@
     margin: 40px 20px;
     border-radius: 5px;
 }
-.buttonSubmitPhongO{
+.buttonSubmitListPhong{
     background-color: #FB9EAA;
     border: 1px solid #FB9EAA;
     color: white;
     margin-left: 40%;
     border-radius: 4px;
+    font-size: 18px;
+    padding-bottom: 30px;
 }
-.buttonSubmitPhongO:hover, .buttonSubmitPhongO:focus{
+.buttonSubmitListPhong:hover, .buttonSubmitListPhong:focus{
+    background-color: white;
     border: 1px solid #FB9EAA;
     color: #FB9EAA;
 }
@@ -94,4 +97,10 @@
 .listRoomContent .ant-pagination{
     margin-top: 30px;
     margin-left: 50%;
+}
+.formDanhSachPhongO label{
+    font-size: 17px;
+}
+.listRoomContent a{
+    color: black;
 }
