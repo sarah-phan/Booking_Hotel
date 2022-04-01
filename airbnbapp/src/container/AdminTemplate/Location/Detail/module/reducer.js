@@ -26,6 +26,31 @@ export const getDetailLocationReducer = (state = initialState, action) => {
       state.loading = false;
       return { ...state };
     }
+    case ActionType.UPLOAD_LOCATION_IMAGE_REQUEST: {
+      state.loading = true;
+      return { ...state };
+    }
+    case ActionType.UPLOAD_LOCATION_IMAGE_SUCCESS: {
+      state.data.image = action.payload;
+      state.loading = false;
+      return { ...state };
+    }
+    case ActionType.UPLOAD_LOCATION_IMAGE_FAILED: {
+      state.loading = false;
+      return { ...state };
+    }
+    case ActionType.UPDATE_LOCATION_REQUEST: {
+      state.loading = true;
+      return { ...state };
+    }
+    case ActionType.UPDATE_LOCATION_SUCCESS: {
+      state.loading = false;
+      return { ...state };
+    }
+    case ActionType.UPDATE_LOCATION_FAILED: {
+      state.loading = false;
+      return { ...state };
+    }
     default:
       return { ...state };
   }

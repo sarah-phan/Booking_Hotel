@@ -84,7 +84,11 @@ export default function UserAdmin() {
   const data = dataUser;
   return (
     <div>
-      <Table columns={columns} dataSource={data} />
+      <Table
+        columns={columns}
+        dataSource={data}
+        rowKey={(row) => `row-${row._id}`}
+      />
     </div>
   );
 }

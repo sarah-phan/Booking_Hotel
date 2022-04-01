@@ -1,0 +1,11 @@
+export const GET_LIST_TICKET_REQUEST = "@adminpage/GET_LIST_TICKET_REQUEST";
+export const GET_LIST_TICKET_SUCCESS = "@adminpage/GET_LIST_TICKET_SUCCESS";
+export const GET_LIST_TICKET_FAILED = "@adminpage/GET_LIST_TICKET_FAILED";
+
+export const GET_USERS_REQUEST = "@adminpage/GET_TICKET_USERS_REQUEST";
+export const GET_USERS_SUCCESS = "@adminpage/GET_TICKET_USERS_SUCCESS";
+export const GET_USERS_FAILED = "@adminpage/GET_TICKET_USERS_FAILED";
+
+export const GET_ROOMS_REQUEST = "@adminpage/GET_TICKET_ROOMS_REQUEST";
+export const GET_ROOMS_SUCCESS = "@adminpage/GET_TICKET_ROOMS_SUCCESS";
+export const GET_ROOMS_FAILED = "@adminpage/GET_TICKET_ROOMS_FAILED";

@@ -26,6 +26,8 @@ export default function XacNhan(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const auth = useSelector((state) => state.authReducer.data);
+
   var formatter = new Intl.NumberFormat("VND", {
     style: "currency",
     currency: "VND",
@@ -64,20 +66,21 @@ export default function XacNhan(props) {
   );
   const differenceInDay2 = Math.round(differenceInDay1);
   const totalPrice = price * differenceInDay2;
+
   let arr = {
-    name: JSON.parse(localStorage.getItem("UserAccount")).user.name,
+    name: auth?.user?.name,
     message1: `Khách sạn: ${dataDetailRoom?.name}`,
     message2: `Ngày đặt phòng: ${checkInDatePrevFormat}`,
     message3: `Ngày trả phòng: ${checkOutDatePrevFormat}`,
     message4: `Giá 1 đêm: ${dataDetailRoom?.price}`,
     message5: `Số ngày: ${differenceInDay2}`,
     message6: `Tổng tiền: ${totalPrice}`,
-    email: JSON.parse(localStorage.getItem("UserAccount")).user.email,
+    email: auth?.user?.email,
   };
   let apiArr = {
     checkIn: checkInDatePrev,
     checkOut: checkOutDatePrev,
-    userId: JSON.parse(localStorage.getItem("UserAccount")).user._id,
+    userId: auth?.user._id,
     roomId: id,
   };
   const bookingValues = (arr, apiArr) => {

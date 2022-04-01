@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
+
+//HOME PAGE
 import { getViTriReducer } from "../container/HomeTemplate/TrangChu/module/reducer";
 import { getViTriPhanTrangReducer } from "../container/HomeTemplate/TrangChu/DanhSachTraiNghiem/module/reducer";
 import { dangKyReducer } from "../container/HomeTemplate/_components/DangKy/module/reducer";
-import { dangNhapReducer } from "../container/HomeTemplate/_components/DangNhap/module/reducer";
+import { authReducer } from "./moduleAuth/reducer";
 import { getChiTietUserReducer } from "./moduleUserDetail/reducer";
 import { getValueSearchReducer } from "./moduleValueSearch/reducer";
 import { getDetailViTriReducer } from "../container/HomeTemplate/DanhSachPhongO/module/reducer";
@@ -20,12 +22,19 @@ import { getDetailHistoryReducer } from "../container/HomeTemplate/ChiTietLichSu
 import { getUserReducer } from "../container/AdminTemplate/UserAdmin/module/reducer";
 import { getListLocationReducer } from "../container/AdminTemplate/Location/module/reducer";
 import { getDetailLocationReducer } from "../container/AdminTemplate/Location/Detail/module/reducer";
+import { getListRoomReducer } from "../container/AdminTemplate/Room/module/reducer";
+import { getAdminDetailRoomReducer } from "../container/AdminTemplate/Room/Detail/module/reducer";
+import { getListTicketReducer } from "../container/AdminTemplate/Ticket/module/reducer";
+import { getDetailTicketReducer } from "../container/AdminTemplate/Ticket/Detail/module/reducer";
+import { getListValueateReducer } from "../container/AdminTemplate/Valueate/module/reducer";
+import { getDetailValueateReducer } from "../container/AdminTemplate/Valueate/Detail/module/reducer";
+
 
 export const rootReducer = combineReducers({
   getViTriReducer,
   getViTriPhanTrangReducer,
   dangKyReducer,
-  dangNhapReducer,
+  authReducer,
   getChiTietUserReducer,
   getValueSearchReducer,
   getDetailViTriReducer,
@@ -38,10 +47,13 @@ export const rootReducer = combineReducers({
   createBookingReducer,
   getListBookingHistoryReducer,
   getDetailHistoryReducer,
-
-  //admin page
-
   getUserReducer,
   getListLocationReducer,
   getDetailLocationReducer,
+  getListRoomReducer,
+  getAdminDetailRoomReducer,
+  getListTicketReducer,
+  getDetailTicketReducer,
+  getListValueateReducer,
+  getDetailValueateReducer
 });

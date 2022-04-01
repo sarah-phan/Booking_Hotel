@@ -7,9 +7,11 @@ export default function AdminLocation(props) {
   const { history } = props;
   const dataSource = useSelector((state) => state.getListLocationReducer.data);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(actFetchListLocation());
   }, []);
+
   const columns = useMemo(() => {
     return [
       {
@@ -92,6 +94,7 @@ export default function AdminLocation(props) {
         scroll={{ x: "300px" }}
         columns={columns}
         dataSource={dataSource}
+        rowKey={(row) => `row-${row._id}`}
         onRow={(record, rowIndex) => {
           return {
             onClick: (event) => {

@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { LoginOutlined, WindowsFilled } from '@ant-design/icons'
 import { Alert, Modal } from 'antd'
 import { Form, Input, Button } from 'antd'
-import { actDangNhap } from './module/action'
+import { actDangNhap } from './../../../../reducers/moduleAuth/action'
 import { useSelector, useDispatch } from 'react-redux'
 import "./style.css"
 
 export default function DangNhap() {
-    const data = useSelector(state => state.dangNhapReducer.data)
-    const error = useSelector(state => state.dangNhapReducer.error)
+    const data = useSelector(state => state.authReducer.data)
+    const error = useSelector(state => state.authReducer.error)
     const dispatch = useDispatch()
 
     const [isModalVisible, setIsModalVisible] = useState(false)

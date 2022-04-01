@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import "./style.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { UserAddOutlined } from "@ant-design/icons";
 import { actDangKy } from "../../HomeTemplate/_components/DangKy/module/action";
-import { NavLink } from "react-router-dom";
-import { Modal } from "antd";
+import { Modal, DatePicker } from "antd";
 
 export default function DangKyAdmin(props) {
   const { history } = props;
@@ -109,7 +107,15 @@ export default function DangKyAdmin(props) {
                 </div>
                 <div>
                   <label htmlFor="birthday">Ngày tháng năm sinh: </label>
-                  <Field type="date" id="birthday" name="birthday" />
+                  <Field id="birthday" name="birthday"
+                     render={({ field, form: { touched, errors } }) => (
+                      <div>
+                        <DatePicker {...field}/>
+                        {touched[field.name] &&
+                          errors[field.name] && <div className="error">{errors[field.name]}</div>}
+                      </div>
+                    )}
+                  />
                   <ErrorMessage name="birthday">
                     {(msg) => <div className="error">{msg}</div>}
                   </ErrorMessage>

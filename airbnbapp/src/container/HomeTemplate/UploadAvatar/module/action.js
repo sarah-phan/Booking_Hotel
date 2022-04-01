@@ -8,11 +8,6 @@ export const actUploadAvatar = (file) => {
       .post("users/upload-avatar", file)
       .then((result) => {
         dispatch(actUploadAvatarSuccess(result.data));
-        var obj = {
-          user: result.data,
-          token: JSON.parse(localStorage.getItem("UserAccount")).token,
-        };
-        localStorage.setItem("UserAccount", JSON.stringify(obj));
       })
       .catch((error) => {
         dispatch(actUploadAvatarFailed(error.message));
