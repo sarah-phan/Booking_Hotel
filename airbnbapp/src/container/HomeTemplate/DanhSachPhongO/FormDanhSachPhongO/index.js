@@ -3,7 +3,7 @@ import { Form, Select, DatePicker, Row, Col, InputNumber, Button } from "antd"
 import { EnvironmentOutlined } from "@ant-design/icons"
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
-import { actGetValueSearch } from "../../../../reducer/moduleValueSearch/action"
+import { actGetValueSearch } from "../../../../reducers/moduleValueSearch/action"
 import { useHistory } from 'react-router-dom'
 
 export default function FormDanhSachPhongO(props) {

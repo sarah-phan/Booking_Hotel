@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, DatePicker, InputNumber, Button, Select } from 'antd'
 import { EnvironmentOutlined } from '@ant-design/icons'
-import { actGetValueSearch } from '../../../../reducer/moduleValueSearch/action'
+import { actGetValueSearch } from '../../../../reducers/moduleValueSearch/action'
 import { useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'

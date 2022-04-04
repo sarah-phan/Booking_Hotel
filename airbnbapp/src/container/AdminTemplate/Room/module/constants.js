@@ -1,0 +1,7 @@
+export const GET_LIST_ROOM_REQUEST = "@adminpage/GET_LIST_ROOM_REQUEST";
+export const GET_LIST_ROOM_SUCCESS = "@adminpage/GET_LIST_ROOM_SUCCESS";
+export const GET_LIST_ROOM_FAILED = "@adminpage/GET_LIST_ROOM_FAILED";
+
+export const GET_LOCATIONS_REQUEST = "@adminpage/GET_ROOM_LOCATIONS_REQUEST";
+export const GET_LOCATIONS_SUCCESS = "@adminpage/GET_ROOM_LOCATIONS_SUCCESS";
+export const GET_LOCATIONS_FAILED = "@adminpage/GET_ROOM_LOCATIONS_FAILED";

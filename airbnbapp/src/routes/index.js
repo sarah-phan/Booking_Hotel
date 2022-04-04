@@ -26,13 +26,156 @@ const routeHome = [
 ];
 
 const routesAdmin = [
-  //Admin
   {
-    exact: false,
+    exact: true,
     path: "/admin",
-    // component: Dashboard,
+    authen: true,
+    defaultSelectedKeys: ['1'],
+    defaultOpenKeys: ['sub1'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
     component: lazy(() =>
-      import("../container/AdminTemplate/AdminPage/index.js")
+      import("../container/AdminTemplate/UserAdmin")
+    ),
+  },{
+    exact: true,
+    path: "/admin/users",
+    key: "users",
+    authen: true,
+    defaultSelectedKeys: ['1'],
+    defaultOpenKeys: ['sub1'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/UserAdmin")
+    ),
+  },
+  {
+    exact: true,
+    path: "/admin/users/:id",
+    key: "add-user",
+    authen: true,
+    defaultSelectedKeys: ['2'],
+    defaultOpenKeys: ['sub1'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/UserAdmin/Detail")
+    ),
+  },
+  { 
+    exact: true,
+    path: "/admin/locations",
+    key: "locations",
+    authen: true,
+    defaultSelectedKeys: ['3'],
+    defaultOpenKeys: ['sub2'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/Location")
+    ),
+  },
+  {
+    exact: true,
+    path: "/admin/location/:id",
+    key: "add-location",
+    authen: true,
+    defaultSelectedKeys: ['4'],
+    defaultOpenKeys: ['sub2'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/Location/Detail")
+    ),
+  },
+  { 
+    exact: true,
+    path: "/admin/rooms",
+    key: "rooms",
+    authen: true,
+    defaultSelectedKeys: ['5'],
+    defaultOpenKeys: ['sub3'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/Room")
+    ),
+  },
+  {
+    exact: true,
+    path: "/admin/room/:id",
+    key: "add-room",
+    authen: true,
+    defaultSelectedKeys: ['6'],
+    defaultOpenKeys: ['sub3'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/Room/Detail")
+    ),
+  },
+  { 
+    exact: true,
+    path: "/admin/valueates",
+    key: "valueates",
+    authen: true,
+    defaultSelectedKeys: ['7'],
+    defaultOpenKeys: ['sub4'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/Valueate")
+    ),
+  },
+  {
+    exact: true,
+    path: "/admin/valueate/:id",
+    key: "add-valueate",
+    authen: true,
+    defaultSelectedKeys: ['8'],
+    defaultOpenKeys: ['sub4'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/Valueate/Detail")
+    ),
+  },
+  { 
+    exact: true,
+    path: "/admin/tickets",
+    key: "tickets",
+    authen: true,
+    defaultSelectedKeys: ['9'],
+    defaultOpenKeys: ['sub5'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/Ticket")
+    ),
+  },
+  {
+    exact: true,
+    path: "/admin/ticket/:id",
+    key: "add-ticket",
+    authen: true,
+    defaultSelectedKeys: ['10'],
+    defaultOpenKeys: ['sub5'],
+    Layout: lazy(() =>
+      import("../container/AdminTemplate/Layout")
+    ),
+    component: lazy(() =>
+      import("../container/AdminTemplate/Ticket/Detail")
     ),
   },
 ];
@@ -41,10 +184,7 @@ export const renderRouteHome = () => {
   return routeHome?.map((route, index) => {
     return (
       <HomeTemplate
-        key={index}
-        exact={route.exact}
-        path={route.path}
-        component={route.component}
+        {...route}
       />
     );
   });
@@ -54,10 +194,8 @@ export const renderRoutesAdmin = () => {
   return routesAdmin?.map((route, index) => {
     return (
       <AdminTemplate
-        key={index}
-        exact={route.exact}
-        path={route.path}
-        component={route.component}
+        key={`${route.key}-${index}`}
+        {...route}
       />
     );
   });

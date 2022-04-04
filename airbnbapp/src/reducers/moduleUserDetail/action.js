@@ -15,12 +15,12 @@ export const actGetChiTiet = (idUser) => {
     }
 }
 const actGetChiTietRequest = () => {
-    return{
+    return {
         type: ActionType.GET_CHI_TIET_USER_REQUEST,
     }
 }
 const actGetChiTietSuccess = (data) => {
-    return{
+    return {
         type: ActionType.GET_CHI_TIET_USER_SUCCESS,
         payload: data
     }

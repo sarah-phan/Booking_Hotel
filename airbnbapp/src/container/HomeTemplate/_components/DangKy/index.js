@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import "./style.css"
-import { Formik, Form, Field, ErrorMessage } from "formik"
+import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik"
 import * as yup from "yup"
 import { UserAddOutlined } from "@ant-design/icons"
 import { actDangKy } from './module/action'
 import { NavLink } from 'react-router-dom'
-import { Modal } from 'antd'
+import { DatePicker, Modal } from 'antd'
+import moment from 'moment'
 
 export default function DangKy(props) {
-  const {history} = props
+  const { history } = props
 
   const errorThongBao = useSelector(state => state.dangKyReducer.error)
+  const dataSource = useSelector(state => state.dangKyReducer.data)
   const dispatch = useDispatch()
 
   const handleSubmit = (values) => {
@@ -53,7 +55,7 @@ export default function DangKy(props) {
     setIsShowModal(false)
   }
 
-  
+
   const showMessage = () => {
     if (errorThongBao === null) {
       return (
@@ -128,7 +130,18 @@ export default function DangKy(props) {
                 </div>
                 <div>
                   <label htmlFor='birthday'>Ngày tháng năm sinh: </label>
-                  <Field type="date" id="birthday" name="birthday" />
+                  <Field id="birthday" name="birthday"
+                    render={({ field, form }) => {
+                      return (
+                        <div>
+                          <DatePicker
+                            format={'DD/MM/YYYY'}
+                            onChange={(value) => formikProps.setFieldValue('birthday', moment(value).format('DD/MM/YYYY'))}
+                          />
+                        </div>
+                      )
+                    }}
+                  />
                   <ErrorMessage name='birthday'>
                     {
                       (msg) => <div className='error'>{msg}</div>

@@ -1,0 +1,32 @@
+export const GET_DETAIL_ROOM_REQUEST =
+  "@adminpage/GET_DETAIL_ROOM_REQUEST";
+export const GET_DETAIL_ROOM_SUCCESS =
+  "@adminpage/GET_DETAIL_ROOM_SUCCESS";
+export const GET_DETAIL_ROOM_FAILED =
+  "@adminpage/GET_DETAIL_ROOM_FAILED";
+
+export const UPLOAD_ROOM_IMAGE_REQUEST =
+  "@adminpage/UPLOAD_ROOM_IMAGE_REQUEST";
+export const UPLOAD_ROOM_IMAGE_SUCCESS =
+  "@adminpage/UPLOAD_ROOM_IMAGE_SUCCESS";
+export const UPLOAD_ROOM_IMAGE_FAILED =
+"@adminpage/UPLOAD_ROOM_IMAGE_FAILED";
+
+export const UPDATE_ROOM_REQUEST =
+  "@adminpage/UPDATE_ROOM_REQUEST";
+export const UPDATE_ROOM_SUCCESS =
+  "@adminpage/UPDATE_ROOM_SUCCESS";
+export const UPDATE_ROOM_FAILED =
+"@adminpage/UPDATE_ROOM_FAILED";
+
+export const GET_LOCATIONS_REQUEST =
+  "@adminpage/GET_ROOM_LOCATIONS_REQUEST";
+export const GET_LOCATIONS_SUCCESS =
+  "@adminpage/GET_ROOM_LOCATIONS_SUCCESS";
+export const GET_LOCATIONS_FAILED =
+"@adminpage/GET_ROOM_LOCATIONS_FAILED";
+
+export const DELETE_ROOM_REQUEST = "@adminpage/DELETE_ROOM_REQUEST";
+export const DELETE_ROOM_SUCCESS = "@adminpage/DELETE_ROOM_SUCCESS";
+export const DELETE_ROOM_FAILED = "@adminpage/DELETE_ROOM_FAILED";
+export const RESET_ROOM_DATA = "@adminpage/RESET_ROOM_DATA";

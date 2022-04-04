@@ -1,57 +1,49 @@
-import React from 'react'
-import "./style.css"
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { actFetchViTri } from './module/action'
-import { Row, Col } from "antd"
-import DanhSachTraiNghiem from './DanhSachTraiNghiem'
-import FormTimKiem from './FormTimKiem'
-import Footer from '../_components/Footer'
-import UserNavbar from '../_components/UserNavbar'
+import React from "react";
+import "./style.css";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { actFetchViTri } from "./module/action";
+import { Row, Col } from "antd";
+import DanhSachTraiNghiem from "./DanhSachTraiNghiem";
+import FormTimKiem from "./FormTimKiem";
+import Footer from "../_components/Footer";
+import UserNavbar from "../_components/UserNavbar";
 
 export default function TrangChu() {
-  const dataViTri = useSelector(state => state.getViTriReducer.data)
-  const dispatch = useDispatch()
+  const dataViTri = useSelector((state) => state.getViTriReducer.data);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(actFetchViTri());
-  }, [])
+  }, []);
 
   const danhSachTraiNghiem = () => {
-    return (
-      <DanhSachTraiNghiem viTri={dataViTri} />
-    )
-  }
+    return <DanhSachTraiNghiem viTri={dataViTri} />;
+  };
 
   const TimeRelatedForm = () => {
-    return (
-      <FormTimKiem
-        arr={dataViTri}
-      />
-    )
-  }
+    return <FormTimKiem arr={dataViTri} />;
+  };
 
   return (
     <>
-      <div className='trangChuCarousel'>
-        <div className='header'>
-          <UserNavbar/>
+      <div className="trangChuCarousel">
+        <div className="header">
+          <UserNavbar />
         </div>
-        <div className='carouselContent'>
+        <div className="carouselContent">
           <Row>
             <Col span={12}>
               <h1>Airbnb</h1>
             </Col>
             <Col span={12}>
-              <div className='formTimKiem'>
-                {TimeRelatedForm()}
-              </div>
+              <div className="formTimKiem">{TimeRelatedForm()}</div>
             </Col>
           </Row>
         </div>
       </div>
       {danhSachTraiNghiem()}
-      <Footer/>
+      <Footer />
     </>
-  )
+  );
 }

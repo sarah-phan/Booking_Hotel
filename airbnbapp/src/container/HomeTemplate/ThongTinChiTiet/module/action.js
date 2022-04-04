@@ -2,17 +2,12 @@ import * as ActionType from "./constant"
 import { apiAdmin } from "../../../../utils/apiUtilsAdmin"
 
 export const actPutDetailUser = (id, data) => {
-    return(dispatch) => {
+    return(dispatch, getState) => {
         dispatch(actPutDetailUserRequest)
         apiAdmin
         .put(`users/${id}`, data)
         .then((result) => {
             dispatch(actPutDetailUserSuccess(result.data))
-            var obj = {
-                user: result.data,
-                token: JSON.parse(localStorage.getItem("UserAccount")).token
-            }
-            localStorage.setItem("UserAccount", JSON.stringify(obj))
         })
         .catch((error) => {
             dispatch(actPutDetailUserFailed(error.message))
