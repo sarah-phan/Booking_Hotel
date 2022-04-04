@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actFetchDetailValueate, actUpdateValueate } from "./module/action";
+import { actFetchDetailValueate, actUpdateValueate, actDeleteValuate, actResetData } from "./module/action";
 import { Form, Input, Button, Select } from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
 import Loading from "../../../../components/loading";
@@ -13,11 +13,15 @@ export default function AdminDetailValueate(props) {
   const loading = useSelector((state) => state.getDetailValueateReducer.loading);
 
   useEffect(() => {
+    dispatch(actResetData());
     let { id } = props.match.params;
     id !== 'new' && dispatch(actFetchDetailValueate(id));
     id !== 'new' && setTimeout(() => {
       setViewMode(true)
     }, 100)
+    id === 'new' && form.setFieldsValue({
+      "content": "",
+    })
   }, []);
 
   useEffect(() => {
@@ -63,7 +67,12 @@ export default function AdminDetailValueate(props) {
       {loading && <Loading />}
       {viewMode && <div><Button
         onClick={() => setViewMode(false)}
-      >Edit</Button></div>}
+      >Edit</Button>
+      <Button
+        onClick={() => dispatch(actDeleteValuate(dataSource._id, () => {
+          props.history.push('/admin/valuates')
+        }))}
+      >Delete</Button></div>}
       <Form.Item
         label="Content"
         name="content"

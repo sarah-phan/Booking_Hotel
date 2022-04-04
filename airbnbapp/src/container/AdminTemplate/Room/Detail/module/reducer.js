@@ -69,6 +69,10 @@ export const getAdminDetailRoomReducer = (state = initialState, action) => {
       state.loading = false;
       return { ...state };
     }
+    case ActionType.RESET_ROOM_DATA: {
+      state.data = null;
+      return { ...state };
+    }
     default:
       return { ...state };
   }

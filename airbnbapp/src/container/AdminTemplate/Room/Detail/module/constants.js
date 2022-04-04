@@ -25,3 +25,8 @@ export const GET_LOCATIONS_SUCCESS =
   "@adminpage/GET_ROOM_LOCATIONS_SUCCESS";
 export const GET_LOCATIONS_FAILED =
 "@adminpage/GET_ROOM_LOCATIONS_FAILED";
+
+export const DELETE_ROOM_REQUEST = "@adminpage/DELETE_ROOM_REQUEST";
+export const DELETE_ROOM_SUCCESS = "@adminpage/DELETE_ROOM_SUCCESS";
+export const DELETE_ROOM_FAILED = "@adminpage/DELETE_ROOM_FAILED";
+export const RESET_ROOM_DATA = "@adminpage/RESET_ROOM_DATA";

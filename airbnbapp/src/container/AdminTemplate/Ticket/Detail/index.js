@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actFetchDetailTicket, actUpdateTicket
-  , actGetRooms, actGetUsers
+  , actGetRooms, actGetUsers, actDeleteTicket, actResetData
 } from "./module/action";
 import { Form, Input, Button, Select, DatePicker } from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
@@ -16,16 +16,21 @@ export default function AdminDetailTicket(props) {
   const rooms = useSelector((state) => state.getDetailTicketReducer.rooms) || [];
   const users = useSelector((state) => state.getDetailTicketReducer.users) || [];
   const loading = useSelector((state) => state.getDetailTicketReducer.loading);
+  const { id } = props.match.params;
 
   useEffect(() => {
+    dispatch(actResetData());
     dispatch(actGetRooms())
     dispatch(actGetUsers())
-    let { id } = props.match.params;
     id !== 'new' && dispatch(actFetchDetailTicket(id));
     id !== 'new' && setTimeout(() => {
       setViewMode(true)
     }, 100)
-  }, []);
+    id === 'new' && form.setFieldsValue({
+      "userId": dataSource.userId?._id || '',
+      "roomId": dataSource.roomId?._id || '',
+    })
+  }, [id]);
 
   useEffect(() => {
     form.setFieldsValue({
@@ -89,7 +94,12 @@ export default function AdminDetailTicket(props) {
       {loading && <Loading />}
       {viewMode && <div><Button
         onClick={() => setViewMode(false)}
-      >Edit</Button></div>}
+      >Edit</Button>
+      <Button
+        onClick={() => dispatch(actDeleteTicket(dataSource._id, () => {
+          props.history.push('/admin/tickets')
+        }))}
+      >Delete</Button></div>}
       <Form.Item
         label="CheckIn"
         name="checkIn"

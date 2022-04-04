@@ -131,3 +131,41 @@ const actGetLocationsFailed = (error) => {
     payload: error,
   };
 };
+
+export const actDeleteRoom = (id, callback) => {
+  return (dispatch) => {
+    dispatch(actDeleteRoomRequest);
+    api
+      .delete(`rooms/${id}`)
+      .then((result) => {
+        callback && callback(result.data)
+        dispatch(actDeleteRoomSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actDeleteRoomFailed(error));
+      });
+  };
+};
+const actDeleteRoomRequest = () => {
+  return {
+    type: ActionType.DELETE_ROOM_REQUEST,
+  };
+};
+const actDeleteRoomSuccess = (data) => {
+  return {
+    type: ActionType.DELETE_ROOM_SUCCESS,
+    payload: data,
+  };
+};
+const actDeleteRoomFailed = (error) => {
+  return {
+    type: ActionType.DELETE_ROOM_FAILED,
+    payload: error,
+  };
+};
+
+export const actResetData = () => {
+  return {
+    type: ActionType.RESET_ROOM_DATA,
+  };
+};

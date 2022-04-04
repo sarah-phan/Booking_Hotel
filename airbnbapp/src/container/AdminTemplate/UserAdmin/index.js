@@ -1,93 +1,67 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, Fragment } from "react";
-import { Table, Tag, Space } from "antd";
-import {
-  AudioOutlined,
-  EditOutlined,
-  DeleteOutlined,
-  CalendarOutlined,
-} from "@ant-design/icons";
+import React, { useMemo, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Table } from "antd";
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons"
+import { actFetchListUserAdmin, actGetLocations } from "./module/action";
 
-import { NavLink } from "react-router-dom";
-
-import moment from "moment";
-
-import { actFetchListUser } from "./module/action";
-
-export default function UserAdmin() {
-  const dataUser = useSelector((state) => state.getUserReducer.data);
+export default function AdminUserAdmin(props) {
+  const { history } = props;
+  const dataSource = useSelector((state) => state.getListUserAdminReducer.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actFetchListUser());
+    dispatch(actFetchListUserAdmin());
   }, []);
 
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
-    },
-    {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
-    },
-    {
-      title: "Birthday",
-      dataIndex: "birthday",
-      key: "birthday",
-      render: (user, index) => {
-        return (
-          <Fragment key={index}>
-            {user
-              ? moment(user, "YYYY-MM-DDTHH:mm:ss.sssZ").format("DD.MM.YYYY")
-              : ""}
-          </Fragment>
-        );
+  const columns = useMemo(() => {
+    return [
+      {
+        title: "Name",
+        dataIndex: "name",
+        width: "200px",
       },
-    },
-    {
-      title: "Hành Động ",
-      dataIndex: "id",
-      render: (text, film, index) => {
-        return (
-          <Fragment>
-            <NavLink key={1} className="mr-2 text-2xl" to={`/admin/users`}>
-              <EditOutlined style={{ color: "blue" }} />
-            </NavLink>
-            <span
-              key={2}
-              style={{ cursor: "pointer" }}
-              className="mr-2 text-2xl"
-            >
-              <DeleteOutlined style={{ color: "red" }} />
-            </span>
-          </Fragment>
-        );
+      {
+        title: "Email",
+        dataIndex: "email",
+        width: "220px",
       },
-    },
-  ];
-
-  const data = dataUser;
+      {
+        title: "Phone",
+        dataIndex: "phone",
+        width: "100px",
+      },
+      {
+        title: "Birthday",
+        dataIndex: "birthday",
+        width: "250px",
+      },
+      {
+        title: "Gender",
+        dataIndex: "gender",
+        width: "70px",
+        render: (val) => val ? 'Nam' : 'Nữ'
+      },
+      {
+        title: "Adress",
+        dataIndex: "address",
+        width: "250px",
+      }
+    ];
+  }, []);
   return (
     <div>
       <Table
+        scroll={{ x: "1200px" }}
         columns={columns}
-        dataSource={data}
+        dataSource={dataSource}
         rowKey={(row) => `row-${row._id}`}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: (event) => {
+              history.push(`users/${record._id}`);
+            },
+          };
+        }}
       />
     </div>
   );

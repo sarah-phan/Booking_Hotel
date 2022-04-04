@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actFetchDetailRoom, actUpdateRoom, actGetLocations } from "./module/action";
+import { actFetchDetailRoom, actUpdateRoom, actGetLocations
+  , actDeleteRoom, actResetData
+} from "./module/action";
 import { Form, Input, Button, Select } from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
 import Loading from "../../../../components/loading";
@@ -12,15 +14,32 @@ export default function AdminDetailRoom(props) {
   const dataSource = useSelector((state) => state.getAdminDetailRoomReducer.data) || {};
   const locations = useSelector((state) => state.getAdminDetailRoomReducer.locations) || [];
   const loading = useSelector((state) => state.getAdminDetailRoomReducer.loading);
+  const { id } = props.match.params;
 
   useEffect(() => {
+    dispatch(actResetData());
     dispatch(actGetLocations())
-    let { id } = props.match.params;
     id !== 'new' && dispatch(actFetchDetailRoom(id));
-    id !== 'new' && setTimeout(() => {
-      setViewMode(true)
-    }, 100)
-  }, []);
+    id !== 'new' && setViewMode(true)
+    id === 'new' && form.setFieldsValue({
+      "name": "",
+      "guests": 0,
+      "bedRoom": 0,
+      "bath": 0,
+      "description": "",
+      "price": 0,
+      "elevator": false,
+      "hotTub": false,
+      "pool": false,
+      "indoorFireplace": false,
+      "dryer": false,
+      "gym": false,
+      "kitchen": false,
+      "wifi": false,
+      "heating": false,
+      "cableTV": false
+    })
+  }, [id]);
 
   useEffect(() => {
     const newDs = {
@@ -96,7 +115,12 @@ export default function AdminDetailRoom(props) {
       {loading && <Loading />}
       {viewMode && <div><Button
         onClick={() => setViewMode(false)}
-      >Edit</Button></div>}
+      >Edit</Button>
+      <Button
+        onClick={() => dispatch(actDeleteRoom(dataSource._id, () => {
+          props.history.push('/admin/rooms')
+        }))}
+      >Delete</Button></div>}
       <Form.Item
         label="Name"
         name="name"

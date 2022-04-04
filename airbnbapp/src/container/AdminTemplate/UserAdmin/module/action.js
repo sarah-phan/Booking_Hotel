@@ -1,33 +1,64 @@
 import * as ActionType from "./constants";
 import { api } from "../../../../utils/apiUtils";
 
-export const actFetchListUser = () => {
+export const actFetchListUserAdmin = () => {
   return (dispatch) => {
-    dispatch(actFetchListUserRequest);
+    dispatch(actFetchListUserAdminRequest);
     api
-      .get("users/pagination")
+      .get("users")
       .then((result) => {
-        dispatch(actFetchListUserSuccess(result.data));
+        dispatch(actFetchListUserAdminSuccess(result.data));
       })
       .catch((error) => {
-        dispatch(actFetchListUserFailed(error));
+        dispatch(actFetchListUserAdminFailed(error));
       });
   };
 };
-const actFetchListUserRequest = () => {
+const actFetchListUserAdminRequest = () => {
   return {
-    type: ActionType.GET_USER_REQUEST,
+    type: ActionType.GET_LIST_USER_ADMIN_REQUEST,
   };
 };
-const actFetchListUserSuccess = (data) => {
+const actFetchListUserAdminSuccess = (data) => {
   return {
-    type: ActionType.GET_USER_SUCCESS,
+    type: ActionType.GET_LIST_USER_ADMIN_SUCCESS,
     payload: data,
   };
 };
-const actFetchListUserFailed = (error) => {
+const actFetchListUserAdminFailed = (error) => {
   return {
-    type: ActionType.GET_USER_FAILED,
+    type: ActionType.GET_LIST_USER_ADMIN_FAILED,
+    payload: error,
+  };
+};
+
+export const actGetLocations = () => {
+  return (dispatch) => {
+    dispatch(actGetLocationsRequest);
+    api
+      .get("locations")
+      .then((result) => {
+        dispatch(actGetLocationsSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actGetLocationsFailed(error));
+      });
+  };
+};
+const actGetLocationsRequest = () => {
+  return {
+    type: ActionType.GET_LOCATIONS_REQUEST,
+  };
+};
+const actGetLocationsSuccess = (data) => {
+  return {
+    type: ActionType.GET_LOCATIONS_SUCCESS,
+    payload: data,
+  };
+};
+const actGetLocationsFailed = (error) => {
+  return {
+    type: ActionType.GET_LOCATIONS_FAILED,
     payload: error,
   };
 };

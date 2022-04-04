@@ -33,7 +33,7 @@ export default function AdminTicket(props) {
         title: "User",
         dataIndex: "userId",
         width: "220px",
-        render: (value, rec, index) => value.name || ''
+        render: (value, rec, index) => value?.name || ''
       },
       {
         title: "Room",

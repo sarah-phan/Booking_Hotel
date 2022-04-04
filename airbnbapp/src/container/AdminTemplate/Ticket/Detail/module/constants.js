@@ -26,3 +26,8 @@ export const GET_USERS_FAILED = "@adminpage/GET_TICKETS_USERS_FAILED";
 export const GET_ROOMS_REQUEST = "@adminpage/GET_TICKETS_ROOMS_REQUEST";
 export const GET_ROOMS_SUCCESS = "@adminpage/GET_TICKETS_ROOMS_SUCCESS";
 export const GET_ROOMS_FAILED = "@adminpage/GET_TICKETS_ROOMS_FAILED";
+
+export const DELETE_TICKET_REQUEST = "@adminpage/DELETE_TICKET_REQUEST";
+export const DELETE_TICKET_SUCCESS = "@adminpage/DELETE_TICKET_SUCCESS";
+export const DELETE_TICKET_FAILED = "@adminpage/DELETE_TICKET_FAILED";
+export const RESET_TICKET_DATA = "@adminpage/RESET_TICKET_DATA";

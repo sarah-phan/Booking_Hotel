@@ -51,6 +51,10 @@ export const getDetailLocationReducer = (state = initialState, action) => {
       state.loading = false;
       return { ...state };
     }
+    case ActionType.RESET_LOCATION_DATA: {
+      state.data = null;
+      return { ...state };
+    }
     default:
       return { ...state };
   }

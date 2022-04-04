@@ -19,7 +19,8 @@ import { getListBookingHistoryReducer } from "../container/HomeTemplate/LichSu/m
 import { getDetailHistoryReducer } from "../container/HomeTemplate/ChiTietLichSu/module/reducer";
 
 // ADMIN PAGE
-import { getUserReducer } from "../container/AdminTemplate/UserAdmin/module/reducer";
+import { getListUserAdminReducer } from "../container/AdminTemplate/UserAdmin/module/reducer";
+import { getDetailUserAdminReducer } from "../container/AdminTemplate/UserAdmin/Detail/module/reducer";
 import { getListLocationReducer } from "../container/AdminTemplate/Location/module/reducer";
 import { getDetailLocationReducer } from "../container/AdminTemplate/Location/Detail/module/reducer";
 import { getListRoomReducer } from "../container/AdminTemplate/Room/module/reducer";
@@ -47,7 +48,8 @@ export const rootReducer = combineReducers({
   createBookingReducer,
   getListBookingHistoryReducer,
   getDetailHistoryReducer,
-  getUserReducer,
+  getListUserAdminReducer,
+  getDetailUserAdminReducer,
   getListLocationReducer,
   getDetailLocationReducer,
   getListRoomReducer,

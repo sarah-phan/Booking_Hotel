@@ -54,7 +54,7 @@ const routesAdmin = [
   },
   {
     exact: true,
-    path: "/admin/dang-ky-admin",
+    path: "/admin/users/:id",
     key: "add-user",
     authen: true,
     defaultSelectedKeys: ['2'],
@@ -63,7 +63,7 @@ const routesAdmin = [
       import("../container/AdminTemplate/Layout")
     ),
     component: lazy(() =>
-      import("../container/AdminTemplate/DangKyAdmin")
+      import("../container/AdminTemplate/UserAdmin/Detail")
     ),
   },
   { 

@@ -7,6 +7,7 @@ import {
   BankOutlined,
   ProfileOutlined,
 } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
@@ -26,7 +27,7 @@ const menus = [
       },
       {
         key: "2",
-        path: "/admin/dang-ky-admin",
+        path: "/admin/users/new",
         title: "Tạo Quản Trị Viên"
       }
     ]
@@ -106,14 +107,29 @@ export default function AdminLayout({
   defaultSelectedKeys = ['1'],
   defaultOpenKeys = ['sub1'],
 }) {
+  const dispatch = useDispatch()
   return (
     <div>
       <Layout>
-        <Header className="header">
-          <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-            <Menu.Item key="1">AdminPage</Menu.Item>
-          </Menu>
+        <Header className="header" style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}>
+          <div className="left">
+            <div className="logo" />
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+              <Menu.Item key="1">AdminPage</Menu.Item>
+            </Menu>
+          </div>
+          <div className="right">
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+              <Menu.Item onClick={() => {
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('user-id');
+                window.location.replace('/')
+              }} key="logout">Logout</Menu.Item>
+            </Menu>
+          </div>
         </Header>
         <Content style={{ padding: "0 50px" }}>
           <Layout

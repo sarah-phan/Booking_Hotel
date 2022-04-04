@@ -100,3 +100,41 @@ const actUpdateValueateFailed = (error) => {
     payload: error,
   };
 };
+
+export const actDeleteValuate = (id) => {
+  return (dispatch) => {
+    dispatch(actDeleteValuateRequest);
+    api
+      .delete(`reviews/${id}`)
+      .then((result) => {
+        callback && callback(result.data)
+        dispatch(actDeleteValuateSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actDeleteValuateFailed(error));
+      });
+  };
+};
+const actDeleteValuateRequest = () => {
+  return {
+    type: ActionType.DELETE_VALUEATE_REQUEST,
+  };
+};
+const actDeleteValuateSuccess = (data) => {
+  return {
+    type: ActionType.DELETE_VALUEATE_SUCCESS,
+    payload: data,
+  };
+};
+const actDeleteValuateFailed = (error) => {
+  return {
+    type: ActionType.DELETE_VALUEATE_FAILED,
+    payload: error,
+  };
+};
+
+export const actResetData = () => {
+  return {
+    type: ActionType.RESET_VALUATE_DATA,
+  };
+};

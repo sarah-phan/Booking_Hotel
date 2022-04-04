@@ -51,6 +51,10 @@ export const getDetailValueateReducer = (state = initialState, action) => {
       state.loading = false;
       return { ...state };
     }
+    case ActionType.RESET_VALUATE_DATA: {
+      state.data = null;
+      return { ...state };
+    }
     default:
       return { ...state };
   }

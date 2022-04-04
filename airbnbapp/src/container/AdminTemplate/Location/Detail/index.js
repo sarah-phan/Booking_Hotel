@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actFetchDetailLocation, actUpdateLocation, actUploadLocationImage } from "./module/action";
+import { actFetchDetailLocation, actUpdateLocation, actUploadLocationImage
+  , actDeleteLocation, actResetData
+} from "./module/action";
 import { Form, Input, Button, Select } from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
 import Loading from "../../../../components/loading";
@@ -14,12 +16,19 @@ export default function AdminDetailLocation(props) {
   const dispatch = useDispatch();
   const dataSource = useSelector((state) => state.getDetailLocationReducer.data) || {};
   const loading = useSelector((state) => state.getDetailLocationReducer.loading);
+  const { id } = props.match.params;
 
   useEffect(() => {
-    let { id } = props.match.params;
+    dispatch(actResetData());
     id !== 'new' && dispatch(actFetchDetailLocation(id));
     id !== 'new' && setViewMode(true)
-  }, []);
+    id === 'new' && form.setFieldsValue({
+      "name": "",
+      "province": "",
+      "country": "",
+      "valueate": 1,
+    })
+  }, [id]);
 
   useEffect(() => {
     form.setFieldsValue(dataSource)
@@ -95,7 +104,12 @@ export default function AdminDetailLocation(props) {
       {loading && <Loading />}
       {viewMode && <div><Button
         onClick={() => setViewMode(false)}
-      >Edit</Button></div>}
+      >Edit</Button>
+      <Button
+        onClick={() => dispatch(actDeleteLocation(dataSource._id, () => {
+          props.history.push('/admin/location')
+        }))}
+      >Delete</Button></div>}
       <Form.Item
         label="Name"
         name="name"

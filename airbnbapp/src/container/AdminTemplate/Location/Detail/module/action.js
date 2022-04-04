@@ -100,3 +100,41 @@ const actUpdateLocationFailed = (error) => {
     payload: error,
   };
 };
+
+export const actDeleteLocation = (id) => {
+  return (dispatch) => {
+    dispatch(actDeleteLocationRequest);
+    api
+      .delete(`locations/${id}`)
+      .then((result) => {
+        callback && callback(result.data)
+        dispatch(actDeleteLocationSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actDeleteLocationFailed(error));
+      });
+  };
+};
+const actDeleteLocationRequest = () => {
+  return {
+    type: ActionType.DELETE_LOCATION_REQUEST,
+  };
+};
+const actDeleteLocationSuccess = (data) => {
+  return {
+    type: ActionType.DELETE_LOCATION_SUCCESS,
+    payload: data,
+  };
+};
+const actDeleteLocationFailed = (error) => {
+  return {
+    type: ActionType.DELETE_LOCATION_FAILED,
+    payload: error,
+  };
+};
+
+export const actResetData = () => {
+  return {
+    type: ActionType.RESET_LOCATION_DATA,
+  };
+};

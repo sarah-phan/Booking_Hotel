@@ -6,90 +6,70 @@ const initialState = {
   loading: false,
 };
 
-export const getDetailTicketReducer = (state = initialState, action) => {
+export const getDetailUserAdminReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.GET_DETAIL_TICKET_REQUEST: {
+    case ActionType.GET_DETAIL_USER_ADMIN_REQUEST: {
       state.data = null;
       state.error = null;
       state.loading = true;
       return { ...state };
     }
-    case ActionType.GET_DETAIL_TICKET_SUCCESS: {
+    case ActionType.GET_DETAIL_USER_ADMIN_SUCCESS: {
       state.data = action.payload;
       state.error = null;
       state.loading = false;
       return { ...state };
     }
-    case ActionType.GET_DETAIL_TICKET_FAILED: {
+    case ActionType.GET_DETAIL_USER_ADMIN_FAILED: {
       state.data = null;
       state.error = action.payload;
       state.loading = false;
       return { ...state };
     }
-    case ActionType.UPLOAD_TICKET_IMAGE_REQUEST: {
+    case ActionType.UPLOAD_USER_ADMIN_IMAGE_REQUEST: {
       state.loading = true;
       return { ...state };
     }
-    case ActionType.UPLOAD_TICKET_IMAGE_SUCCESS: {
+    case ActionType.UPLOAD_USER_ADMIN_IMAGE_SUCCESS: {
       state.data.image = action.payload;
       state.loading = false;
       return { ...state };
     }
-    case ActionType.UPLOAD_TICKET_IMAGE_FAILED: {
+    case ActionType.UPLOAD_USER_ADMIN_IMAGE_FAILED: {
       state.loading = false;
       return { ...state };
     }
-    case ActionType.UPDATE_TICKET_REQUEST: {
+    case ActionType.UPDATE_USER_ADMIN_REQUEST: {
       state.loading = true;
       return { ...state };
     }
-    case ActionType.UPDATE_TICKET_SUCCESS: {
+    case ActionType.UPDATE_USER_ADMIN_SUCCESS: {
       state.loading = false;
       return { ...state };
     }
-    case ActionType.UPDATE_TICKET_FAILED: {
+    case ActionType.UPDATE_USER_ADMIN_FAILED: {
       state.loading = false;
       return { ...state };
     }
-    
-    case ActionType.GET_USERS_REQUEST: {
+    case ActionType.GET_LOCATIONS_REQUEST: {
       state.data = null;
       state.error = null;
       state.loading = true;
       return { ...state };
     }
-    case ActionType.GET_USERS_SUCCESS: {
-      state.users = action.payload;
+    case ActionType.GET_LOCATIONS_SUCCESS: {
+      state.locations = action.payload;
       state.error = null;
       state.loading = false;
       return { ...state };
     }
-    case ActionType.GET_USERS_FAILED: {
+    case ActionType.GET_LOCATIONS_FAILED: {
       state.data = null;
       state.error = action.payload;
       state.loading = false;
       return { ...state };
     }
-
-    case ActionType.GET_ROOMS_REQUEST: {
-      state.data = null;
-      state.error = null;
-      state.loading = true;
-      return { ...state };
-    }
-    case ActionType.GET_ROOMS_SUCCESS: {
-      state.rooms = action.payload;
-      state.error = null;
-      state.loading = false;
-      return { ...state };
-    }
-    case ActionType.GET_ROOMS_FAILED: {
-      state.data = null;
-      state.error = action.payload;
-      state.loading = false;
-      return { ...state };
-    }
-    case ActionType.RESET_TICKET_DATA: {
+    case ActionType.RESET_USER_DATA: {
       state.data = null;
       return { ...state };
     }

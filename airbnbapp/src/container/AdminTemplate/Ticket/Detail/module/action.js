@@ -162,3 +162,41 @@ const actGetRoomsFailed = (error) => {
     payload: error,
   };
 };
+
+export const actDeleteTicket = (id) => {
+  return (dispatch) => {
+    dispatch(actDeleteTicketRequest);
+    api
+      .delete(`tickets/${id}`)
+      .then((result) => {
+        callback && callback(result.data)
+        dispatch(actDeleteTicketSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actDeleteTicketFailed(error));
+      });
+  };
+};
+const actDeleteTicketRequest = () => {
+  return {
+    type: ActionType.DELETE_TICKET_REQUEST,
+  };
+};
+const actDeleteTicketSuccess = (data) => {
+  return {
+    type: ActionType.DELETE_TICKET_SUCCESS,
+    payload: data,
+  };
+};
+const actDeleteTicketFailed = (error) => {
+  return {
+    type: ActionType.DELETE_TICKET_FAILED,
+    payload: error,
+  };
+};
+
+export const actResetData = () => {
+  return {
+    type: ActionType.RESET_TICKET_DATA,
+  };
+};
