@@ -7,6 +7,9 @@
     margin: 40px 20px;
     border-radius: 5px;
 }
+.formDanhSachPhongO .ant-picker{
+    width: 72%;
+}
 .buttonSubmitListPhong{
     background-color: #FB9EAA;
     border: 1px solid #FB9EAA;
@@ -52,7 +55,7 @@
     font-size: 20px;
 }
 .utilities .ant-checkbox-wrapper::after {
-    width: 140px;
+    width: 114px;
 }
 .utilities .ant-checkbox-wrapper{
     margin-bottom: 17px;
@@ -80,6 +83,11 @@
     font-weight: 700;
     margin-block-end: 0;
 }
+.listRoomComponent img{
+    width: 90%;
+    object-fit: cover;
+    height: 100%;
+}
 .listRoomTitle{
     border-bottom: 3px solid #BDB9B9;
 }
@@ -88,6 +96,9 @@
     border: 1px solid #BDB9B9;
     border-radius: 5px;
     height: 167px;
+}
+.listRoomComponent .ant-col-7{
+    height: 100%;
 }
 .listRoomComponent h3{
     font-size: 22px;
@@ -103,4 +114,54 @@
 }
 .listRoomContent a{
     color: black;
+}
+.unitPrice{
+    text-align: right; 
+    font-weight: 700; 
+    font-size: 20px; 
+}
+@media screen and (max-width:1200px){
+    .formDanhSachPhongO{
+        padding-top: 40px;
+        padding-left: 60px;
+    }
+    .utilities .ant-checkbox-wrapper::after{
+        width: 75px;
+    }
+}
+@media screen and (max-width:992px){
+    .checkOutClass .ant-form-item-label label::after{
+        margin-right: 23px;   
+    }
+    .listRoomComponent h3{
+        font-size: 16px;
+    }
+    .unitPrice{
+        font-size: 17px;
+    }
+    .utilities .ant-checkbox-wrapper::after{
+        width: 67px;
+    }
+    .listRoomContent .ant-pagination {
+        margin-left: 18%;
+    }
+}
+@media screen and (max-width:768px){
+    .utilities .ant-checkbox-wrapper::after{
+        width: 0;
+    }
+    .listRoomComponent h3{
+        font-size: 19px;
+    }
+    .unitPrice{
+        font-size: 19px;
+    }
+    .listRoomContent .ant-pagination {
+        margin-left: 40%;
+    }
+}
+@media screen and (max-width:576px){
+    .listRoomContent .ant-pagination {
+        margin-left: 36%;
+    }
 }

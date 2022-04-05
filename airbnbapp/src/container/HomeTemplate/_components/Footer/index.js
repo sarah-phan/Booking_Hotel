@@ -13,7 +13,7 @@ export default function Footer() {
         <div className='footerHome'>
             <div className='footerContent'>
                 <Row>
-                    <Col span={6}>
+                    <Col xs={24} sm={12} md={6}>
                         <h3>Hỗ trợ</h3>
                         <ul>
                             <li>
@@ -36,7 +36,7 @@ export default function Footer() {
                             </li>
                         </ul>
                     </Col>
-                    <Col span={6}>
+                    <Col xs={24} sm={12} md={6}>
                         <h3>Cộng đồng</h3>
                         <li>
                             <a href='#'>Airbnb.org: nhà ở cứu trợ</a>
@@ -48,7 +48,7 @@ export default function Footer() {
                             <a href='#'>Chống phân biệt đối xử</a>
                         </li>
                     </Col>
-                    <Col span={6}>
+                    <Col xs={24} sm={12} md={6}>
                         <h3>Đón tiếp khách</h3>
                         <li>
                             <a href='#'>Thử đón tiếp khách</a>
@@ -66,7 +66,7 @@ export default function Footer() {
                             <a href='#'>Đón tiếp khách có trách nhiệm</a>
                         </li>
                     </Col>
-                    <Col span={6}>
+                    <Col xs={24} sm={12} md={6}>
                         <h3>Giới thiệu</h3>
                         <li>
                             <a href='#'>Trang tin tức</a>

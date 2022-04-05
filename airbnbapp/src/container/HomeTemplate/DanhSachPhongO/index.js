@@ -44,10 +44,10 @@ export default function DanhSachPhongO(props) {
       </div>
       <div className='content'>
         <Row>
-          <Col span={7} className="advancedSearch">
+          <Col md={9} lg={7} className="advancedSearch">
             {advancedSearch()}
           </Col>
-          <Col span={15} className="listRoom">
+          <Col md={12} lg={15} className="listRoom">
             {renderListRoom()}
           </Col>
         </Row>

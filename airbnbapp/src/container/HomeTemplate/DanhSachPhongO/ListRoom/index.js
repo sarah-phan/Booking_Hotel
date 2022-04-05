@@ -85,7 +85,7 @@ export default function ListRoom(props) {
                 <NavLink to={`/chi-tiet-phong-o/${room._id}`}>
                     <Row className='listRoomComponent' key={index}>
                         <Col span={7}>
-                            <img src={room.image} alt={room.image} width="90%" />
+                            <img src={room.image} alt={room.image} />
                         </Col>
                         <Col span={16}>
                             <h3>{room.name}</h3>
@@ -96,7 +96,7 @@ export default function ListRoom(props) {
                                     <p>{room.bath} phòng tắm</p>
                                 </Col>
                                 <Col span={12}>
-                                    <p style={{ textAlign: 'right', fontWeight: 700, fontSize: 20 }}>{formatter.format(room.price)}/đêm</p>
+                                    <p className='unitPrice'>{formatter.format(room.price)}/đêm</p>
                                 </Col>
                             </Row>
                         </Col>
@@ -108,7 +108,7 @@ export default function ListRoom(props) {
     }
 
     return (
-        <div>
+        <>
             <div className='listRoomTitle'>
                 <h4>
                     {`${dataDetailViTri?.province}, ${dataDetailViTri?.country}`}
@@ -118,6 +118,6 @@ export default function ListRoom(props) {
                 {renderListRoom(roomSearch)}
                 <Pagination defaultCurrent={1} total={50} onChange={changeValue}></Pagination>
             </div>
-        </div>
+        </>
     )
 }

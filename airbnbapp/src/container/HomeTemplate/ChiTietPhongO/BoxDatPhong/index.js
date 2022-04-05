@@ -76,7 +76,7 @@ export default function BoxDatPhong(props) {
     return (
       <div className="formDatPhong">
         <Row>
-          <Col span={12}>
+          <Col xs={24} sm={12} md={24} lg={12}>
             <Form.Item
               label="Ngày nhận phòng"
               name="checkInDate"
@@ -91,7 +91,7 @@ export default function BoxDatPhong(props) {
               <DatePicker format="DD-MM-YYYY" disabledDate={disabledDate} />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} sm={12} md={24} lg={12}>
             <Form.Item
               label="Ngày trả phòng"
               name="checkOutDate"

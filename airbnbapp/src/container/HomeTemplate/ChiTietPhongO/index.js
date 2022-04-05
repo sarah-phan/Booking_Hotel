@@ -98,7 +98,7 @@ export default function ChiTietPhongO(props) {
     return (
       <>
         <Row>
-          <Col span={6}>
+          <Col md={9} lg={6}>
             <p style={{marginTop: 15}}>
               <CheckOutlined />
               <span className='utilitiesName'>
@@ -112,7 +112,7 @@ export default function ChiTietPhongO(props) {
               </span>
             </p>
           </Col>
-          <Col span={12}>
+          <Col md={11} lg={12}>
             <p style={{marginTop: 15}}>
               <CheckOutlined />
               <span className='utilitiesName'>
@@ -208,7 +208,7 @@ export default function ChiTietPhongO(props) {
       </div>
       <div className='wrapper'>
       <Row>
-        <Col span={14}>  
+        <Col xs={24} sm={24} md={12} lg={14}>  
           <div className='roomDescription'>
             <h3>Mô tả</h3>
             <p>{dataDetailRoom?.description}</p>
@@ -247,7 +247,7 @@ export default function ChiTietPhongO(props) {
             {renderRoomComment()}
           </div>
         </Col>
-        <Col span={10}>
+        <Col xs={24} sm={24} md={12} lg={10}>
           {renderFormDatPhong()}
         </Col>
       </Row>

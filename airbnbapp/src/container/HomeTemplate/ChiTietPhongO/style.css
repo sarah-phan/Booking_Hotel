@@ -111,7 +111,7 @@
     margin-bottom: 10px;
 }
 .formDatPhong .ant-picker {
-    width: 150%;
+    width: 100%;
     margin-left: 10px;
 }
 .formDatPhong .ant-form-item-label{
@@ -165,4 +165,42 @@
     font-size: 25px;
     font-weight: 700;
     color:#f1576b
+}
+@media screen and (max-width:1200px){
+    .formDatPhong .ant-picker{
+        width: 88%;
+    }
+    .footerBox .priceSpan{
+        margin-left: 23%;
+    }
+}
+@media screen and (max-width:992px){
+    .formDatPhong .ant-form-item{
+        margin-bottom: 0;
+    }
+    .checkInItem{
+        border-right: none;
+    }
+    .boxDatPhong {
+        padding-left: 16px;
+    }
+    .footerBox .priceSpan{
+        margin-left: 12%;
+    }
+}
+@media screen and (max-width:768px){
+    .checkInItem{
+        border-right: 1px solid black;
+    }
+}
+@media screen and (max-width:576px){
+    .ant-form .ant-form-item .ant-form-item-label{
+        flex:none;
+    }
+    .checkInItem{
+        border-right: none;
+    }
+    .footerBox .priceSpan{
+        margin-left: 31%;
+    }
 }

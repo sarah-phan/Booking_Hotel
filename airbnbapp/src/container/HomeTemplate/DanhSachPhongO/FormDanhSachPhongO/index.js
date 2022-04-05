@@ -91,7 +91,7 @@ export default function FormDanhSachPhongO(props) {
                     </Select>
                 </Form.Item>
                 <Row>
-                    <Col span={12}>
+                    <Col sm={24} lg={12}>
                         <Form.Item
                             label="Ngày nhận phòng"
                             name="checkInDate"
@@ -105,14 +105,14 @@ export default function FormDanhSachPhongO(props) {
                             }
                         >
                             <DatePicker
-                                style={{ width: "72%" }}
                                 format="DD-MM-YYYY"
                                 disabledDate={disabledDate}
                             />
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col sm={24} lg={12}>
                         <Form.Item
+                            className='checkOutClass'
                             label="Ngày trả phòng"
                             name="checkOutDate"
                             rules={
@@ -125,7 +125,6 @@ export default function FormDanhSachPhongO(props) {
                             }
                         >
                             <DatePicker 
-                            style={{ width: "72%" }} 
                             format="DD-MM-YYYY" 
                             disabledDate={disabledDate}
                             />
