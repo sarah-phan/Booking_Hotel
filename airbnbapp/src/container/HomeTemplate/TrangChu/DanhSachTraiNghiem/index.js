@@ -28,11 +28,11 @@ export default function DanhSachTraiNghiem() {
     const renderCardTraiNghiem = () => {
         return data?.map((traiNghiem, index) => {
             return (
-                <Col key={index} span={8}>
+                <Col key={index} xs ={24} sm={24} md={12} lg={8}>
                     <NavLink to={`/danh-sach-phong-o/${traiNghiem._id}`}>
                     <Card
                         hoverable
-                        style={{ width: 290 }}
+                        // style={{ width: 290 }}
                         cover={<img alt={traiNghiem.image} src={traiNghiem.image} style={{ objectFit: 'cover', height: 300, width: "100%" }} />}
                     >
                         <Meta title={traiNghiem.name} description={`${traiNghiem.province}, ${traiNghiem.country}`} />

@@ -15,10 +15,10 @@ export default function UserNavbar() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.authReducer.data);
   if (auth) {
-    var idUser = auth?.user?._id;
+    var idUser = auth?.user._id;
   }
   useEffect(() => {
-    if (idUser != "undefined") {
+    if (idUser !== null) {
       dispatch(actGetChiTiet(idUser));
     }
   }, []);

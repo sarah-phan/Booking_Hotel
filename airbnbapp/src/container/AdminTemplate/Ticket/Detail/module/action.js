@@ -10,11 +10,11 @@ export const actUploadTicketImage = (ticketId, imageData, callback) => {
       })
       .then((result) => {
         dispatch(actUploadTicketImageSuccess(result.data));
-        callback && callback(result.data)
+        callback(result.data)
       })
       .catch((error) => {
         dispatch(actUploadTicketImageFailed(error));
-        callback && callback(error)
+        callback(error)
       });
   };
 };
@@ -74,7 +74,7 @@ export const actUpdateTicket = (data, callback) => {
     dispatch(actUpdateTicketRequest);
     (data._id ? api.put(`tickets/${data._id}`, data) : api.post(`tickets`, data))
       .then((result) => {
-        callback && callback(result.data)
+        callback(result.data)
         dispatch(actUpdateTicketSuccess(result.data));
       })
       .catch((error) => {
@@ -163,13 +163,13 @@ const actGetRoomsFailed = (error) => {
   };
 };
 
-export const actDeleteTicket = (id) => {
+export const actDeleteTicket = (id, callback) => {
   return (dispatch) => {
     dispatch(actDeleteTicketRequest);
     api
       .delete(`tickets/${id}`)
       .then((result) => {
-        callback && callback(result.data)
+        callback(result.data)
         dispatch(actDeleteTicketSuccess(result.data));
       })
       .catch((error) => {

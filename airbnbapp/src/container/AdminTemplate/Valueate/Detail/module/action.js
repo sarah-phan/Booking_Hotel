@@ -10,11 +10,11 @@ export const actUploadValueateImage = (valueateId, imageData, callback) => {
       })
       .then((result) => {
         dispatch(actUploadValueateImageSuccess(result.data));
-        callback && callback(result.data)
+        callback(result.data)
       })
       .catch((error) => {
         dispatch(actUploadValueateImageFailed(error));
-        callback && callback(error)
+        callback(error)
       });
   };
 };
@@ -74,7 +74,7 @@ export const actUpdateValueate = (data, callback) => {
     dispatch(actUpdateValueateRequest);
     (data._id ? api.put(`reviews/${data._id}`, data) : api.post(`valueates`, data))
       .then((result) => {
-        callback && callback(result.data)
+        callback(result.data)
         dispatch(actUpdateValueateSuccess(result.data));
       })
       .catch((error) => {
@@ -101,13 +101,13 @@ const actUpdateValueateFailed = (error) => {
   };
 };
 
-export const actDeleteValuate = (id) => {
+export const actDeleteValuate = (id, callback) => {
   return (dispatch) => {
     dispatch(actDeleteValuateRequest);
     api
       .delete(`reviews/${id}`)
       .then((result) => {
-        callback && callback(result.data)
+         callback(result.data)
         dispatch(actDeleteValuateSuccess(result.data));
       })
       .catch((error) => {

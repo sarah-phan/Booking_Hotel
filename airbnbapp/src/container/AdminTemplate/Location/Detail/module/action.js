@@ -10,11 +10,11 @@ export const actUploadLocationImage = (locationId, imageData, callback) => {
       })
       .then((result) => {
         dispatch(actUploadLocationImageSuccess(result.data));
-        callback && callback(result.data)
+        callback(result.data)
       })
       .catch((error) => {
         dispatch(actUploadLocationImageFailed(error));
-        callback && callback(error)
+        callback(error)
       });
   };
 };
@@ -74,7 +74,7 @@ export const actUpdateLocation = (data, callback) => {
     dispatch(actUpdateLocationRequest);
     (data._id ? api.put(`locations/${data._id}`, data) : api.post(`locations`, data))
       .then((result) => {
-        callback && callback(result.data)
+        callback(result.data)
         dispatch(actUpdateLocationSuccess(result.data));
       })
       .catch((error) => {
@@ -101,13 +101,13 @@ const actUpdateLocationFailed = (error) => {
   };
 };
 
-export const actDeleteLocation = (id) => {
+export const actDeleteLocation = (id, callback) => {
   return (dispatch) => {
     dispatch(actDeleteLocationRequest);
     api
       .delete(`locations/${id}`)
       .then((result) => {
-        callback && callback(result.data)
+        callback(result.data)
         dispatch(actDeleteLocationSuccess(result.data));
       })
       .catch((error) => {

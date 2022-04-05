@@ -10,11 +10,11 @@ export const actUploadUserAdminImage = (userAdminId, imageData, callback) => {
       })
       .then((result) => {
         dispatch(actUploadUserAdminImageSuccess(result.data));
-        callback && callback(result.data)
+        callback(result.data)
       })
       .catch((error) => {
         dispatch(actUploadUserAdminImageFailed(error));
-        callback && callback(error)
+        callback(error)
       });
   };
 };
@@ -74,7 +74,7 @@ export const actUpdateUserAdmin = (data, callback) => {
     dispatch(actUpdateUserAdminRequest);
     (data._id ? api.put(`users/${data._id}`, data) : api.post(`users`, data))
       .then((result) => {
-        callback && callback(result.data)
+        callback(result.data)
         dispatch(actUpdateUserAdminSuccess(result.data));
       })
       .catch((error) => {
@@ -132,13 +132,13 @@ const actGetLocationsFailed = (error) => {
   };
 };
 
-export const actDeleteUser = (id) => {
+export const actDeleteUser = (id, callback) => {
   return (dispatch) => {
     dispatch(actDeleteUserRequest);
     api
       .delete(`users/${id}`)
       .then((result) => {
-        callback && callback(result.data)
+        callback(result.data)
         dispatch(actDeleteUserSuccess(result.data));
       })
       .catch((error) => {

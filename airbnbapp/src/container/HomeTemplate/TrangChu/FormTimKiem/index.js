@@ -11,7 +11,7 @@ export default function FormTimKiem(props) {
     const history = useHistory()
     const { arr } = props
     let _idFind
-
+    console.log(arr)
     const getID = (values)=>{
         return arr?.map((viTri) => {
             if (`${viTri.province}, ${viTri.country}` === values.selectLocation) {

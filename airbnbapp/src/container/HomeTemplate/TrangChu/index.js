@@ -33,10 +33,10 @@ export default function TrangChu() {
         </div>
         <div className="carouselContent">
           <Row>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={7} lg={12}>
               <h1>Airbnb</h1>
             </Col>
-            <Col span={12}>
+            <Col xs={24} sm={24} md={15} lg={12}>
               <div className="formTimKiem">{TimeRelatedForm()}</div>
             </Col>
           </Row>
