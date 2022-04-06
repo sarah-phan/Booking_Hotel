@@ -101,7 +101,7 @@ const actUpdateValueateFailed = (error) => {
   };
 };
 
-export const actDeleteValuate = (id) => {
+export const actDeleteValuate = (id, callback) => {
   return (dispatch) => {
     dispatch(actDeleteValuateRequest);
     api

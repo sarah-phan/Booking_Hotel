@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { actGetChiTiet } from "../../../../reducers/moduleUserDetail/action";
+import { actGetChiTiet } from "../../../../reducers/moduleAuth/action";
 import ChiTietLichSu from "../../ChiTietLichSu";
 import LichSu from "../../LichSu";
 import ThongTinChiTiet from "../../ThongTinChiTiet";
@@ -18,21 +18,19 @@ import "./style.css";
 
 export default function UserDashboard(props) {
   const history = useHistory();
-  const dataUserDetail = useSelector((state) => state.authReducer.data);
   const dispatch = useDispatch();
   const { id } = props.match.params;
   const auth = useSelector((state) => state.authReducer.data);
-
   useLayoutEffect(() => {
-    if (!auth.token) {
+    if (!auth?.token) {
       history.push("/");
-    } else if (auth.user?.type == "ADMIN") {
+    } else if (auth?.user?.type == "ADMIN") {
       history.push("/admin");
     }
   }, []);
 
   useEffect(() => {
-    dispatch(actGetChiTiet(id));
+    id && dispatch(actGetChiTiet(id));
   }, [id]);
 
   return (
@@ -41,11 +39,11 @@ export default function UserDashboard(props) {
         <Layout.Header style={{ backgroundColor: "white" }}>
           <div className="accountHeader">
             <div className="accountAvatar">
-              <Avatar src={dataUserDetail?.avatar} size={70} shape="square" />
+              <Avatar src={auth?.user?.avatar} size={70} shape="square" />
             </div>
             <div className="accountName">
               <p>Tài khoản của</p>
-              <h2>{dataUserDetail?.name}</h2>
+              <h2>{auth?.user?.name}</h2>
             </div>
           </div>
         </Layout.Header>

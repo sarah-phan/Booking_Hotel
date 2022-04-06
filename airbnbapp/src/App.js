@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import { Suspense } from "react";
 import { renderRouteHome } from "./routes";
 import { renderRoutesAdmin } from "./routes";
+import withAuthen from "./hoc/withAuth";
 
 import Loading from "./components/loading";
 import PageNotFound from "./container/PageNotFound";
@@ -16,7 +17,7 @@ function App() {
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <Switch>
-          <Route exact={true} path="/" component={TrangChu}/>
+          <Route exact={true} path="/" component={withAuthen(TrangChu)}/>
           <Route path="/dang-ky" component={DangKy} />
           {renderRouteHome()}
           {renderRoutesAdmin()}

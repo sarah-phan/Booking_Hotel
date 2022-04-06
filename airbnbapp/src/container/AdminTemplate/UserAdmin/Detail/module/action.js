@@ -39,6 +39,7 @@ const actUploadUserAdminImageFailed = (error) => {
 
 export const actFetchDetailUserAdmin = (id) => {
   return (dispatch) => {
+    if (!id) return
     dispatch(actFetchDetailUserAdminRequest);
     api
       .get(`users/${id}`)
@@ -132,7 +133,7 @@ const actGetLocationsFailed = (error) => {
   };
 };
 
-export const actDeleteUser = (id) => {
+export const actDeleteUser = (id, callback) => {
   return (dispatch) => {
     dispatch(actDeleteUserRequest);
     api

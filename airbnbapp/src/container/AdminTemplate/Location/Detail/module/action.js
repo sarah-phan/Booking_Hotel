@@ -101,7 +101,7 @@ const actUpdateLocationFailed = (error) => {
   };
 };
 
-export const actDeleteLocation = (id) => {
+export const actDeleteLocation = (id, callback) => {
   return (dispatch) => {
     dispatch(actDeleteLocationRequest);
     api
