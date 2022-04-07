@@ -1,3 +1,17 @@
+# Link
+
+## Deploy link
+
+https://booking-hotel-pnt05a5g5-sarah-phan.vercel.app/
+
+## Youtube Link
+
+https://www.youtube.com/watch?v=rfAWv8u8akY
+
+## Task Timeline
+
+https://docs.google.com/spreadsheets/d/16HWCiC8yIF4m6TDCoQkeP6DpFevKCwws/edit?usp=sharing&ouid=107977011207655543144&rtpof=true&sd=true
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
