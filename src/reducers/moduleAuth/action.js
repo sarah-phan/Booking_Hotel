@@ -48,6 +48,7 @@ export const actDangNhap = (user) => {
         .post("auth/login", user)
         .then((result) => {
             dispatch(actDangNhapSuccess(result.data))
+            console.log(result.data)
             localStorage.setItem("user-id", result.data?.user?._id)
             localStorage.setItem("access_token", result.data?.token)
             if (result.data?.user?.type == "ADMIN") {

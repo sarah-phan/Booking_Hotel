@@ -20,6 +20,7 @@ export const authReducer = (state = initialState, action) => {
         case ActionType.DANG_NHAP_SUCCESS:
             {
                 state.data = action.payload;
+                console.log(state.data)
                 state.error = null;
                 state.loading = false;
                 return { ...state }

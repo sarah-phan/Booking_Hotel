@@ -184,6 +184,7 @@ export const renderRouteHome = () => {
   return routeHome?.map((route, index) => {
     return (
       <HomeTemplate
+        key={index}
         {...route}
       />
     );

@@ -16,8 +16,6 @@ import thunk from "redux-thunk";
 const logger = ({ getState }) => {
   return next => action => {
     if (process.env.NODE_ENV === 'development') {
-
-      console.log('%c will dispatch', 'background: #222; color: #bada55', action)
     }
 
     // Call the next dispatch method in the middleware chain.

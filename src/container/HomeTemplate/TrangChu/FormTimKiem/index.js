@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, DatePicker, InputNumber, Button, Select } from 'antd'
 import { EnvironmentOutlined } from '@ant-design/icons'
 import { actGetValueSearch } from '../../../../reducers/moduleValueSearch/action'
-import { useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 
@@ -12,7 +12,7 @@ export default function FormTimKiem(props) {
     const { arr } = props
     let _idFind
     console.log(arr)
-    const getID = (values)=>{
+    const getID = (values) => {
         return arr?.map((viTri) => {
             if (`${viTri.province}, ${viTri.country}` === values.selectLocation) {
                 _idFind = viTri._id
@@ -22,19 +22,17 @@ export default function FormTimKiem(props) {
             }
         })
     }
-    
+
 
     const renderViTri = () => {
         return arr?.map((viTri, index) => {
             return (
-                <React.Fragment key={index}>
-                    <Select.Option
-                        key={viTri.id}
-                        value={`${viTri.province}, ${viTri.country}`}
-                    >
-                        {viTri.province}, {viTri.country}
-                    </Select.Option>
-                </React.Fragment>
+                <Select.Option
+                    key={index}
+                    value={`${viTri.province}, ${viTri.country}`}
+                >
+                    {viTri.province}, {viTri.country}
+                </Select.Option>
             )
         })
     }
@@ -50,7 +48,7 @@ export default function FormTimKiem(props) {
         dispatch(actGetValueSearch(values));
         getID(values)
         history.push(`/danh-sach-phong-o/${_idFind}`)
-       
+
     }
 
     const disabledDate = (current) => {
@@ -91,10 +89,10 @@ export default function FormTimKiem(props) {
                     ]
                 }
             >
-                <DatePicker 
-                format="DD-MM-YYYY" 
-                style={{ width: "90%" }} 
-                disabledDate={disabledDate}
+                <DatePicker
+                    format="DD-MM-YYYY"
+                    style={{ width: "90%" }}
+                    disabledDate={disabledDate}
                 />
             </Form.Item>
             <Form.Item
@@ -109,10 +107,10 @@ export default function FormTimKiem(props) {
                     ]
                 }
             >
-                <DatePicker 
-                format="DD-MM-YYYY" 
-                style={{ width: "90%" }} 
-                disabledDate={disabledDate}
+                <DatePicker
+                    format="DD-MM-YYYY"
+                    style={{ width: "90%" }}
+                    disabledDate={disabledDate}
                 />
             </Form.Item>
             <Form.Item label="Số lượng khách" name="numberCustomer"

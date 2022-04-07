@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import "./style.css"
 
 export default function DangNhap() {
-    const data = useSelector(state => state.authReducer.data)
     const error = useSelector(state => state.authReducer.error)
     const dispatch = useDispatch()
 
@@ -26,7 +25,7 @@ export default function DangNhap() {
     };
 
     const showMessage = () => {
-        if (data !== null) {
+        if (error === null) {
             return "Đăng nhập thành công"
         }
         if (error !== null) {
@@ -34,7 +33,7 @@ export default function DangNhap() {
         }
     }
     const showType = () => {
-        if (data !== null) {
+        if (error === null) {
             return "success"
         }
         if (error !== null) {
