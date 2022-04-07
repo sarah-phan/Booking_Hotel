@@ -1,27 +1,24 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useMemo } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Menu, Avatar, Space, Dropdown, Image } from "antd";
 import { UserOutlined, UserAddOutlined, MenuOutlined } from "@ant-design/icons";
-import { actGetChiTiet } from "../../../../reducers/moduleUserDetail/action";
+import { actGetChiTiet } from "../../../../reducers/moduleAuth/action";
 import DangNhap from "../DangNhap";
 import "./style.css";
 
 export default function UserNavbar() {
-  const dataChiTietUser = useSelector(
-    (state) => state.getChiTietUserReducer.data
-  );
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.authReducer.data);
-  if (auth) {
-    var idUser = auth?.user._id;
-  }
+
+  const idUser = useMemo(() => {
+    return auth?.user?._id || localStorage.getItem('user-id');
+  }, [auth])
+
   useEffect(() => {
-    if (idUser !== null) {
-      dispatch(actGetChiTiet(idUser));
-    }
-  }, []);
+    idUser && idUser != "undefined" && dispatch(actGetChiTiet(idUser));
+  }, [idUser]);
 
   const menu = (
     <Menu>
@@ -90,12 +87,12 @@ export default function UserNavbar() {
         </Space>
       );
     } else {
-      if (dataChiTietUser?.avatar === undefined) {
+      if (auth?.user?.avatar === undefined) {
         iconUser = <UserOutlined />;
       } else {
         srcAvatar = (
           <Image
-            src={dataChiTietUser?.avatar}
+            src={auth?.user?.avatar}
             width="100%"
             height="100%"
             style={{ objectFit: "cover" }}
@@ -107,7 +104,7 @@ export default function UserNavbar() {
           <Space wrap>
             <Dropdown overlay={menuAlreadyLogin}>
               <div className="userNavAlreadyLogin">
-                <h3>{dataChiTietUser?.name}</h3>
+                <h3>{auth?.user?.name}</h3>
               </div>
             </Dropdown>
           </Space>
