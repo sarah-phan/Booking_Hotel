@@ -49,46 +49,57 @@ export default function DangNhap() {
                 <LoginOutlined className='iconUser' />
                 Đăng nhập
             </div>
-            <Modal 
-            title="Đăng nhập" 
-            visible={isModalVisible} 
-            onCancel={onCancel} 
-            footer={null} 
-            afterClose={reloadPage}
-            className="modalLogin"
+            <Modal
+                title="Đăng nhập"
+                visible={isModalVisible}
+                onCancel={onCancel}
+                footer={null}
+                afterClose={reloadPage}
+                className="modalLogin"
             >
-                    {isAlertVisible ? (<Alert message={showMessage()} type={showType()} showIcon />) : null}
-                    <br />
-                    <Form
-                        name="basic"
-                        labelCol={{ span: 6 }}
-                        initialValues={{ remember: true }}
-                        onFinish={onFinish}
-                        autoComplete="off"
+                {isAlertVisible ? (<Alert message={showMessage()} type={showType()} showIcon />) : null}
+                <br />
+                <Form
+                    name="basic"
+                    labelCol={{ span: 6 }}
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    autoComplete="off"
+                >
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={
+                            [
+                                {
+                                    required: true,
+                                    message: "Nhập email",
+                                },
+                                {
+                                    pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+                                    message: "Nhập đúng định dạng email"
+                                }
+                            ]
+                        }
                     >
-                        <Form.Item
-                            label="Email"
-                            name="email"
-                            rules={[{ required: true, message: 'Hãy nhập email' }]}
-                        >
-                            <Input />
-                        </Form.Item>
+                        <Input />
+                    </Form.Item>
 
-                        <Form.Item
-                            label="Mật khẩu"
-                            name="password"
-                            rules={[{ required: true, message: 'Hãy nhập mật khẩu' }]}
-                            style={{ marginBottom: 0 }}
-                        >
-                            <Input.Password />
-                        </Form.Item>
-                        <Form.Item wrapperCol={{ offset: 10 }}>
-                            <Button style={{ margin: "20px 0px" }} type="primary" htmlType="submit" >
-                                Đăng nhập
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                </Modal>
+                    <Form.Item
+                        label="Mật khẩu"
+                        name="password"
+                        rules={[{ required: true, message: 'Hãy nhập mật khẩu' }]}
+                        style={{ marginBottom: 0 }}
+                    >
+                        <Input.Password />
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ offset: 10 }}>
+                        <Button style={{ margin: "20px 0px" }} type="primary" htmlType="submit" >
+                            Đăng nhập
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Modal>
         </>
     )
 }

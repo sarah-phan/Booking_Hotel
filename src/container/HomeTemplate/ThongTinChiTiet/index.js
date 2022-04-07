@@ -46,10 +46,10 @@ export default function ThongTinChiTiet() {
 
   if (dataPutUserDetail !== null) {
     return (
-      <Alert 
-        message="Thay đổi thành công" 
-        type="success" 
-        showIcon 
+      <Alert
+        message="Thay đổi thành công"
+        type="success"
+        showIcon
         style={{ marginTop: 20 }}
         closable
         afterClose={() => window.location.reload()}
@@ -59,10 +59,10 @@ export default function ThongTinChiTiet() {
   }
   if (errorPutUserDetail !== null) {
     return (
-      <Alert 
-        message={errorPutUserDetail} 
-        type="error" 
-        showIcon 
+      <Alert
+        message={errorPutUserDetail}
+        type="error"
+        showIcon
         style={{ marginTop: 20 }}
         closable
         afterClose={() => window.location.reload()}
@@ -85,6 +85,14 @@ export default function ThongTinChiTiet() {
             <Form.Item
               label="Họ và tên"
               name="name"
+              rules={
+                [
+                  {
+                    required: true,
+                    message: "Nhập họ và tên"
+                  }
+                ]
+              }
             >
               <Input type="text" />
             </Form.Item>
@@ -106,6 +114,14 @@ export default function ThongTinChiTiet() {
             <Form.Item
               label="Ngày tháng năm sinh"
               name="birthday"
+              rules={
+                [
+                  {
+                    required: true,
+                    message: "Chọn ngày tháng năm sinh"
+                  }
+                ]
+              }
             >
               <DatePicker format={"DD-MM-YYYY"} />
             </Form.Item>
@@ -115,12 +131,36 @@ export default function ThongTinChiTiet() {
             <Form.Item
               label="Số điện thoại"
               name="phone"
+              rules={
+                [
+                  {
+                    required: true,
+                    message: "Nhập số điện thoại",
+                  },
+                  {
+                    pattern: /(84|0[3|5|7|8|9])+([0-9]{8})\b/g,
+                    message: "Nhập đúng định dạng số điện thoại"
+                  }
+                ]
+              }
             >
               <Input type="number" />
             </Form.Item>
             <Form.Item
               label="Email"
               name="email"
+              rules={
+                [
+                  {
+                    required: true,
+                    message: "Nhập email",
+                  },
+                  {
+                    pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+                    message: "Nhập đúng định dạng email"
+                  }
+                ]
+              }
             >
               <Input type="email" />
             </Form.Item>
