@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Alert, Button, Col, DatePicker, Form, Input, message, Modal, Row, Select, Space } from "antd";
+import { Alert, Button, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import { actGetChiTiet } from '../../../reducers/moduleAuth/action';
 import { actPutDetailUser } from './module/action';
 import "./style.css"

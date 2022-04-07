@@ -27,7 +27,7 @@ export default function DangNhap() {
 
     const showMessage = () => {
         if (data !== null) {
-            return data
+            return "Đăng nhập thành công"
         }
         if (error !== null) {
             return error
