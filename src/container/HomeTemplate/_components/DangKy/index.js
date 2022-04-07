@@ -34,7 +34,7 @@ export default function DangKy(props) {
     phone: yup
       .string()
       .required('Nhập số điện thoại')
-      .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g),
+      .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, "Nhập đúng định dạng số điện thoại"),
     birthday: yup
       .string()
       .required('Nhập ngày tháng năm sinh'),
