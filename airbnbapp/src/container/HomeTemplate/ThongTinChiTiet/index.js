@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { Alert, Button, Col, DatePicker, Form, Input, message, Modal, Row, Select, Space } from "antd";
-import { actGetChiTiet } from '../../../reducers/moduleUserDetail/action';
+import { actGetChiTiet } from '../../../reducers/moduleAuth/action';
 import { actPutDetailUser } from './module/action';
 import "./style.css"
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 export default function ThongTinChiTiet(props) {
-  const {id} = props.match.params
+  const { id } = props.match.params
   const _id = id
-  const dataUserDetail = useSelector(state => state.authReducer.data)
+  const dataUserDetail = useSelector(state => state.authReducer.data?.user) || {}
   const dataPutUserDetail = useSelector(state => state.putUserDetailReducer.data)
   const errorPutUserDetail = useSelector(state => state.putUserDetailReducer.error)
   const dispatch = useDispatch()

@@ -4,11 +4,15 @@ import { api } from "../../utils/apiUtils"
 export const getAuth = (token) => {
     return (dispatch) => {
         const idUser = localStorage.getItem('user-id')
+        if(!idUser) dispatch(getAuthFailed()) 
         dispatch(getAuthRequest)
         api
         .get(`users/${idUser}`)
         .then((result) => {
-            dispatch(getAuthSuccess(result.data))
+            dispatch(getAuthSuccess({
+                user: result.data,
+                token
+            }))
             localStorage.setItem("user-id", result.data?._id)
             localStorage.setItem("access_token", token)
         })
@@ -69,6 +73,37 @@ const actDangNhapSuccess = (data) => {
 const actDangNhapFailed = (error) => {
     return{
         type: ActionType.DANG_NHAP_FAILED,
+        payload: error
+    }
+}
+
+export const actGetChiTiet = (idUser) => {
+    return (dispatch) => {
+        dispatch(actGetChiTietRequest)
+        api
+        .get(`users/${idUser}`)
+        .then((result) => {
+            dispatch(actGetChiTietSuccess(result.data))
+        })
+        .catch((error) => {
+            dispatch(actGetChiTietFailed(error))
+        })
+    }
+}
+const actGetChiTietRequest = () => {
+    return {
+        type: ActionType.GET_CHI_TIET_USER_REQUEST,
+    }
+}
+const actGetChiTietSuccess = (data) => {
+    return {
+        type: ActionType.GET_CHI_TIET_USER_SUCCESS,
+        payload: data
+    }
+}
+const actGetChiTietFailed = (error) => {
+    return{
+        type: ActionType.GET_CHI_TIET_USER_FAILED,
         payload: error
     }
 }

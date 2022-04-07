@@ -3,6 +3,7 @@ import { apiAdmin } from "../../../../utils/apiUtilsAdmin"
 
 export const actPutDetailUser = (id, data) => {
     return(dispatch, getState) => {
+        if(!id) return
         dispatch(actPutDetailUserRequest)
         apiAdmin
         .put(`users/${id}`, data)

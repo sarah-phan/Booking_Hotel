@@ -5,7 +5,6 @@ import { getViTriReducer } from "../container/HomeTemplate/TrangChu/module/reduc
 import { getViTriPhanTrangReducer } from "../container/HomeTemplate/TrangChu/DanhSachTraiNghiem/module/reducer";
 import { dangKyReducer } from "../container/HomeTemplate/_components/DangKy/module/reducer";
 import { authReducer } from "./moduleAuth/reducer";
-import { getChiTietUserReducer } from "./moduleUserDetail/reducer";
 import { getValueSearchReducer } from "./moduleValueSearch/reducer";
 import { getDetailViTriReducer } from "../container/HomeTemplate/DanhSachPhongO/module/reducer";
 import { getListRoomPaginateReducer } from "../container/HomeTemplate/DanhSachPhongO/ListRoom/module/reducer";
@@ -36,7 +35,6 @@ export const rootReducer = combineReducers({
   getViTriPhanTrangReducer,
   dangKyReducer,
   authReducer,
-  getChiTietUserReducer,
   getValueSearchReducer,
   getDetailViTriReducer,
   getListRoomPaginateReducer,
