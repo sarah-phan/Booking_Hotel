@@ -15,6 +15,7 @@ export default function ThongTinChiTiet(props) {
   const dispatch = useDispatch()
   const [form] = Form.useForm()
 
+  console.log(dataUserDetail)
   useEffect(() => {
     dispatch(actGetChiTiet(_id))
   }, [_id])
@@ -39,7 +40,7 @@ export default function ThongTinChiTiet(props) {
       'email': fieldsValue['email'],
       'phone': fieldsValue['phone'],
       'birthday': new Date(fieldsValue['birthday']).toLocaleDateString(),
-      'gender': fieldsValue['gender'] === "Nữ" ? true : false,
+      'gender': fieldsValue['gender'] === "Nam" ? true : false,
       'address': fieldsValue['address'],
     }
     dispatch(actPutDetailUser(_id, values))
