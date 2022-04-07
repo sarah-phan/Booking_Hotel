@@ -30,7 +30,7 @@
     background-color: white;
     border: 2px solid white;
     margin: auto;
-    width: 40%;
+    width: 35%;
     border-radius: 45px;
 }
 .dangKyForm h1{
@@ -45,9 +45,10 @@
     font-size: 30px;
     color: #FB9EAA !important;
     font-weight: 700;
+    margin-top: 10px;
 }
 .dangKyContent form{
-    padding-left: 60px;
+    padding: 0 40px;
     border-radius: 20px
 }
 .dangKyContent label{
@@ -57,7 +58,7 @@
     font-size: 15px;
 }
 .dangKyContent input{
-    width: 380px;
+    width: 100%;
     border: 1px inset black;
 }
 .buttonDangKy{
@@ -65,7 +66,8 @@
     background-color: #FB9EAA;
     border-radius: 15px;
     cursor: pointer;
-    margin: 30px 130px;
+    margin: 30px 0;
+    margin-left: 36%;
     padding: 10px 12px;
     color: white;
     font-size: 18px;
@@ -81,4 +83,14 @@
 }
 .dangKyContent .error{
     color: red
+}
+@media screen and (max-width:992px){
+    .dangKyContent{
+        width: 67%;
+    }
+}
+@media screen and (max-width:576px){
+    .dangKyContent{
+        width: 87%;
+    }
 }
