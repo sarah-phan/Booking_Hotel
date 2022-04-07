@@ -6,16 +6,14 @@ import "./style.css"
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-export default function ThongTinChiTiet(props) {
-  const { id } = props.match.params
-  const _id = id
+export default function ThongTinChiTiet() {
+  const _id = localStorage.getItem("user-id")
   const dataUserDetail = useSelector(state => state.authReducer.data?.user) || {}
   const dataPutUserDetail = useSelector(state => state.putUserDetailReducer.data)
   const errorPutUserDetail = useSelector(state => state.putUserDetailReducer.error)
   const dispatch = useDispatch()
   const [form] = Form.useForm()
 
-  console.log(dataUserDetail)
   useEffect(() => {
     dispatch(actGetChiTiet(_id))
   }, [_id])

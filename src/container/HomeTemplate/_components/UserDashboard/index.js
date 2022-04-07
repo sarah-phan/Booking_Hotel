@@ -16,13 +16,14 @@ import ThongTinChiTiet from "../../ThongTinChiTiet";
 import UploadAvatar from "../../UploadAvatar";
 import "./style.css";
 
-export default function UserDashboard(props) {
+export default function UserDashboard() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { id } = props.match.params;
+  const id = localStorage.getItem("user-id")
   const auth = useSelector((state) => state.authReducer.data);
+
   useLayoutEffect(() => {
-    if (!auth?.token) {
+    if (localStorage.getItem("user-id") === null) {
       history.push("/");
     } else if (auth?.user?.type == "ADMIN") {
       history.push("/admin");
